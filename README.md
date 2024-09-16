@@ -23,6 +23,12 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 
 
 ## Run Locally
+For the frontend:
+```
+npm install && npx expo start -c
+```
+Appeared to come across issues with yarn and pnpm so maybe avoid using 
+
 
 
 ## Contributors
