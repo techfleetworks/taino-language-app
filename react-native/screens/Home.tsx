@@ -4,15 +4,17 @@ import { StyleSheet } from 'react-native';
 
 export const Home = ({ navigation }) => {
     return (
-      <Button
-        title="Go to Jane's profile"
-        onPress={() =>
-          navigation.navigate('Profile', {name: 'Jane'})
-        }
-      />
+      <View style={styles.container}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Go to Jane's profile"
+          onPress={() =>
+            navigation.navigate('Profile', {name: 'Jane'})
+          }
+        />
+      </View>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
