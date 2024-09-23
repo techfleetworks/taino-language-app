@@ -6,12 +6,11 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 - Frontend:
     - Language: TypeScript
     - Framework: React Native
-    - State Management: React Context API
-    - Auth: React Native Auth
     - Data Fetching: Axios
     - Build Tools: Expo Go + Metro
     - Testing: Cypress
 - Backend:
+    - Language: TypeScript
     - Express.js
     - TypeScript
     - PostgreSQL
@@ -21,15 +20,19 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 - Hosting
     - Netlify
 
+## Requirements
+- Node.js v20
 
 ## Run Locally
 For the frontend:
 ```
 npm install && npx expo start -c
 ```
-Appeared to come across issues with yarn and pnpm so maybe avoid using 
 
-
+For the backend:
+```
+npm install && npm run dev
+```
 
 ## Contributors
 
