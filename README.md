@@ -1,5 +1,6 @@
 # Taino Language App
 
+<!-- TODO: Write more about the background of this project -->
 This project is for a PWA(Progressive Web App) that lets those who seek to learn the Taino language do so. 
 
 ## Stack 
@@ -13,10 +14,11 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
     - Language: TypeScript
     - Express.js
     - TypeScript
-    - PostgreSQL
+    - Avien.io(Cloud Hosting for Postgres)
     - Jest
-- Deployment
-    - Docker
+- CI/CD
+    - Docker(maybe??)
+    - GitHub Actions
 - Hosting
     - Netlify
 
@@ -29,10 +31,7 @@ For the frontend:
 npm install && npx expo start -c
 ```
 
-For the backend:
-```
-npm install && npm run dev
-```
+<!-- For the backend: -->
 
 ## Contributors
 
