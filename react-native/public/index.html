@@ -38,6 +38,20 @@
         });
       }
     </script>
+  <!-- fallback to static rendering if the app fails to load within 5 seconds -->
+  <script>
+    // Set a timeout to check if the app has loaded
+    setTimeout(function() {
+        if (!window.appLoaded) {
+            console.error('App failed to load within 5 seconds');
+            document.body.innerHTML = `
+                <h1>Taino Language App</h1>
+                <p>We're having trouble loading the app. Please try refreshing the page.</p>
+                <button onclick="location.reload()">Refresh</button>
+            `;
+        }
+    }, 5000);
+  </script>
   </head>
 
   <body>
@@ -47,5 +61,11 @@
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
+    <script>
+      // Set this flag when your app successfully loads
+      window.addEventListener('load', function() {
+          window.appLoaded = true;
+      });
+  </script>
   </body>
 </html>
