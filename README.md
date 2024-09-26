@@ -27,11 +27,15 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 
 ## Run Locally
 For the frontend:
-```
+```bash
+cd react-native
+cp .env.example .env
 npm install && npx expo start -c
 ```
 
 <!-- For the backend: -->
+
+For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 
 ## Contributors
 
