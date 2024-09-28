@@ -5,22 +5,14 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 
 ## Stack 
 - Frontend:
-    - Language: TypeScript
     - Framework: React Native
     - Data Fetching: Axios
     - Build Tools: Expo Go + Metro
     - Testing: Cypress
 - Backend:
-    - Language: TypeScript
-    - Express.js
-    - TypeScript
+    - Encore.ts
     - Avien.io(Cloud Hosting for Postgres)
     - Jest
-- CI/CD
-    - Docker(maybe??)
-    - GitHub Actions
-- Hosting
-    - Netlify
 
 ## Requirements
 - Node.js v20
