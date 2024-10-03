@@ -34,6 +34,12 @@ npm install && npx expo start -c
 ```
 
 <!-- For the backend: -->
+For the backend:
+```bash
+cd nest-backend
+cp .env.example .env
+npm install && npm run start:dev
+```
 
 For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 
