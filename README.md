@@ -10,9 +10,8 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
     - Build Tools: Expo Go + Metro
     - Testing: Cypress
 - Backend:
-    - Encore.ts
-    - Avien.io(Cloud Hosting for Postgres)
-    - Jest
+    - Nest.js
+    - PostgreSQL
 
 ## Requirements
 - Node.js v20
@@ -29,5 +28,5 @@ npm install && npx expo start -c
 
 For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 
-## Contributors
-
+<!-- ## Contributors -->
+<section wip>
