@@ -35,4 +35,3 @@ npm install && npm run start:dev
 For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 
 <!-- ## Contributors -->
-<section wip>
