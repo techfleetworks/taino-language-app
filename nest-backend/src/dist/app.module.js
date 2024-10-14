@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AppModule = void 0;
 var common_1 = require("@nestjs/common");
+var config_1 = require("@nestjs/config");
 var app_controller_1 = require("./app.controller");
 var app_service_1 = require("./app.service");
 var cat_controller_1 = require("./cat/cat.controller");
@@ -17,7 +18,7 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = __decorate([
         common_1.Module({
-            imports: [],
+            imports: [config_1.ConfigModule.forRoot()],
             controllers: [app_controller_1.AppController, cat_controller_1.CatController],
             providers: [app_service_1.AppService, cat_service_1.CatService]
         })
