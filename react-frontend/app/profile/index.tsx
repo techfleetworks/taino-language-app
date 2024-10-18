@@ -3,8 +3,8 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 import { StyleSheet } from 'react-native';
 
-export const Profile = ({navigation, route}) => {
-    return <Text>This is {route.params.name}'s profile</Text>;
+export const Page = () => {
+    return <Text>This is profile page</Text>;
 };
 
 const styles = StyleSheet.create({

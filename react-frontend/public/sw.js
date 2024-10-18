@@ -4,6 +4,10 @@ const STATIC_ASSETS = [
   '/index.html',
   '/static/js/main.js',
   '/static/css/main.css',
+  '/manifest.json',
+  '/favicon.ico',
+  '/logo192.png',
+  '/logo512.png'
 ];
 
 self.addEventListener('install', (event) => {
