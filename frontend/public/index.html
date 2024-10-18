@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Taino Language App</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+  <!-- fallback to static rendering if the app fails to load within 5 seconds -->
+  <script>
+    // Set a timeout to check if the app has loaded
+    setTimeout(function() {
+        if (!window.appLoaded) {
+            console.error('App failed to load within 5 seconds');
+            document.body.innerHTML = `
+                <h1>Taino Language App</h1>
+                <p>We're having trouble loading the app. Please try refreshing the page.</p>
+                <button onclick="location.reload()">Refresh</button>
+            `;
+        }
+    }, 5000);
+  </script>
+  </head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+    <script>
+      // Set this flag when your app successfully loads
+      window.addEventListener('load', function() {
+          window.appLoaded = true;
+      });
+  </script>
+  </body>
+</html>
