@@ -11,9 +11,9 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
     - Data Fetching: Axios
     - Testing: Jest + React Native Testing Library
 - Backend:
-    - Encore.ts
     - Supabase(Database, Auth and Storage)
     - Jest
+    - Nest.js
 
 ## Requirements
 - Node.js v20
@@ -44,7 +44,6 @@ or instead of running these separately, you can run the project with the followi
 
 For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 
-
 <!-- TODO: Add Contributors section -->
 <!-- ## Contributors -->
-
+<!-- ## Contributors -->
