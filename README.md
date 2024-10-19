@@ -7,13 +7,12 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 
 ## Stack 
 - Frontend:
-    - Framework: React Native
+    - Framework: React Native + Expo
     - Data Fetching: Axios
-    - Build Tools: Expo Go + Metro
-    - Testing: Cypress
+    - Testing: Jest + React Native Testing Library
 - Backend:
     - Encore.ts
-    - Avien.io(Cloud Hosting for Postgres)
+    - Supabase(Database, Auth and Storage)
     - Jest
 
 ## Requirements

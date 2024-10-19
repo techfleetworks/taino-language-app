@@ -10,7 +10,7 @@ exports[`renders correctly 1`] = `
       [
         undefined,
         {
-          "fontFamily": "SpaceMono",
+          "fontFamily": "Inter",
         },
       ],
     ]

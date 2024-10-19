@@ -13,7 +13,7 @@
  */
 
 
-import {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -38,7 +38,7 @@ type texinputprops = {
   eyeIcon: boolean;
 };
 
-export default function TLPTextInput(textInputProps) {
+export default function TLPTextInput(textInputProps: { value: any; placeholder: any; placeholderTextColor: any; passwordIndicator: any; onPress: any; onChangeText: any; keyboardType: any; secureTextEntry: any; eyeIcon: any; }) {
   const {
     value = textInputProps.value,
     placeholder = textInputProps.placeholder,

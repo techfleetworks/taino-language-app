@@ -14,6 +14,7 @@
  * @function
  */
 
+import React from 'react';
 import {FunctionComponent, useMemo} from 'react';
 import {
   Pressable,

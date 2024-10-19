@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import {Text, 
-        SafeAreaView,
+        SafeAreaView, 
         StyleSheet, 
         View, 
         Image,
@@ -15,6 +15,8 @@ import StyledButton from '@/components/TLPButton';
 import ProgressStep from '@/components/ProgressStep';
 
 type displayflex = FlexStyle['display']
+
+
 
 export default function Welcome(): JSX.Element {
   const [displayFlex, setDisplayFlex] = useState<string>('flex');
@@ -59,11 +61,11 @@ export default function Welcome(): JSX.Element {
       </View>
 
       <View style={[styles.buttonWrapper, {display:displayNone as displayflex}]}>
-        <StyledButton
+        <StyledButton   
         title={introText ? 'Let’s get started!' : 'Continue'}
-        titleColor='#101828'
+        titleColor={'#101828'}
         titleSize={16}
-        backgroundColor='#475467'
+        backgroundColor={'#475467'}
         width= {294}
         height={48}
         accessibilityLabel={'Button'}
@@ -72,6 +74,8 @@ export default function Welcome(): JSX.Element {
         buttonText={styles.buttonText}
         otherProps={styles.buttonNav} />
       </View>
+
+      
     </View>
   );
 }
@@ -179,3 +183,17 @@ const styles = StyleSheet.create({
     gap: 16,
   },
 });
+  
+
+
+
+
+
+
+  
+
+
+
+      
+
+    

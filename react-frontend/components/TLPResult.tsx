@@ -4,7 +4,7 @@
  * @returns {JSX.Element}
  * @function
  */
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 
 
@@ -17,12 +17,12 @@ export default function Result(props: object): JSX.Element {
   return (
   <View style={styles.resultContainer}>
     <View style={styles.textGroup}>
-      <Image style={styles.icon} source={text ? require('../assets/check.png') : require('../assets/cancel_light.png')} />
+      <Image style={styles.icon} source={text ? require('@/assets/images/check.png') : require('@/assets/images/cancel_light.png')} />
       <View style={styles.textWrapper}>
         <Text style={styles.text}>{text ? 'Amazing!' : 'Oops!'} </Text>
       </View>
       <View style={styles.imageWrapper}>
-      <Image style={styles.icon} source={require('../assets/ios_share.png')} />
+      <Image style={styles.icon} source={require('@/assets/images/ios_share.png')} />
       </View>
     </View>
 

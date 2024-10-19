@@ -5,7 +5,7 @@
  * @function
  */
 
-import {useState, useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import {View, Image, StyleSheet, Text} from 'react-native';
 
 // type id = number;
@@ -14,11 +14,11 @@ export default function ProgressStep(props: any): JSX.Element {
 
   for (var i = 2; i <= props.id; i++) {
     // @ts-ignore
-    step.push(<Image source={require('../assets/step_gray.png')} />);
+    step.push(<Image source={require('@/assets/images/step_gray.png')} />);
   }
   for (var j = props.id; j <= 6; j++) {
     // @ts-ignore
-    step.push(<Image source={require('../assets/step_white.png')} />);
+    step.push(<Image source={require('@/assets/images/step_white.png')} />);
   }
 
   const [fill, setFIll] = useState<boolean>(false);
@@ -28,11 +28,11 @@ export default function ProgressStep(props: any): JSX.Element {
       <View style={styles.arrowWrapper}>
         <Image
           style={styles.arrow}
-          source={require('../assets/arrow_back_ios_new.png')}
+          source={require('@/assets/images/arrow_back_ios_new.png')}
         />
       </View>
       <View style={styles.stepContainer}>
-        <Image source={require('../assets/step_gray.png')} />
+        <Image source={require('@/assets/images/step_gray.png')} />
         {step}
       </View>
     </View>

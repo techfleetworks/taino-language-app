@@ -8,7 +8,8 @@ import {
   Text,
   Linking,
   TextProps,
-  GestureResponderEvent
+  GestureResponderEvent,
+  TextStyle
 } from 'react-native';
 
 // use Themed.tsx and StyledText.tsx text: if it will be the same throughout the program or override properties
@@ -64,5 +65,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     textDecoration: 'underline',
-  },
+  } as TextStyle,
 });

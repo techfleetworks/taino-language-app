@@ -23,7 +23,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro"
+      "bundler": "metro",
+      "output": "dist"
     },
     "extra": {
       "backendUrl": "http://localhost:8000"
