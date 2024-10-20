@@ -1,9 +1,9 @@
+---
 name: Project Task
 about: Task that needs to be done project phase
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 Here are the following things that need to be done to complete this issue:
