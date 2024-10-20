@@ -19,8 +19,9 @@ If an issue has the labels 'up for grabs' or 'good for newcomers' feel free to a
 When working on an issue that requires code, do the following:
 1. Clone this repository. 
 2. Create a new branch from the testing branch
-3. Ccommit and push your code.
+3. Commit and push your code.
 4. Lastly, create the PR
    - Follow this guide more: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 
-Thank you again for contributing to the Taino Language App.
+Thank you again for contributing to the Taino Language App. If you have any questions, feel free to ask in the Discord server, or open an issue.
+If you want more involvement in projects like this, feel free to join the [Tech Fleet Discord Server](https://techfleet.org/join).
