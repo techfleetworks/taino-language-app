@@ -34,7 +34,7 @@ export default function Welcome(): JSX.Element {
     <ProgressStep onPress={() => setIntroText(true)} />
     </View>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={require('@/assets/images/humming_bird.png')} />
+        <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
       </View>
 
       <View style={[styles.welcomeTextWrapper, {display:displayFlex as displayflex}]}>
