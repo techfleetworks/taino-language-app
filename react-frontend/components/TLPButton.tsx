@@ -105,7 +105,7 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
         ) : null} */}
         {icon && <Icon.Button
             name={icon}
-            onPress={onPress}
+            // onPress={onPress}
             style={styles.buttonIcon}
             
           /> }
