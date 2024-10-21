@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: '#475467',
+    color: '#fff',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '700',
