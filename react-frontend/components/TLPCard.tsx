@@ -16,14 +16,13 @@ export default function CardTemplate(props: cardprops) {
 		<Card style={styles.cardContainer} >
 			<Card.Actions>
 				<Card.Content style={styles.cardContent} >
-					<Card.Cover style={styles.cardLogo} source={require('../assets/images/adaptive-icon.png')} />
+					<Card.Cover style={styles.cardLogo} source={require('@/assets/humming_bird.png')} />
 					<Text variant="bodySmall"  style={styles.cardText} >{text}</Text>
 				</Card.Content>
 			</Card.Actions>
 		</Card>
 	);
 };
-
 
 const styles = StyleSheet.create({
 	cardContainer: {
