@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import ProgressStep from '@/components/ProgressStep';
 import StyledButton from '@/components/TLPButton';
 import Result from '@/components/TLPResult';
@@ -14,9 +14,9 @@ export default function introQuestion() {
       <ProgressStep id={2} />
 
       <View style={styles.textWrapper}>
-      <Text style={styles.text}>
-        The Taíno are an Indigenous people of the Americas and the original inhabitants of _____.
-      </Text>
+        <Text style={styles.text}>
+          The Taíno are an Indigenous people of the Americas and the original inhabitants of _____.
+        </Text>
       </View>
 
       <View style={styles.buttonContainer}>

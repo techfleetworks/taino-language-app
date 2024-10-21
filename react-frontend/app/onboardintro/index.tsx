@@ -8,7 +8,6 @@ import {View, Text, Image, StyleSheet} from 'react-native';
 import ProgressStep from '@/components/ProgressStep';
 import StyledButton from '@/components/TLPButton';
 
-
 export default function OnboardIntro(): JSX.Element {
 
   return (
@@ -40,10 +39,10 @@ export default function OnboardIntro(): JSX.Element {
       <View style={styles.buttonWrapper}>
         <StyledButton   
         title={'Continue'}
-        titleColor={'#101828'}
+        titleColor={'white'}
         titleSize={16}
         backgroundColor={'#475467'}
-        width= {294}
+        width='100%'
         height={48}
         accessibilityLabel={'Button'}
         onPress= {() => {}}
@@ -80,7 +79,6 @@ const styles = StyleSheet.create({
     
   },
   imageWrapper: {
-    paddingHorizontal: 32,
     paddingVertical: 64,
   },
   textGroup: {
