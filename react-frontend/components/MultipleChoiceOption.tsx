@@ -1,13 +1,13 @@
 import { Pressable, Text, StyleSheet } from "react-native";
 
 interface MultipleChoiceOptionProps {
-  label: string;
+  option: string;
   isSelected: boolean;
   onPress: () => void;
 }
 
 export default function MultipleChoiceOption({
-  label,
+  option,
   isSelected,
   onPress,
 }: MultipleChoiceOptionProps) {
@@ -19,7 +19,7 @@ export default function MultipleChoiceOption({
       <Text
         style={[styles.optionText, isSelected && styles.optionTextSelected]}
       >
-        {label}
+        {option}
       </Text>
     </Pressable>
   );

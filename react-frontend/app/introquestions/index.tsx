@@ -37,7 +37,7 @@ export default function IntroQuestion() {
         {mockData.options.map((option, index) => (
           <MultipleChoiceOption
             key={index}
-            label={option}
+            option={option}
             isSelected={selectedOption === index}
             onPress={() => handleOptionSelect(index)}
           />
