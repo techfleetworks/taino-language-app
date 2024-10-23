@@ -7,6 +7,7 @@ import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import ProgressStep from '@/components/ProgressStep';
 import StyledButton from '@/components/TLPButton';
+import Colors from '@/constants/Colors';
 
 export default function OnboardIntro(): JSX.Element {
 
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems:'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Colors.background,
     padding: 8,
   },
   centerGroup: {

@@ -29,9 +29,6 @@
     "extra": {
       "backendUrl": "http://localhost:8000"
     },
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ]
+    "plugins": ["expo-router", "expo-font"]
   }
 }
