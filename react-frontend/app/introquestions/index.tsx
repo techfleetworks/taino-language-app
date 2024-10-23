@@ -50,7 +50,7 @@ export default function IntroQuestion() {
       <View style={styles.buttonWrapper}>
         <TLPButton
           title={'Continue'}
-          titleColor={'#101828'}
+          titleColor={'white'}
           titleSize={16}
           backgroundColor={'#475467'}
           width={294}

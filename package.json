@@ -12,7 +12,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:backend": "cd nest-backend && pnpm run start",
     "dev:frontend": "cd react-frontend && npm run start",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "ngrok:frontend": "cd react-frontend && ngrok http 8081"
   },
   "keywords": [],
   "author": "",

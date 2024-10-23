@@ -61,7 +61,7 @@ export default function Welcome(): JSX.Element {
       <View style={[styles.buttonWrapper, {display:displayNone as displayflex}]}>
         <StyledButton
         title={introText ? 'Let’s get started!' : 'Continue'}
-        titleColor='#101828'
+        titleColor='white'
         titleSize={16}
         backgroundColor='#475467'
         width= {294}
@@ -84,11 +84,7 @@ export default function Welcome(): JSX.Element {
     // accessibilityLabel={'Button'}
 
     // {title:'Continue', titleColor:'#101828', titleSize:30, backgroundColor:'#475467', width:390, accessibilityLabel:'Button'}
-
-
-
-  
-  
+    
 const styles = StyleSheet.create({
   welcomeContainer: {
     flex: 1,
@@ -163,7 +159,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: '#fff',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '700',
