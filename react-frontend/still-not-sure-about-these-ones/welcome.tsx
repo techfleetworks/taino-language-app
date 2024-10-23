@@ -13,6 +13,7 @@ import {Text,
 import {useState} from 'react';
 import StyledButton from '@/components/TLPButton';
 import ProgressStep from '@/components/ProgressStep';
+import Colors from '@/constants/Colors';
 
 type displayflex = FlexStyle['display']
 
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems:'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Colors.background,
     padding: 8,
   },
   progressWrapper: {

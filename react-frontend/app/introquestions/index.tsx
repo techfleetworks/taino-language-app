@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import ProgressStep from '@/components/ProgressStep';
 import TLPButton from '@/components/TLPButton';
 import Result from '@/components/TLPResult';
+import Colors from '@/constants/Colors';
 
 const mockData = {
     question: 'The Taíno are an Indigenous people of the Americas and the original inhabitants of _____.',
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems:'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Colors.background,
     padding: 8,
   },
   textWrapper: {

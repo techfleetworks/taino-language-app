@@ -13,6 +13,7 @@ import {Text,
 import {useState} from 'react';
 import StyledButton from '@/components/TLPButton';
 import ProgressStep from '@/components/ProgressStep';
+import Colors from '@/constants/Colors';
 
 type displayflex = FlexStyle['display']
 
@@ -63,7 +64,7 @@ export default function Welcome(): JSX.Element {
         title={introText ? 'Let’s get started!' : 'Continue'}
         titleColor='white'
         titleSize={16}
-        backgroundColor='#475467'
+        backgroundColor={Colors.primary}
         width= {294}
         height={48}
         accessibilityLabel={'Button'}
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems:'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Colors.background,
     padding: 8,
   },
   progressWrapper: {
