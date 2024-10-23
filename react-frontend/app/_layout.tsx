@@ -62,18 +62,16 @@ function RootLayoutNav() {
   const isLargeScreen = width >= 768; // Threshold for tablet/desktop
 
   const aspectRatio = 390 / 844;
-  const maxWidth = Math.min(width * 0.9, 390);
-  const maxHeight = Math.min(height * 0.9, 844);
+  
+  let frameHeight = height;
+  let frameWidth = frameHeight * aspectRatio;
 
-  let frameWidth = maxWidth;
-  let frameHeight = frameWidth / aspectRatio;
-
-  if (frameHeight > maxHeight) {
-    frameHeight = maxHeight;
-    frameWidth = frameHeight * aspectRatio;
+  if (frameWidth > width) {
+    frameWidth = width;
+    frameHeight = frameWidth / aspectRatio;
   }
 
-  const scaleFactor = frameWidth / 390;
+  const scaleFactor = frameHeight / 844;
 
   const containerStyle = isLargeScreen
     ? styles.largeScreenContainer
@@ -117,24 +115,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#DEDEDE', // Light gray background for larger screens
+    backgroundColor: '#DEDEDE',
   },
   smallScreenContainer: {
     flex: 1,
-    backgroundColor: 'transparent', // Transparent background for smaller screens
+    backgroundColor: 'white',
   },
   phoneFrame: {
     overflow: 'hidden',
     backgroundColor: 'white',
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
