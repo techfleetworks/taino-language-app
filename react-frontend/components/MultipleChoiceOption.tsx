@@ -1,4 +1,5 @@
 import { Pressable, Text, StyleSheet } from "react-native";
+import Colors  from "../constants/Colors";
 
 interface MultipleChoiceOptionProps {
   option: string;
@@ -17,7 +18,7 @@ export default function MultipleChoiceOption({
       onPress={onPress}
     >
       <Text
-        style={[styles.optionText, isSelected && styles.optionTextSelected]}
+        style={[styles.optionText]}
       >
         {option}
       </Text>
@@ -27,24 +28,20 @@ export default function MultipleChoiceOption({
 
 const styles = StyleSheet.create({
   option: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "#000",
-    backgroundColor: "#D9D9D9",
+    backgroundColor: Colors.surface,
     padding: 12,
     marginBottom: 10,
   },
   optionSelected: {
-    backgroundColor: "#475467",
+    backgroundColor: Colors.surfaceVariant,
   },
   optionText: {
-    color: "#101828",
-    fontFamily: "Inter",
+    color: Colors.text.onSurface,
     fontSize: 16,
     fontWeight: "700",
     textAlign: "center",
   },
   optionTextSelected: {
-    color: "#FFFFFF",
+    color: Colors.text.onPrimary
   },
 });

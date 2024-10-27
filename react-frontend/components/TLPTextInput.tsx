@@ -13,6 +13,7 @@
  */
 
 
+import Colors from '@/constants/Colors';
 import React, { useState } from 'react';
 import {
   View,
@@ -84,13 +85,12 @@ export default function TLPTextInput(textInputProps: { value: any; placeholder: 
 
 TLPTextInput.defaultProps = {
   placeholder: 'placeholder',
-  placeholderTextColor: '#AFAFA',
+  placeholderTextColor: Colors.text.onSurface,
   passwordIndicator: false,
   keyboardType: 'default',
   secureTextEntry: false,
   eyeIcon: false
 }
-
 
 const styles = StyleSheet.create({
   textInputContainer: {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   placeholderText: {
     fontSize: 10,
-    weight: 400,
+    fontWeight: '400',
   },
   eyeIcon: {
     position: 'absolute',
