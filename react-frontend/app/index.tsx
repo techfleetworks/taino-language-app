@@ -259,13 +259,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 16,
   },
-  questionContainer: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: Colors.background,
-    padding: 8,
-  },
   textWrapper: {
     width: 326,
     paddingTop: 26,
