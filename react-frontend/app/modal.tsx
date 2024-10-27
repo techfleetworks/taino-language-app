@@ -1,7 +1,7 @@
 import React from 'react';
 // import { StatusBar } from 'status-bar';
 import { Platform, StyleSheet } from 'react-native';
-
+import Colors from '@/constants/Colors';
 import { Text, View } from '@/components/Themed';
 
 export default function ModalScreen() {
@@ -10,8 +10,8 @@ export default function ModalScreen() {
       <Text style={styles.title}>Modal</Text>
       <View
 				style={styles.separator}
-				lightColor="#eee"
-				darkColor="rgba(255,255,255,0.1)"
+				lightColor={Colors.text.onSurface}
+				darkColor={Colors.text.onPrimary}
 			/>
   
 

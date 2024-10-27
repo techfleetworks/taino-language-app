@@ -10,12 +10,12 @@
  * @param {GestureResponderEvent} onPress - event handle of the gesture of pushing the button
  * @param {any} icon - passing the icon to the button
  * @param {any} otherProps - any other style properties
+ * @param {string} buttonText - text for the button 
  * @returns {JSX.Element}
  * @function
  */
 
 import React from 'react';
-import {FunctionComponent, useMemo} from 'react';
 import {
   Pressable,
   Text,
@@ -30,8 +30,8 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {default as Colors} from '../constants/Colors';
 import { ColorValue } from 'react-native';
-import { IconProps } from 'react-native-paper/lib/typescript/components/MaterialCommunityIcon';
-import { IconButtonProps } from 'react-native-paper';
+// import { IconProps } from 'react-native-paper/lib/typescript/components/MaterialCommunityIcon';
+// import { IconButtonProps } from 'react-native-paper';
 
 // materialUI
 // https://reactnative.dev/docs/accessibility#accessibility-actions
@@ -41,7 +41,7 @@ import { IconButtonProps } from 'react-native-paper';
 // review and reconsider type for otherProps
 
 type buttonprops = {
-  title: string;
+  title: string ;
   titleColor?: TextStyle['color'];
   titleSize: TextStyle['fontSize'];
   backgroundColor?: ColorValue;
@@ -50,8 +50,8 @@ type buttonprops = {
   accessibilityLabel: AccessibilityProps['accessibilityLabel'];
   onPress: ((event: GestureResponderEvent) => void) | null | undefined,
   buttonText: any,
-  icon: any,
-  otherProps: any
+  icon?: any,
+  otherProps?: any
 };
 
 // onPress default should route to error message or default action or route to default screen?
@@ -78,11 +78,9 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
     accessibilityLabel = buttonProps.accessibilityLabel,
     onPress = buttonProps.onPress,
     icon = buttonProps.icon,
-    buttonText = {...buttonProps.buttonText},
-    otherProps = {...buttonProps.otherProps}
+    buttonText = buttonProps.buttonText,
+    otherProps = buttonProps.otherProps
   } = buttonProps;
-
-  // const props = useMemo((buttonProps: buttonprops) => { return { title: buttonProps.title,
   //     titleColor: buttonProps.titleColor,
   //     titleSize: buttonProps.titleSize,
   //     backgroundColor: buttonProps.backgroundColor,
@@ -100,7 +98,6 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
             name={icon}
             onPress={onPress}
             style={styles.buttonIcon}
-            
           />
         ) : null} */}
         {icon && <Icon.Button
@@ -124,10 +121,10 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
 // change based on style guide along with styles below 
 StyledButton.defaultProps = {
   title: 'Button',
-  titleColor: '#ffffff',
+  titleColor: Colors.onPrimary.highEmphasis,
   titleSize: 14,
-  backgroundColor: '#000000',
-  width: 100,
+  backgroundColor: Colors.primary,
+  width: 320,
   accessibilityLabel: 'button',
 };
 
@@ -138,18 +135,13 @@ const styles = StyleSheet.create({
   buttonIcon: {
    
   },
+  buttonNav: {
+    display: 'flex',
+    padding: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 16,
+    alignSelf: 'stretch',
+    borderRadius: 8,
+  }
 });
-
-// buttonContainer: {
-//     elevation: 8,
-//     borderRadius: 10,
-//     paddingVertical: 10,
-//     paddingHorizontal: 12
-//   },
-//   buttonText: {
-//     fontSize: 18,
-//     color: "#fff",
-//     fontWeight: "bold",
-//     alignSelf: "center",
-//     textTransform: "uppercase"
-//   }

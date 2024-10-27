@@ -34,16 +34,15 @@ export default function OnboardIntro(): JSX.Element {
           Due to European colonization, which started with the first encounter in 1492, many Taíno people hid or were killed.
           </Text>
         </View>
-
       </View>
      
       <View style={styles.buttonWrapper}>
         <StyledButton   
         title={'Continue'}
-        titleColor={'#101828'}
+        titleColor={'white'}
         titleSize={16}
         backgroundColor={'#475467'}
-        width= {294}
+        width='100%'
         height={48}
         accessibilityLabel={'Button'}
         onPress= {() => {}}
@@ -78,7 +77,6 @@ const styles = StyleSheet.create({
     
   },
   imageWrapper: {
-    paddingHorizontal: 32,
     paddingVertical: 64,
   },
   textGroup: {
