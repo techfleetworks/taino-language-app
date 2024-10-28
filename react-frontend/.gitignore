@@ -3,10 +3,13 @@
 # dependencies
 node_modules/
 
-# Expo
-.expo/
+# Build directories
 dist/
+**/dist/
 web-build/
+**/web-build/
+.expo/
+**/.expo/
 
 # Native
 *.orig.*
@@ -35,5 +38,3 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 .vercel
-
-**/dist/
