@@ -3,98 +3,182 @@
  * @returns {JSX.Element}
  * @function
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Text, 
         SafeAreaView,
         StyleSheet, 
         View, 
         Image,
-        FlexStyle} from 'react-native';
+        FlexStyle
+} from 'react-native';
 import {useState} from 'react';
 import StyledButton from '@/components/TLPButton';
 import ProgressStep from '@/components/ProgressStep';
+import Colors from '@/constants/Colors';
+import { TLPBottomButtonNav } from '@/components/TLPBottomButtonNav';
+import { mockData } from '@/mock-data';
+import Result from '@/components/TLPResult';
+import MultipleChoiceOption from '@/components/MultipleChoiceOption';
 
 type displayflex = FlexStyle['display']
+
+const fetchLessonSlides = () => {
+  return mockData.lessons[0].slides;
+}
+
+interface LessonSlide {
+  type: string;
+  text: string;
+  category?: string;
+  question?: string;
+  options?: string[];
+}
 
 export default function Welcome(): JSX.Element {
   const [displayFlex, setDisplayFlex] = useState<string>('flex');
   const [displayNone, setDisplayNone] = useState<string>('none');
-
+  const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
   const [introText, setIntroText] = useState<boolean>(true);
-
+  
+  const [lessonSlides, setLessonSlides] = useState<LessonSlide[]>([
+    {
+      type: '', 
+      text: '',
+      options: []
+    }
+  ]);  
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const onPress = () => setIntroText(false); 
-  const icon = false;
+
+  const handleIsIntroText = () => {
+
+    return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
+  }
+
+  const handleClick = () => setCurrentSlide(prev => prev + 1);
+
+  const handleOptionSelect = (index: number) => {
+    setSelectedOption(index);
+  }
+
+  useEffect(() => {
+    const data = fetchLessonSlides();
+    console.log(data);
+    setLessonSlides(data.map(slide => ({
+      ...slide,
+      text: slide.text || ''
+    })));
+  }, []);
 
   setTimeout(() => setDisplayFlex('none'), 5000);
   setTimeout(() => setDisplayNone('flex'), 5000);
 
   return (
-    <View style={styles.welcomeContainer}>
-    <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
-    <ProgressStep onPress={() => setIntroText(true)} />
-    </View>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
+    <View style={lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' ? styles.welcomeContainer : styles.questionContainer}>
+      <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
+        {/* ProgressStep: not visible on intro text */}
+        {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category !== 'introduction' && (
+          <ProgressStep id={currentSlide - 2} />
+        )}
       </View>
 
-      <View style={[styles.welcomeTextWrapper, {display:displayFlex as displayflex}]}>
-        <Text style={styles.welcomeText}>
-          Mabríka! 
-        </Text>
-        <Text style={styles.welcomeText}>
-          Welcome to Learn Taíno! 
-        </Text>
-      </View>
+       {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && <View style={styles.imageContainer}>
+          <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
+        </View>}
 
-      <View style={[styles.introTextWrapper, {display:displayNone as displayflex}]} >
+        <View style={[styles.welcomeTextWrapper, {display:displayFlex as displayflex}]}>
+          <Text style={styles.welcomeText}>
+            Mabríka! 
+          </Text>
+          <Text style={styles.welcomeText}>
+            Welcome to Learn Taíno! 
+          </Text>
+        </View>
 
-        {introText ?
-        <Text style={styles.introText}>
-        Whether you are looking to reconnect with your Taíno ancestry or are curious about Taíno culture, I Welcome you to join me here at Learn Taíno!
-        </Text> 
-        :
-        <Text style={styles.introText}>
-        Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.
-        </Text>}
-      </View>
 
-      <View style={[styles.buttonWrapper, {display:displayNone as displayflex}]}>
+      {/* Intro text: not visible on non-intro text */}
+      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && (
+        <>
+        
+        <View style={[styles.introTextWrapper, {display:displayNone as displayflex}]}>
+          <Text style={styles.introText}>
+              {lessonSlides[currentSlide].text}
+            </Text> 
+        </View>
+        </>
+      )}
+
+      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category !== 'introduction' && (
+              <>
+              <View style={styles.textWrapper}>
+                <Text style={styles.text}>{lessonSlides[currentSlide].question}</Text>
+              </View>
+        
+              {/* TODO: remove and replace the index params witth actual id */}
+              <View style={styles.answersContainer}>
+                {lessonSlides[currentSlide]?.options && lessonSlides[currentSlide].options.map((option: any, index: number) => (
+                  <MultipleChoiceOption
+                    key={index}
+                    option={option}
+                    isSelected={selectedOption === index}
+                    onPress={() => handleOptionSelect(index)}
+                  />
+                ))}
+              </View>
+        
+              <Result />
+        
+              <View style={styles.buttonWrapper}>
+                <StyledButton
+                  title={"Continue"}
+                  titleSize={16}
+                  height={48}
+                  accessibilityLabel={"Continue"}
+                  onPress={() => {
+                    // Handle continue action
+                    
+                  }}
+                  icon={false}
+                  buttonText={styles.buttonText}
+                  otherProps={styles.buttonNav}
+                />
+              </View>
+              </>
+      )}
+
+      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && (
+        <TLPBottomButtonNav style={{display:displayNone as displayflex}}>
+
         <StyledButton
-        title={introText ? 'Let’s get started!' : 'Continue'}
-        titleColor='#101828'
+        title={handleIsIntroText() ? 'Continue' : 'Let’s get started!'}
         titleSize={16}
-        backgroundColor='#475467'
-        width= {294}
         height={48}
         accessibilityLabel={'Button'}
-        onPress= {() => setIntroText(false)}
+        onPress= {handleClick}
         icon={false}
         buttonText={styles.buttonText}
-        otherProps={styles.buttonNav} />
-      </View>
+        otherProps={styles.buttonNav} 
+        />
+      </TLPBottomButtonNav>
+      )}
+     
     </View>
   );
 }
 
-    // title={'Continue'}
-    // titleColor={'#101828'}
-    // titleSize={30}
-    // backgroundColor={'#475467'}
-    // width= {390}
-    // accessibilityLabel={'Button'}
-
-    // {title:'Continue', titleColor:'#101828', titleSize:30, backgroundColor:'#475467', width:390, accessibilityLabel:'Button'}
-
-
-
-  
-  
 const styles = StyleSheet.create({
   welcomeContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems:'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Colors.background,
+    padding: 8,
+  },
+  questionContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: Colors.background,
     padding: 8,
   },
   progressWrapper: {
@@ -104,9 +188,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     position: 'relative',
     paddingTop: 192,
-    // paddingLeft: 80,
     paddingBottom: 144,
-    // paddingRight: 80,
     flexDirection: 'column',
     alignItems: 'center',
     gap: 16,
@@ -145,7 +227,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   introText: {
-    color: '#475467',
+    // color: '#475467',
     /* Text lg/Regular */
     fontFamily: 'Inter',
     fontSize: 18,
@@ -163,7 +245,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: '#fff',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '700',
@@ -177,5 +258,23 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     gap: 16,
+  },
+  textWrapper: {
+    width: 326,
+    paddingTop: 26,
+    paddingHorizontal: 12,
+  },
+  text: {
+    color: Colors.text.onSurface,
+    fontFamily: "Inter",
+    fontSize: 24,
+    fontStyle: "normal",
+    fontWeight: "600",
+  },
+  answersContainer: {
+    width: "100%",
+    paddingHorizontal: 27,
+    paddingTop: 75,
+    paddingBottom: 92,
   },
 });

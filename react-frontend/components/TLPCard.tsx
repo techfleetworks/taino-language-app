@@ -1,3 +1,4 @@
+import Colors from '@/constants/Colors';
 import React from 'react';
 import { View, Image, StyleSheet } from "react-native";
 import { Card, Text } from "react-native-paper";
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
 		height: 100,
 		width: 100,
 		borderRadius: 20,
-		backgroundColor: "#ffffff",
+		backgroundColor: Colors.background,
 		paddingTop: 16,
 	},
 	cardContent: {

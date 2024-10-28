@@ -7,12 +7,13 @@ import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import ProgressStep from '@/components/ProgressStep';
 import StyledButton from '@/components/TLPButton';
+import Colors from '@/constants/Colors';
 
 export default function OnboardIntro(): JSX.Element {
 
   return (
     <View style={styles.onboardIntroContainer}>
-      <ProgressStep id={1}/>
+      <ProgressStep currentStep={3} totalSteps={5}/>
       <View style={styles.centerGroup}>
         <View style={styles.textWrapper}>
           <Text style={styles.text}>
@@ -33,16 +34,15 @@ export default function OnboardIntro(): JSX.Element {
           Due to European colonization, which started with the first encounter in 1492, many Taíno people hid or were killed.
           </Text>
         </View>
-
       </View>
      
       <View style={styles.buttonWrapper}>
         <StyledButton   
         title={'Continue'}
-        titleColor={'#101828'}
+        titleColor={'white'}
         titleSize={16}
         backgroundColor={'#475467'}
-        width= {294}
+        width='100%'
         height={48}
         accessibilityLabel={'Button'}
         onPress= {() => {}}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems:'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Colors.background,
     padding: 8,
   },
   centerGroup: {
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     
   },
   imageWrapper: {
-    paddingHorizontal: 32,
     paddingVertical: 64,
   },
   textGroup: {
