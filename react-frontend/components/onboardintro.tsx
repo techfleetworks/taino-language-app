@@ -13,7 +13,7 @@ export default function OnboardIntro(): JSX.Element {
 
   return (
     <View style={styles.onboardIntroContainer}>
-      <ProgressStep id={1}/>
+      <ProgressStep currentStep={3} totalSteps={5}/>
       <View style={styles.centerGroup}>
         <View style={styles.textWrapper}>
           <Text style={styles.text}>
