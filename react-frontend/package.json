@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export -p web && npx workbox-cli generateSW workbox-config.js"
+    "build": "expo export -p web && npx workbox-cli generateSW workbox-config.js"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
@@ -45,5 +45,15 @@
   "private": true,
   "engines": {
     "node": "20.10.0"
+  },
+  "expo": {
+    "expo-router": {
+      "routes": {
+        "(tabs)": {
+          "home": "home",
+          "lessons": "lessons"
+        }
+      }
+    }
   }
 }

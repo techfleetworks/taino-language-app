@@ -14,7 +14,7 @@ export function Splash() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.dark.color : Colors.light.color,
+    backgroundColor:  Colors.background,
   };
 
   const appState = useRef(AppState.currentState);

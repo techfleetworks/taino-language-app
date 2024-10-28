@@ -1,8 +1,10 @@
+import { opacity } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
 
 export default {
   primary: '#355725',
   primaryVariant: '#E1F5D7',
   surface: '#DEDEDE',
+  surfaceVariant: '#A8A8A8',
   background: '#FFFFFF',
   error: '#B61F23',
   errorVariant: '#FDE1E2',
@@ -33,6 +35,10 @@ export default {
   onErrorVariant: {
     highEmphasis: '#211D1D',
   },
+  text: {
+    onPrimary: '#FFFFFF',
+    onSurface: '#000000',
+  },
 //these two are used in: (tabs)\_layout.tsx, leaving to avoid breaking
   light: {
     tint: '#355725',
@@ -41,28 +47,3 @@ export default {
     tint: '#fff',
   },
 };
-
-
-
-/* OLD COLOR STYLES
-
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
-
-light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-    color: '#000',
-  },
-  dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-    color: '#fff',
-  },
-*/
