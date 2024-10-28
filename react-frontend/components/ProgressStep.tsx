@@ -8,17 +8,32 @@
 import React,{useState, useEffect} from 'react';
 import {View, Image, StyleSheet, Text} from 'react-native';
 
-// type id = number;
-export default function ProgressStep(props: any): JSX.Element {
-  const step = [];
+type ProgressStepProps = {
+  currentStep: number;
+  totalSteps: number;
+}
 
-  for (var i = 2; i <= props.id; i++) {
+export default function ProgressStep({ currentStep, totalSteps }: ProgressStepProps): JSX.Element {
+  const step = [];
+  const stepWidth = 100 / totalSteps;
+
+  for (var i = 1; i <= currentStep; i++) {
     // @ts-ignore
-    step.push(<Image source={require('@/assets/images/step_gray.png')} />);
+    step.push(
+      <Image 
+        source={require('@/assets/images/step_gray.png')} 
+        style={{ width: `${stepWidth}%` }}
+      />
+    );
   }
-  for (var j = props.id; j <= 6; j++) {
+  for (var j = currentStep + 1; j <= totalSteps; j++) {
     // @ts-ignore
-    step.push(<Image source={require('@/assets/images/step_white.png')} />);
+    step.push(
+      <Image 
+        source={require('@/assets/images/step_white.png')} 
+        style={{ width: `${stepWidth}%` }}
+      />
+    );
   }
 
   const [fill, setFIll] = useState<boolean>(false);
@@ -32,10 +47,11 @@ export default function ProgressStep(props: any): JSX.Element {
         />
       </View>
       <View style={styles.stepContainer}>
-        <Image source={require('@/assets/images/step_gray.png')} />
         {step}
       </View>
-    </View>
+    </View>     
+
+   
   );
 }
 
@@ -69,6 +85,7 @@ const styles = StyleSheet.create({
   stepContainer: {
     display: 'flex',
     height: 16,
+    width: '100%',
     paddingVertical: 0,
     paddingHorizontal: 8,
     flexDirection: 'row',
