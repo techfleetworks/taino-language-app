@@ -41,7 +41,7 @@ export default {
   },
 //these two are used in: (tabs)\_layout.tsx, leaving to avoid breaking
   light: {
-    tint: '#2f95dc',
+    tint: '#355725',
   },
   dark: {
     tint: '#fff',
