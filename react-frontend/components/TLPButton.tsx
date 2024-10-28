@@ -48,7 +48,7 @@ type buttonprops = {
   width?: DimensionValue;
   height?: DimensionValue;
   accessibilityLabel: AccessibilityProps['accessibilityLabel'];
-  onPress: ((event: GestureResponderEvent) => void) | null | undefined,
+  onPress: ((event: GestureResponderEvent) => void) | undefined,
   buttonText: any,
   icon?: any,
   otherProps?: any
@@ -92,7 +92,7 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
     <Pressable
       onPress={onPress}
       style={[styles.buttonContainer, {backgroundColor: backgroundColor, width: width, height: height}, otherProps]}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         {/* {icon ? (
           <Icon.Button
             name={icon}
