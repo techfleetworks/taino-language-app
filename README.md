@@ -9,10 +9,8 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
 - Frontend:
     - Framework: React Native + Expo
     - Data Fetching: Axios
-    - Testing: Jest + React Native Testing Library
 - Backend:
     - Supabase(Database, Auth and Storage)
-    - Jest
     - Nest.js
 
 ## Requirements
