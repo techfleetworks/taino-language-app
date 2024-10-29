@@ -51,8 +51,8 @@
     "expo-router": {
       "routes": {
         "(tabs)": {
-          "home": "home",
-          "lessons": "lessons"
+          "home": "home/index",
+          "review": "review/index"
         }
       }
     }
