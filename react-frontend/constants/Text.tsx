@@ -1,9 +1,9 @@
 export default {
-    h1: {
+    heading1: {
         fontSize: '32px',
         margin: 'auto',
     },
-    h2: {
+    heading2: {
         fontSize: '24px',
         margin: 'auto',
     },
@@ -22,7 +22,9 @@ export default {
     caption: {
         fontSize: '14px',
         margin: 'auto',
-    },
-
-    
+    },   
+    button2Underlined: {
+        fontSize: '16px',
+        margin: 'auto',
+    }
 }
