@@ -6,26 +6,39 @@
  */
 import React, {useState} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
+import Colors from '@/constants/Colors';
 
 
+interface ResultProps { 
+  selectionResult: boolean | null;  
+}
 
-
-export default function Result(props: object): JSX.Element {
-
-  const [text, setText] = useState(true);
-
+export default function Result({ selectionResult }: ResultProps): JSX.Element {
   return (
-  <View style={styles.resultContainer}>
+  <View style={[
+    styles.resultContainer,
+    selectionResult === true ? styles.resultContainerSuccess : styles.resultContainerError,
+    ]}
+  >
     <View style={styles.textGroup}>
-      <Image style={styles.icon} source={text ? require('@/assets/images/check.png') : require('@/assets/images/cancel_light.png')} />
-      <View style={styles.textWrapper}>
-        <Text style={styles.text}>{text ? 'Amazing!' : 'Oops!'} </Text>
-      </View>
-      <View style={styles.imageWrapper}>
-      <Image style={styles.icon} source={require('@/assets/images/ios_share.png')} />
-      </View>
+      {selectionResult !== undefined && (
+        <>
+          <Image style={styles.icon} source={selectionResult === true ? require('@/assets/images/check.png') : require('@/assets/images/cancel_light.png')} />
+          <View style={styles.textWrapper}>
+            <Text style={[
+              styles.text,
+              selectionResult === true ? styles.textSuccess : styles.textError,
+              ]}
+            >
+              {selectionResult === true ? 'Amazing!' : 'Oops!'}
+            </Text>
+          </View>
+          <View style={styles.imageWrapper}>
+          <Image style={styles.icon} source={require('@/assets/images/ios_share.png')} />
+          </View>
+        </>
+      )}
     </View>
-
   </View>
   )
 }
@@ -39,8 +52,25 @@ const styles = StyleSheet.create({
     width: 390,
     height: 188,
     flexShrink: 0,
-    backgroundColor: '#828282',
-
+  },
+  resultContainerSuccess: {
+    backgroundColor: Colors.primaryVariant,
+  },
+  resultContainerError: {
+    backgroundColor: Colors.errorVariant,
+  },
+  text: {
+    fontFamily: 'Inter',
+    fontSize: 24,
+    fontStyle: 'normal',
+    fontWeight: '700',
+    lineHeight: 10, /* 208.333% */
+  },
+  textSuccess: {
+    color: Colors.onPrimaryVariant.highEmphasis,
+  },
+  textError: {
+    color: Colors.onErrorVariant.highEmphasis,
   },
   textGroup: {
     display: 'flex',
@@ -71,13 +101,5 @@ const styles = StyleSheet.create({
   imageWrapper: {
     right: -72,
     // paddingLeft: 40,
-  },
-  text: {
-    color: '#FFF',
-    fontFamily: 'Inter',
-    fontSize: 24,
-    fontStyle: 'normal',
-    fontWeight: '700',
-    lineHeight: 10, /* 208.333% */
   },
 })

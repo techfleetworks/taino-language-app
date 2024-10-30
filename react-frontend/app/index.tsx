@@ -32,6 +32,7 @@ interface LessonSlide {
   category?: string;
   question?: string;
   options?: string[];
+  correctIndex?: number;
 }
 
 export default function Welcome(): JSX.Element {
@@ -39,6 +40,10 @@ export default function Welcome(): JSX.Element {
   const [displayNone, setDisplayNone] = useState<string>('none');
   const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
   const [introText, setIntroText] = useState<boolean>(true);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [result, setResult] = useState<boolean | null>(null);
+  const [showResult, setShowResult] = useState<boolean>(false)
+  
   
   const [lessonSlides, setLessonSlides] = useState<LessonSlide[]>([
     {
@@ -59,6 +64,15 @@ export default function Welcome(): JSX.Element {
 
   const handleOptionSelect = (index: number) => {
     setSelectedOption(index);
+    setIsDisabled(false);
+  }
+
+  const handleSubmit = () => {
+    let correctOption = lessonSlides[currentSlide].correctIndex;
+    let optionResult = selectedOption === correctOption;
+
+    setResult(optionResult);
+    setShowResult(true);
   }
 
   useEffect(() => {
@@ -108,7 +122,8 @@ export default function Welcome(): JSX.Element {
         </>
       )}
 
-      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category !== 'introduction' && (
+      {/* Assessment card */}
+      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'assessment' && (
               <>
               <View style={styles.textWrapper}>
                 <Text style={styles.text}>{lessonSlides[currentSlide].question}</Text>
@@ -126,23 +141,23 @@ export default function Welcome(): JSX.Element {
                 ))}
               </View>
         
-              <Result />
-        
               <View style={styles.buttonWrapper}>
                 <StyledButton
-                  title={"Continue"}
+                  title={"Submit"}
                   titleSize={16}
                   height={48}
-                  accessibilityLabel={"Continue"}
-                  onPress={() => {
-                    // Handle continue action
-                    
-                  }}
+                  accessibilityLabel={"Submit"}
+                  disabled={isDisabled}
+                  onPress={handleSubmit}
                   icon={false}
                   buttonText={styles.buttonText}
                   otherProps={styles.buttonNav}
                 />
               </View>
+              
+              {showResult && (
+                <Result selectionResult={result}/>
+              )}
               </>
       )}
 
