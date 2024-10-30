@@ -25,7 +25,7 @@ git clone https://github.com/itskarelleh/taino-language-app.git
 
 For the frontend:
 ```bash
-cd react-native
+cd react-frontend
 cp .env.example .env
 npm install && npx expo start -c
 ```
