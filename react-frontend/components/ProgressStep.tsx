@@ -7,6 +7,7 @@
 
 import React,{useState, useEffect} from 'react';
 import {View, Image, StyleSheet, Text} from 'react-native';
+import Colors from '@/constants/Colors';
 
 type ProgressStepProps = {
   currentStep: number;
@@ -20,19 +21,22 @@ export default function ProgressStep({ currentStep, totalSteps }: ProgressStepPr
   for (var i = 1; i <= currentStep; i++) {
     // @ts-ignore
     step.push(
-      <Image 
-        source={require('@/assets/images/step_gray.png')} 
-        style={{ width: `${stepWidth}%` }}
-      />
+      <View style={[styles.step, styles.stepGreen, { width: `${stepWidth}%` }]}></View>
+      // <Image 
+      //   source={require('@/assets/images/step_green.png')} 
+      //   style={{ width: `${stepWidth}%` }}
+      // />
     );
   }
   for (var j = currentStep + 1; j <= totalSteps; j++) {
     // @ts-ignore
     step.push(
-      <Image 
-        source={require('@/assets/images/step_white.png')} 
-        style={{ width: `${stepWidth}%` }}
-      />
+
+      <View style={[styles.step, styles.stepWhite, { width: `${stepWidth}%` }]}></View>
+      // <Image
+      //   source={require('@/assets/images/step_white.png')} 
+      //   style={{ width: `${stepWidth}%` }}
+      // />
     );
   }
 
@@ -50,8 +54,6 @@ export default function ProgressStep({ currentStep, totalSteps }: ProgressStepPr
         {step}
       </View>
     </View>     
-
-   
   );
 }
 
@@ -66,17 +68,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: 390,
-    paddingTop: 16,
-    paddingRight: 4,
-    paddingBottom: 16,
-    paddingLeft: 4,
+    padding: 16,
     alignItems: 'center',
   },
   arrowWrapper: {
     display: 'flex',
     paddingRight: 12,
     alignItems: 'center',
-    gap: 16,
   },
   arrow: {
     width: 24,
@@ -90,7 +88,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 0,
+    gap: 4,
     flex: 1,
+  },
+  step: {
+    width: 16,
+    height: 16,
+    borderRadius: 16,
+  },
+  stepGreen: {
+    backgroundColor: Colors.primary,
+  },
+  stepWhite: {
+    backgroundColor: Colors.surfaceVariant,
   },
 });

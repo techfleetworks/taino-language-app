@@ -76,7 +76,7 @@ export const mockData = {
               user_translations: ["sorry", "lo siento"],
             },
           ],
-          correctIndex: 3,
+          correctIndex: 2,
           order: 4
         },
         {
