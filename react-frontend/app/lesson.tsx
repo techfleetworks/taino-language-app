@@ -12,36 +12,35 @@ const fetchLessonById = (lessonId: string) => {
 
 const lessonId = "482F80CA-D720-41C8-945D-93A6CD90F487"
 
-// 0 = english, 1 = spanish
+
 
 export default function LessonScreen() {
 
     //get lesson by id from params
     const [ cards, setCards ] = useState<LessonSlide[]>([]);
+    const [ currentSlide, setCurrentSlide ] = useState<number>(0); 
+    const [displayFlex, setDisplayFlex] = useState<string>('flex');
+    const [displayNone, setDisplayNone] = useState<string>('none');
+    const [introText, setIntroText] = useState<boolean>(true); 
 
     const lesson = fetchLessonById(lessonId);
 
     useEffect(() => {
-        if (lesson) {
-            setCards(lesson.slides as LessonSlide[]);
+
+        const correctImageSlides = lesson?.slides.filter(slide => slide.type === "correct_image");
+        if (lesson && correctImageSlides) {
+            setCards(correctImageSlides as LessonSlide[]);
         }
     }, [lesson]);
 
-    //render slides
-    //render correct image question slide
-
-    //render multiple choice question slide
-
-    const correctImageQuestionSlide = cards.find(slide => slide.type === "correct_image");
-
-    console.log(correctImageQuestionSlide);
-
     return (
         <View style={styles.questionContainer}>
-            <CorrectImageQuestionSlide 
-            question={correctImageQuestionSlide?.question} 
-            options={correctImageQuestionSlide?.options} 
-            correctIndex={correctImageQuestionSlide?.correctIndex}
+            <CorrectImageQuestionSlide
+                question={cards[currentSlide]?.question} 
+                options={cards[currentSlide]?.options} 
+                correctIndex={cards[currentSlide]?.correctIndex}
+                currentSlide={currentSlide}
+                setCurrentSlide={setCurrentSlide}
             />
         </View>
     );
