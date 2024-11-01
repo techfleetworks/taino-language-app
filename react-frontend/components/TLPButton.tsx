@@ -47,7 +47,9 @@ type buttonprops = {
   backgroundColor?: ColorValue;
   width?: DimensionValue;
   height?: DimensionValue;
+  zIndex?: number;
   accessibilityLabel: AccessibilityProps['accessibilityLabel'];
+  position?: 'relative' | 'absolute' | 'static';
   disabled?: boolean;
   onPress: ((event: GestureResponderEvent) => void) | undefined,
   buttonText: any,
@@ -76,8 +78,10 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
     backgroundColor = buttonProps.backgroundColor,
     width = buttonProps.width,
     height = buttonProps.height,
+    zIndex = buttonProps.zIndex,
     disabled = buttonProps.disabled,
     accessibilityLabel = buttonProps.accessibilityLabel,
+    position = buttonProps.position,
     onPress = buttonProps.onPress,
     icon = buttonProps.icon,
     buttonText = buttonProps.buttonText,
@@ -94,7 +98,18 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
     <Pressable
       onPress={onPress}
       disabled={disabled}
-      style={[styles.buttonContainer, {backgroundColor: backgroundColor, width: width, height: height}, otherProps]}>
+      style={[
+        styles.buttonContainer,
+        {
+          width: width,
+          height: height,
+          zIndex: zIndex,
+          position: position,
+          backgroundColor: backgroundColor
+        },
+        disabled && styles.buttonDisabled,
+        otherProps
+      ]}>
       <TouchableOpacity onPress={onPress} disabled={disabled}>
         {/* {icon ? (
           <Icon.Button
@@ -104,11 +119,9 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
           />
         ) : null} */}
         {icon && <Icon.Button
-            name={icon}
-            // onPress={onPress}
-            style={styles.buttonIcon}
-            
-          /> }
+          name={icon}
+          style={styles.buttonIcon}
+        />}
         <Text
           style={[{color: titleColor, fontSize: titleSize}, buttonText]}>
           {title}
@@ -129,11 +142,14 @@ StyledButton.defaultProps = {
   backgroundColor: Colors.primary,
   width: 320,
   accessibilityLabel: 'button',
+  position: 'relative',
+  zIndex: 1,
+  disabled: false,
 };
 
 const styles = StyleSheet.create({
   buttonContainer: {
-
+    backgroundColor: Colors.primary,
   },
   buttonIcon: {
    
@@ -146,5 +162,8 @@ const styles = StyleSheet.create({
     gap: 16,
     alignSelf: 'stretch',
     borderRadius: 8,
+  },
+  buttonDisabled: {
+    backgroundColor: Colors.onBackground.disabled
   }
 });
