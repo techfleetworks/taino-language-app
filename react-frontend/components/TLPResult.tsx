@@ -23,7 +23,7 @@ export default function Result({ selectionResult }: ResultProps): JSX.Element {
     <View style={styles.textGroup}>
       {selectionResult !== undefined && (
         <>
-          <Image style={styles.icon} source={selectionResult === true ? require('@/assets/images/check.png') : require('@/assets/images/cancel_light.png')} />
+          <Image style={styles.icon} source={selectionResult === true ? require('@/assets/icons/check_circle_light.png') : require('@/assets/icons/cancel_light.png')} />
           <View style={styles.textWrapper}>
             <Text style={[
               styles.text,
@@ -33,9 +33,9 @@ export default function Result({ selectionResult }: ResultProps): JSX.Element {
               {selectionResult === true ? 'Amazing!' : 'Oops!'}
             </Text>
           </View>
-          <View style={styles.imageWrapper}>
+          {/* <View style={styles.imageWrapper}>
           <Image style={styles.icon} source={require('@/assets/images/ios_share.png')} />
-          </View>
+          </View> */}
         </>
       )}
     </View>
