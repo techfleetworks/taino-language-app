@@ -76,6 +76,8 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
               isSelected={selectedOptionIndex === index}
               onPress={() => handleOptionSelect(index)}
               disabled={showResult}
+              showResult={showResult}
+              isCorrect={index === correctIndex}
             />
           </View>
         ))}
