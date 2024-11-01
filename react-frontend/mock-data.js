@@ -6,13 +6,13 @@ export const mockData = {
       updated_at: "2024-10-01T10:00:00Z",
       created_at: "2024-10-01T10:00:00Z",
       slides: [
-        // {
-        //   title: "Lesson 1: Greetings",
-        //   category: "introduction",
-        //   type: "cover",
-        //   description: "Learn how to introduce yourself by saying “hello, my name is…",
-        //   image: "./assets/images/emoji _waving hand.png",
-        // },
+        {
+          title: "Lesson 1: Greetings",
+          category: "introduction",
+          type: "cover",
+          description: "Learn how to introduce yourself by saying “hello, my name is…",
+          image: "./assets/images/emoji _waving hand.png",
+        },
         {
           id: "482F80CA-D720-41C8-945D-93A6CD90F487",
           type: "reading",
@@ -55,12 +55,64 @@ export const mockData = {
         },
         {
           id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "correct_image",
+          category: "assessment",
+          question: "dak",
+          options: [
+            {
+              image: "./assets/illustrations/hello.png",
+              user_translations: ["hello", "hola"],
+            },
+            {
+              image: "./assets/illustrations/goodbye.png",
+              user_translations: ["bye", "adios"],
+            },
+            {
+              image: "./assets/illustrations/me.png",
+              user_translations: ["i", "yo"],
+            },
+            {
+              image: "./assets/illustrations/sorry.png",
+              user_translations: ["sorry", "lo siento"],
+            },
+          ],
+          correctIndex: 3,
+          order: 4
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "correct_image",
+          category: "assessment",
+          question: "anúlia",
+          options: [
+            {
+              image: "./assets/illustrations/hello.png",
+              user_translations: ["hello", "hola"],
+            },
+            {
+              image: "./assets/illustrations/goodbye.png",
+              user_translations: ["bye", "adios"],
+            },
+            {
+              image: "./assets/illustrations/name.png",
+              user_translations: ["name", "nombre"],
+            },
+            {
+              image: "./assets/illustrations/sorry.png",
+              user_translations: ["sorry", "lo siento"],
+            },
+          ],
+          correctIndex: 2,
+          order: 5
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
           type: "fill_in_the_blank",
           category: "assessment",
           question: "The Taíno are an Indigenous people of the Americas and the original inhabitants of _____.",
           options: ["Puerto Rico", "The Dominican Republic", "The Caribbean", "The Caribbean & Southern US"],
-          correctIndex: 3,
-          order: 4
+          correctIndex: 2,
+          order: 6
         }
       ]
     }

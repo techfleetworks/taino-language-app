@@ -15,18 +15,16 @@ import { TLPBottomButtonNav } from './TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
 type displayflex = FlexStyle['display']
 
+// 0 = english, 1 = spanish
 const currentLangIndex = 0;
 
-// TODO: fix any type
-export default function CorrectImageQuestionSlide({ question, options, correctIndex }: any): JSX.Element {
+export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide }: any): JSX.Element {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
-  const [displayFlex, setDisplayFlex] = useState<string>('flex');
-  const [displayNone, setDisplayNone] = useState<string>('none');
-  const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
-  const [introText, setIntroText] = useState<boolean>(true);
+
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [result, setResult] = useState<boolean | null>(null);
+
   
   const handleOptionSelect = (index: number) => {
     setSelectedOptionIndex(index);
@@ -40,22 +38,26 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
     setResult(null);
   }
 
-  console.log('options', options);
   const handleSubmit = () => {
     let correctOption = correctIndex;
     let optionResult = selectedOptionIndex === correctOption;
 
-    console.log('correctOption', correctOption);
-    console.log('optionResult', optionResult);
-
     setResult(optionResult);
     setShowResult(true);
+    
+    //if the user got the correct answer, when they press continue again, go to the next slide
+    if (optionResult && showResult) {
+      setCurrentSlide(currentSlide + 1);  
+      reset();
+    }
   }
 
   useEffect(() => {
     setIsDisabled(selectedOptionIndex === null);
   }, [selectedOptionIndex]);
 
+
+  console.log('options', options);
   return (
     <>
       <View style={styles.textWrapper}>
