@@ -13,12 +13,18 @@ import CorrectImageOption from '@/components/CorrectImageOption';
 import TextStyle from '@/constants/Text';
 import { TLPBottomButtonNav } from './TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
-type displayflex = FlexStyle['display']
+import { LessonSlide } from '@/types/lessons';
 
 // 0 = english, 1 = spanish
 const currentLangIndex = 0;
 
-export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide }: any): JSX.Element {
+type CorrectImageQuestionSlideProps = LessonSlide & {
+  currentSlide: number;
+  setCurrentSlide: (slide: number) => void;
+}
+
+
+export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide }: CorrectImageQuestionSlideProps): JSX.Element {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
 
