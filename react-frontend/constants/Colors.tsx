@@ -1,5 +1,3 @@
-import { opacity } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
-
 export default {
   primary: '#355725',
   primaryVariant: '#E1F5D7',

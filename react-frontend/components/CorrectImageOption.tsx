@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Image } from 'expo-image';
 import TextStyle from '@/constants/Text';
 import Colors from '@/constants/Colors';
 import { strictEqual } from "assert";
@@ -40,10 +41,12 @@ export default function CorrectImageOption({
             onPress={onPress}
             disabled={disabled}
         >
-            <Image 
-                source={image}
-                style={{ width: 96, height: 96 }}
-            />
+            <View style={styles.imageContainer}>
+                <Image 
+                    source={image}
+                    style={{ width: '100%', height: '100%' }}
+                />
+            </View>
             <Text style={styles.optionText}>{userTranslation}</Text>
         </TouchableOpacity>
     );
@@ -51,12 +54,20 @@ export default function CorrectImageOption({
 
 const styles = StyleSheet.create({
     optionContainer: {
-        padding: 10,
-        borderRadius: 10,
+        fontFamily: 'Inter',
+        paddingTop: 24,
+        paddingBottom: 16,
+        paddingHorizontal: 16,
+        borderRadius: 8,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    imageContainer: {
+        width: 96,
+        height: 96,
+        marginBottom: 16,
     },
     optionDefault: {
         backgroundColor: Colors.surface,

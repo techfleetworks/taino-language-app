@@ -5,14 +5,13 @@ import { mockData } from "@/mock-data";
 import Slides from "@/components/Slides";
 import CorrectImageQuestionSlide from "@/components/CorrectImageQuestionSlide";
 import Colors from "@/constants/Colors";
+import ProgressStep from "@/components/ProgressStep";
 
 const fetchLessonById = (lessonId: string) => {
     return mockData.lessons.find(lesson => lesson.id === lessonId);
 }
 
 const lessonId = "482F80CA-D720-41C8-945D-93A6CD90F487"
-
-
 
 export default function LessonScreen() {
 
@@ -34,6 +33,11 @@ export default function LessonScreen() {
     }, [lesson]);
 
     return (
+        <View style={styles.container}>
+            <ProgressStep
+                currentStep={currentSlide + 1}
+                totalSteps={3}
+    />
         <View style={styles.questionContainer}>
             <CorrectImageQuestionSlide
                 question={cards[currentSlide]?.question} 
@@ -42,11 +46,16 @@ export default function LessonScreen() {
                 currentSlide={currentSlide}
                 setCurrentSlide={setCurrentSlide}
             />
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.background,
+    },
     questionContainer: {
         flex: 1,
         justifyContent: "space-between",
