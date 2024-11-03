@@ -23,7 +23,7 @@ import { LessonSlide } from '@/types/lessons';
 type displayflex = FlexStyle['display']
 
 const fetchLessonSlides = () => {
-  return mockData.lessons[0].slides;
+  return mockData.lessons[0].slides.slice(1, 3);
 }
 
 export default function Welcome(): JSX.Element {
@@ -68,7 +68,6 @@ export default function Welcome(): JSX.Element {
 
   useEffect(() => {
     const data = fetchLessonSlides();
-    console.log(data);
     setLessonSlides(data.map(slide => ({
       ...slide,
       text: slide.text || ''
@@ -83,7 +82,7 @@ export default function Welcome(): JSX.Element {
       <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
         {/* ProgressStep: not visible on intro text */}
         {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category !== 'introduction' && (
-          <ProgressStep currentStep={currentSlide - 2} totalSteps={lessonSlides.length - 2}/>
+          <ProgressStep currentStep={currentSlide} totalSteps={2}/>
         )}
       </View>
 
@@ -203,7 +202,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 0,
     alignItems: 'center',
-
     gap: 0,
     flex: 1,
     alignSelf: 'stretch',

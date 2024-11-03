@@ -2,7 +2,6 @@ export const mockData = {
   lessons: [
     {
       id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-      
       updated_at: "2024-10-01T10:00:00Z",
       created_at: "2024-10-01T10:00:00Z",
       slides: [
