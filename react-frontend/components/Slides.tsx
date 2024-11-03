@@ -1,10 +1,6 @@
-/**
- * first Initial onboarding screen after splashscreen
- * @returns {JSX.Element}
- * @function
- */
 import React, { useEffect } from 'react';
 import {Text, 
+        SafeAreaView,
         StyleSheet, 
         View, 
         Image,
@@ -15,18 +11,27 @@ import StyledButton from '@/components/TLPButton';
 import ProgressStep from '@/components/ProgressStep';
 import Colors from '@/constants/Colors';
 import { TLPBottomButtonNav } from '@/components/TLPBottomButtonNav';
-import { mockData } from '@/mock-data';
 import Result from '@/components/TLPResult';
 import MultipleChoiceOption from '@/components/MultipleChoiceOption';
 import { LessonSlide } from '@/types/lessons';
 
 type displayflex = FlexStyle['display']
-
-const fetchLessonSlides = () => {
-  return mockData.lessons[0].slides.slice(1, 3);
+interface SlideProps {
+    slides: LessonSlide[];
+    handleOptionSelect: (id: string) => void;
 }
-
-export default function Welcome(): JSX.Element {
+/**
+ * Renders the slides for the lesson
+ * Will show one slide/card at a time based on the current slide index
+ * and will render the slide based on the category of the slide
+ * @param slides - the array of slides/cards for the lesson
+ * @param handleOptionSelect - the function to handle the selection of the multiple choice option
+ * @returns 
+ */
+export default function Slides({ slides, handleOptionSelect }: { 
+    slides: LessonSlide[], 
+    handleOptionSelect: (id: string) => void }
+): JSX.Element {
   const [displayFlex, setDisplayFlex] = useState<string>('flex');
   const [displayNone, setDisplayNone] = useState<string>('none');
   const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
@@ -35,58 +40,38 @@ export default function Welcome(): JSX.Element {
   const [result, setResult] = useState<boolean | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false)
   
-  const [lessonSlides, setLessonSlides] = useState<LessonSlide[]>([
-    {
-      type: '', 
-      text: '',
-      options: []
-    }
-  ]);  
-  
+
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const onPress = () => setIntroText(false); 
 
   const handleIsIntroText = () => {
 
-    return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
+    return slides[currentSlide + 1]?.category === 'introduction' ? true : false;
   }
 
   const handleClick = () => setCurrentSlide(prev => prev + 1);
 
-  const handleOptionSelect = (index: number) => {
-    setSelectedOption(index);
-    setIsDisabled(false);
-  }
 
   const handleSubmit = () => {
-    let correctOption = lessonSlides[currentSlide].correctIndex;
+    let correctOption = slides[currentSlide].correctIndex;
     let optionResult = selectedOption === correctOption;
 
     setResult(optionResult);
     setShowResult(true);
   }
 
-  useEffect(() => {
-    const data = fetchLessonSlides();
-    setLessonSlides(data.map(slide => ({
-      ...slide,
-      text: slide.text || ''
-    })));
-  }, []);
-
   setTimeout(() => setDisplayFlex('none'), 5000);
   setTimeout(() => setDisplayNone('flex'), 5000);
-
   return (
-    <View style={lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' ? styles.welcomeContainer : styles.questionContainer}>
+    <View style={slides.length > 0 && slides[currentSlide]?.category === 'introduction' ? styles.welcomeContainer : styles.questionContainer}>
       <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
         {/* ProgressStep: not visible on intro text */}
-        {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category !== 'introduction' && (
-          <ProgressStep currentStep={currentSlide} totalSteps={2}/>
+        {slides.length > 0 && slides[currentSlide]?.category !== 'introduction' && (
+          <ProgressStep currentStep={currentSlide} totalSteps={slides.length} />
         )}
       </View>
 
-       {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && <View style={styles.imageContainer}>
+       {slides.length > 0 && slides[currentSlide]?.category === 'introduction' && <View style={styles.imageContainer}>
           <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
         </View>}
 
@@ -99,39 +84,39 @@ export default function Welcome(): JSX.Element {
           </Text>
         </View>
 
+
       {/* Intro text: not visible on non-intro text */}
-      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && (
+      {slides.length > 0 && slides[currentSlide]?.category === 'introduction' && (
         <>
-        
         <View style={[styles.introTextWrapper, {display:displayNone as displayflex}]}>
           <Text style={styles.introText}>
-              {lessonSlides[currentSlide].text}
+              {slides[currentSlide].text}
             </Text> 
         </View>
         </>
       )}
 
       {/* Assessment card */}
-      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'assessment' && (
+      {slides.length > 0 && slides[currentSlide]?.category === 'assessment' && (
         <>
         <View style={styles.textWrapper}>
-          <Text style={styles.text}>{lessonSlides[currentSlide].question}</Text>
+            <Text style={styles.text}>{slides[currentSlide].question}</Text>
         </View>
-  
+
         {/* TODO: remove and replace the index params witth actual id */}
         <View style={styles.answersContainer}>
-          {lessonSlides[currentSlide]?.options && lessonSlides[currentSlide].options.map((option: any, index: number) => (
+        {slides[currentSlide]?.options && slides[currentSlide].options.map((option: any, index: number) => (
             <MultipleChoiceOption
-              key={index}
-              option={option}
-              isSelected={selectedOption === index}
-              onPress={() => handleOptionSelect(index)}
+            key={index}
+            option={option}
+            isSelected={selectedOption === index}
+            onPress={() => handleOptionSelect(index)}
             />
-          ))}
+        ))}
         </View>
-  
+
         <View style={styles.buttonWrapper}>
-          <StyledButton
+        <StyledButton
             title={"Submit"}
             titleSize={16}
             height={48}
@@ -141,16 +126,16 @@ export default function Welcome(): JSX.Element {
             icon={false}
             buttonText={styles.buttonText}
             otherProps={styles.buttonNav}
-          />
+        />
         </View>
         
         {showResult && (
-          <Result selectionResult={result}/>
+        <Result selectionResult={result}/>
         )}
         </>
       )}
 
-      {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && (
+    {slides.length > 0 && slides[currentSlide]?.category === 'introduction' && (
         <TLPBottomButtonNav style={{display:displayNone as displayflex}}>
 
         <StyledButton
@@ -162,8 +147,6 @@ export default function Welcome(): JSX.Element {
         icon={false}
         buttonText={styles.buttonText}
         otherProps={styles.buttonNav} 
-        zIndex={1}
-        position={'relative'}
         />
       </TLPBottomButtonNav>
       )}
@@ -177,6 +160,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems:'center',
+    backgroundColor: Colors.background,
+    padding: 8,
+  },
+  questionContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: Colors.background,
     padding: 8,
   },
@@ -202,6 +192,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 0,
     alignItems: 'center',
+
     gap: 0,
     flex: 1,
     alignSelf: 'stretch',
