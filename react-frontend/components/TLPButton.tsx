@@ -123,7 +123,7 @@ export default function StyledButton(buttonProps:buttonprops): JSX.Element {
           style={styles.buttonIcon}
         />}
         <Text
-          style={[{color: titleColor, fontSize: titleSize}, buttonText]}>
+          style={[{color: titleColor, fontSize: titleSize, height: '100%'}, buttonText]}>
           {title}
         </Text>
       </TouchableOpacity>
