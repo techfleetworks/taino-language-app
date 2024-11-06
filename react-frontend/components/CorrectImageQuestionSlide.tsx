@@ -63,7 +63,6 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
   }, [selectedOptionIndex]);
 
 
-  console.log('options', options);
   return (
     <>
       <View style={styles.textWrapper}>
