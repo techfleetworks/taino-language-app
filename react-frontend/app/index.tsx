@@ -3,7 +3,7 @@
  * @returns {JSX.Element}
  * @function
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {Text, 
         StyleSheet, 
         View, 
@@ -19,6 +19,7 @@ import { mockData } from '@/mock-data';
 import Result from '@/components/TLPResult';
 import MultipleChoiceOption from '@/components/MultipleChoiceOption';
 import { LessonSlide } from '@/types/lessons';
+import { useRouter } from 'expo-router';
 
 type displayflex = FlexStyle['display']
 
@@ -34,6 +35,9 @@ export default function Welcome(): JSX.Element {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [result, setResult] = useState<boolean | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false)
+  const buttonRef = useRef<any>(null);
+
+  const router = useRouter();
   
   const [lessonSlides, setLessonSlides] = useState<LessonSlide[]>([
     {
@@ -48,10 +52,23 @@ export default function Welcome(): JSX.Element {
 
   const handleIsIntroText = () => {
 
+    if (lessonSlides.length === 0) {
+      return false;
+    }
+
     return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
   }
 
-  const handleClick = () => setCurrentSlide(prev => prev + 1);
+  const handleClick = () => {
+    const isIntroText = handleIsIntroText();
+    
+    if (!isIntroText) {  // If it's not intro text, it means we're showing "Let's get started!"
+      router.push('/lesson');
+      return;
+    }
+
+    setCurrentSlide(prev => prev + 1);
+  }
 
   const handleOptionSelect = (index: number) => {
     setSelectedOption(index);
@@ -161,7 +178,7 @@ export default function Welcome(): JSX.Element {
         onPress= {handleClick}
         icon={false}
         buttonText={styles.buttonText}
-        otherProps={styles.buttonNav} 
+        otherProps={{...styles.buttonNav, ref: buttonRef}} 
         zIndex={1}
         position={'relative'}
         />

@@ -18,9 +18,6 @@ export default function LessonScreen() {
     //get lesson by id from params
     const [ cards, setCards ] = useState<LessonSlide[]>([]);
     const [ currentSlide, setCurrentSlide ] = useState<number>(0); 
-    const [displayFlex, setDisplayFlex] = useState<string>('flex');
-    const [displayNone, setDisplayNone] = useState<string>('none');
-    const [introText, setIntroText] = useState<boolean>(true); 
 
     const lesson = fetchLessonById(lessonId);
 
@@ -40,6 +37,8 @@ export default function LessonScreen() {
     />
         <View style={styles.questionContainer}>
             <CorrectImageQuestionSlide
+                type={cards[currentSlide]?.type}
+                text={cards[currentSlide]?.text}
                 question={cards[currentSlide]?.question} 
                 options={cards[currentSlide]?.options} 
                 correctIndex={cards[currentSlide]?.correctIndex}
