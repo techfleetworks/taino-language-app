@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import { LessonSlide } from "@/types/lessons";
 import { mockData } from "@/mock-data";
 import Slides from "@/components/Slides";
 import CorrectImageQuestionSlide from "@/components/CorrectImageQuestionSlide";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/ProgressStep";
+// import { SafeAreaView } from "react-navigation";
 
 const fetchLessonById = (lessonId: string) => {
     return mockData.lessons.find(lesson => lesson.id === lessonId);
@@ -18,6 +19,8 @@ export default function LessonScreen() {
     //get lesson by id from params
     const [ cards, setCards ] = useState<LessonSlide[]>([]);
     const [ currentSlide, setCurrentSlide ] = useState<number>(0); 
+    const [displayNone, setDisplayNone] = useState<string>('none');
+    const [introText, setIntroText] = useState<boolean>(true); 
 
     const lesson = fetchLessonById(lessonId);
 
@@ -31,10 +34,12 @@ export default function LessonScreen() {
 
     return (
         <View style={styles.container}>
+            <SafeAreaView>
             <ProgressStep
                 currentStep={currentSlide + 1}
                 totalSteps={3}
-    />
+                />
+            </SafeAreaView>
         <View style={styles.questionContainer}>
             <CorrectImageQuestionSlide
                 type={cards[currentSlide]?.type}

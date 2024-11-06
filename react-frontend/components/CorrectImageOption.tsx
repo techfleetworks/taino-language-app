@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Image } from 'expo-image';
 import TextStyle from '@/constants/Text';
 import Colors from '@/constants/Colors';
-import { strictEqual } from "assert";
 
 interface CorrectImageOptionProps {
     userTranslation: any;
@@ -43,8 +42,9 @@ export default function CorrectImageOption({
         >
             <View style={styles.imageContainer}>
                 <Image 
-                    source={image}
+                    source={typeof image === 'string' ? { uri: image } : image}
                     style={{ width: '100%', height: '100%' }}
+                    contentFit="contain"
                 />
             </View>
             <Text style={styles.optionText}>{userTranslation}</Text>
