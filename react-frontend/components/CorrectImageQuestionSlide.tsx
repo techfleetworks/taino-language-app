@@ -10,7 +10,7 @@ import {useState} from 'react';
 import StyledButton from '@/components/TLPButton';
 import Result from '@/components/TLPResult';
 import CorrectImageOption from '@/components/CorrectImageOption';
-import TextStyle from '@/constants/Text';
+import TextStyle from '@/constants/TextStyles';
 import { TLPBottomButtonNav } from './TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
 import { LessonSlide } from '@/types/lessons';
