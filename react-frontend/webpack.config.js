@@ -4,12 +4,11 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
   
-  // Add the PWA plugin
   config.plugins.push(
     new WorkboxWebpackPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10MB
+      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
       runtimeCaching: [{
         urlPattern: /^https:\/\/.*\.(png|jpg|jpeg|gif|svg)$/,
         handler: 'CacheFirst',
@@ -17,7 +16,7 @@ module.exports = async function (env, argv) {
           cacheName: 'images',
           expiration: {
             maxEntries: 60,
-            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+            maxAgeSeconds: 30 * 24 * 60 * 60
           }
         }
       }, {
