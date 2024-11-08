@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import { LessonSlide } from "@/types/lessons";
 import { mockData } from "@/mock-data";
 import Slides from "@/components/Slides";
 import CorrectImageQuestionSlide from "@/components/CorrectImageQuestionSlide";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/ProgressStep";
+import { useRouter } from "expo-router";
+// import { SafeAreaView } from "react-navigation";
 
 const fetchLessonById = (lessonId: string) => {
     return mockData.lessons.find(lesson => lesson.id === lessonId);
@@ -18,11 +20,12 @@ export default function LessonScreen() {
     //get lesson by id from params
     const [ cards, setCards ] = useState<LessonSlide[]>([]);
     const [ currentSlide, setCurrentSlide ] = useState<number>(0); 
-    const [displayFlex, setDisplayFlex] = useState<string>('flex');
     const [displayNone, setDisplayNone] = useState<string>('none');
     const [introText, setIntroText] = useState<boolean>(true); 
 
     const lesson = fetchLessonById(lessonId);
+
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -34,17 +37,25 @@ export default function LessonScreen() {
 
     return (
         <View style={styles.container}>
+            <SafeAreaView>
             <ProgressStep
                 currentStep={currentSlide + 1}
                 totalSteps={3}
-    />
+                />
+            </SafeAreaView>
         <View style={styles.questionContainer}>
             <CorrectImageQuestionSlide
+                type={cards[currentSlide]?.type}
+                text={cards[currentSlide]?.text}
                 question={cards[currentSlide]?.question} 
                 options={cards[currentSlide]?.options} 
                 correctIndex={cards[currentSlide]?.correctIndex}
                 currentSlide={currentSlide}
                 setCurrentSlide={setCurrentSlide}
+                length={cards.length} //temporary fix for now TODO: fix this
+                onComplete={() => {
+                    router.push('/onboarding');
+                }}
             />
             </View>
         </View>

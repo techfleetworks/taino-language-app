@@ -23,7 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro"
+      "bundler": "metro",
+      "output": "static",
+      "pwa": {
+        "serviceWorkerPath": "dist/sw.js",
+        "manifest": "public/manifest.json"
+      }
     },
     "extra": {
       "backendUrl": "http://localhost:8000"

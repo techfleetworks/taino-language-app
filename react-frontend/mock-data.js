@@ -1,3 +1,10 @@
+import hello from '@/assets/images/hello.png';
+import goodbye from '@/assets/images/goodbye.png';
+import me from '@/assets/images/me.png';
+import sorry from '@/assets/images/sorry.png';
+import name from '@/assets/images/name.png';
+import thankYou from '@/assets/images/thank-you.png';
+
 export const mockData = {
   lessons: [
     {
@@ -61,19 +68,19 @@ export const mockData = {
           question: "tau",
           options: [
             {
-              image: "./assets/illustrations/hello.png",
+              image: hello,
               user_translations: ["hello", "hola"],
             },
             {
-              image: "./assets/illustrations/goodbye.png",
+              image: goodbye,
               user_translations: ["bye", "adios"],
             },
             {
-              image: "./assets/illustrations/thank-you.png",
+              image: thankYou,
               user_translations: ["thanks", "gracias"],
             },
             {
-              image: "./assets/illustrations/sorry.png",
+              image: sorry,
               user_translations: ["sorry", "lo siento"],
             },
           ],
@@ -87,19 +94,19 @@ export const mockData = {
           question: "dak",
           options: [
             {
-              image: "./assets/illustrations/hello.png",
+              image: hello,
               user_translations: ["hello", "hola"],
             },
             {
-              image: "./assets/illustrations/goodbye.png",
+              image: goodbye,
               user_translations: ["bye", "adios"],
             },
             {
-              image: "./assets/illustrations/me.png",
+              image: me,
               user_translations: ["i", "yo"],
             },
             {
-              image: "./assets/illustrations/sorry.png",
+              image: sorry,
               user_translations: ["sorry", "lo siento"],
             },
           ],
@@ -113,34 +120,34 @@ export const mockData = {
           question: "anúlia",
           options: [
             {
-              image: "./assets/illustrations/hello.png",
+              image: hello,
               user_translations: ["hello", "hola"],
             },
             {
-              image: "./assets/illustrations/goodbye.png",
+              image: goodbye,
               user_translations: ["bye", "adios"],
             },
             {
-              image: "./assets/illustrations/name.png",
+              image: name,
               user_translations: ["name", "nombre"],
             },
             {
-              image: "./assets/illustrations/sorry.png",
+              image: sorry,
               user_translations: ["sorry", "lo siento"],
             },
           ],
           correctIndex: 2,
           order: 5
         },
-        {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "fill_in_the_blank",
-          category: "assessment",
-          question: "The Taíno are an Indigenous people of the Americas and the original inhabitants of _____.",
-          options: ["Puerto Rico", "The Dominican Republic", "The Caribbean", "The Caribbean & Southern US"],
-          correctIndex: 2,
-          order: 6
-        }
+        // {
+        //   id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+        //   type: "fill_in_the_blank",
+        //   category: "assessment",
+        //   question: "The Taíno are an Indigenous people of the Americas and the original inhabitants of _____.",
+        //   options: ["Puerto Rico", "The Dominican Republic", "The Caribbean", "The Caribbean & Southern US"],
+        //   correctIndex: 2,
+        //   order: 6
+        // }
       ]
     }
   ],

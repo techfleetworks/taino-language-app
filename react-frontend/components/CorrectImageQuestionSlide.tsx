@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
 import {Text, 
-        SafeAreaView,
         StyleSheet, 
         View, 
-        Image,
-        FlexStyle
 } from 'react-native';
 import {useState} from 'react';
 import StyledButton from '@/components/TLPButton';
 import Result from '@/components/TLPResult';
 import CorrectImageOption from '@/components/CorrectImageOption';
-import TextStyle from '@/constants/Text';
+import TextStyle from '@/constants/TextStyles';
 import { TLPBottomButtonNav } from './TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
 import { LessonSlide } from '@/types/lessons';
@@ -21,10 +18,13 @@ const currentLangIndex = 0;
 type CorrectImageQuestionSlideProps = LessonSlide & {
   currentSlide: number;
   setCurrentSlide: (slide: number) => void;
+  onComplete?: () => void;
+  length: number;
 }
 
 
-export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide }: CorrectImageQuestionSlideProps): JSX.Element {
+export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide, length, onComplete } : CorrectImageQuestionSlideProps): JSX.Element {
+  
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
 
@@ -50,11 +50,19 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
 
     setResult(optionResult);
     setShowResult(true);
-    
+
     //if the user got the correct answer, when they press continue again, go to the next slide
     if (optionResult && showResult) {
       setCurrentSlide(currentSlide + 1);  
       reset();
+
+          //if user is at the end and got the correct answer, trigger completion
+    if (currentSlide === length - 1 && optionResult) {
+      if (onComplete) {
+        onComplete();
+      }
+        return;
+      }
     }
   }
 
@@ -63,7 +71,6 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
   }, [selectedOptionIndex]);
 
 
-  console.log('options', options);
   return (
     <>
       <View style={styles.textWrapper}>
@@ -96,7 +103,6 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
         )}
 
       <TLPBottomButtonNav style={{paddingHorizontal: 0}}>
-        {/* TODO: change the button text to 'try again' if the user got it wrong and change the background color to the error variant */}
         <StyledButton
           title={showResult && !result ? 'Try Again' : 'Continue'}
           titleSize={16}
