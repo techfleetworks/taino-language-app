@@ -23,7 +23,8 @@ import { LessonSlide } from '@/types/lessons';
 type displayflex = FlexStyle['display']
 
 const fetchLessonSlides = () => {
-  return mockData.lessons[0].slides.slice(1, 3);
+  // return mockData.lessons[0].slides.slice(1, 3);
+  return mockData.lessons[0].slides.slice(0,6);
 }
 
 export default function Welcome(): JSX.Element {
@@ -47,8 +48,8 @@ export default function Welcome(): JSX.Element {
   const onPress = () => setIntroText(false); 
 
   const handleIsIntroText = () => {
-
     return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
+    //return lessonSlides[currentSlide + 1]?.category === 'introduction' && lessonSlides[currentSlide + 1]?.order === 1 ? true : false;
   }
 
   const handleClick = () => setCurrentSlide(prev => prev + 1);
@@ -163,6 +164,7 @@ export default function Welcome(): JSX.Element {
         buttonText={styles.buttonText}
         otherProps={styles.buttonNav} 
         zIndex={1}
+        //position={'absolute'}
         position={'relative'}
         />
       </TLPBottomButtonNav>
@@ -216,13 +218,24 @@ const styles = StyleSheet.create({
     lineHeight: 44, /* 122.222% */
     letterSpacing: -0.72,
   },
+  // introTextWrapper: {
+  //   display: 'flex',
+  //   width: 326,
+  //   height: 142,
+  //   flexDirection: 'column',
+  //   alignItems: 'flex-start',
+  //   gap: 16,
+  // },
   introTextWrapper: {
     display: 'flex',
-    width: 326,
-    height: 142,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    width: 352,
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 16,
+    borderRadius: 8,
+    backgroundColor: '#DEDEDE'
   },
   introText: {
     // color: '#475467',
@@ -235,6 +248,7 @@ const styles = StyleSheet.create({
   },  
   buttonNav: {
     display: 'flex',
+   // width: 70%,
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
