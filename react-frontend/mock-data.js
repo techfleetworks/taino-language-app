@@ -23,14 +23,28 @@ export const mockData = {
           id: "482F80CA-D720-41C8-945D-93A6CD90F487",
           type: "reading",
           category: "introduction",
-          text: "Whether you are looking to reconnect with your Taíno ancestry or are curious about Taíno culture, I Welcome you to join me here at Learn Taíno!",
+          text: "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. I’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
           order: 1
         },
         {
           id: "482F80CA-D720-41C8-945D-93A6CD90F487",
           type: "reading",
           category: "introduction",
-          text: "Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.",
+          text: "In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.",
+          order: 2
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.",
+          order: 2
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Ready to try your first lesson?",
           order: 2
         },
         {

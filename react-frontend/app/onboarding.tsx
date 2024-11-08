@@ -3,28 +3,29 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Colors from '@/constants/Colors';
+import { Link } from 'expo-router';
 
 export default function Onboarding() {
+
   return (
     <View style={styles.container}>
       <TouchableOpacity 
         style={styles.backButton}
         onPress={() => console.log("Go back!")}
       >
-        
         <Image 
-          source={require('../assets/images/arrow_back_ios_new.png')} 
+          source={require('@/assets/images/arrow_back_ios_new.png')} 
           style={styles.backIcon} 
         />
       </TouchableOpacity>
 
-      <Image source={require('../assets/humming_bird.png')} style={styles.icon} />
-      <Text style={styles.welcomeText}>Welcome Gabriela!</Text>
+      <Image source={require('@/assets/humming_bird.png')} style={styles.icon} />
+      <Text style={styles.welcomeText}>Welcome Gabriela! </Text>
       <Text style={styles.subText}>Create an account to keep learning Taíno!</Text>
 
-      <TouchableOpacity style={styles.createAccountButton}>
+      <Link href="/signup" style={[styles.createAccountButton, { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
         <Text style={styles.createAccountButtonText}>Create Account</Text>
-      </TouchableOpacity>
+      </Link>
 
       <Text style={styles.orText}>or</Text>
 
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
     color: Colors.onPrimary.highEmphasis,
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   orText: {
     fontSize: 16,
