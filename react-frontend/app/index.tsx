@@ -52,12 +52,8 @@ export default function Welcome(): JSX.Element {
   const onPress = () => setIntroText(false); 
 
   const handleIsIntroText = () => {
-
-    if (lessonSlides.length === 0) {
-      return false;
-    }
-
     return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
+    //return lessonSlides[currentSlide + 1]?.category === 'introduction' && lessonSlides[currentSlide + 1]?.order === 1 ? true : false;
   }
 
   const handleClick = () => {
@@ -198,6 +194,7 @@ export default function Welcome(): JSX.Element {
         buttonText={styles.buttonText}
         otherProps={{...styles.buttonNav, ref: buttonRef}} 
         zIndex={1}
+        //position={'absolute'}
         position={'relative'}
         />
       </TLPBottomButtonNav>
@@ -250,7 +247,15 @@ const styles = StyleSheet.create({
     lineHeight: 44, /* 122.222% */
     letterSpacing: -0.72,
   },
-  welcomeText2: {
+  // introTextWrapper: {
+  //   display: 'flex',
+  //   width: 326,
+  //   height: 142,
+  //   flexDirection: 'column',
+  //   alignItems: 'flex-start',
+  //   gap: 16,
+  // },
+ welcomeText2: {
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: TextStyles.heading2.fontSize,
@@ -260,11 +265,14 @@ const styles = StyleSheet.create({
   },
   introTextWrapper: {
     display: 'flex',
-    width: 326,
-    height: 142,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    width: 352,
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 16,
+    borderRadius: 8,
+    backgroundColor: '#DEDEDE'
   },
   introText: {
     fontFamily: 'Inter',
@@ -275,6 +283,7 @@ const styles = StyleSheet.create({
   },  
   buttonNav: {
     display: 'flex',
+   // width: 70%,
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
