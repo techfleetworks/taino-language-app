@@ -13,26 +13,53 @@ export const mockData = {
       created_at: '2024-10-01T10:00:00Z',
       slides: [
         {
-          title: 'Lesson 1: Greetings',
-          category: 'introduction',
-          type: 'cover',
-          description:
-            'Learn how to introduce yourself by saying “hello, my name is…',
-          image: hello,
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. \n\nI’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
+          //order: 1
         },
         {
-          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-          type: 'reading',
-          category: 'introduction',
-          text: 'Whether you are looking to reconnect with your Taíno ancestry or are curious about Taíno culture, I Welcome you to join me here at Learn Taíno!',
-          order: 1,
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.",
+          //order: 2
         },
         {
-          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-          type: 'reading',
-          category: 'introduction',
-          text: 'Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.',
-          order: 2,
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.",
+          //order: 3
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Ready to try your first lesson?",
+          //order: 4
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Whether you are looking to reconnect with your Taíno ancestry or are curious about Taíno culture, I Welcome you to join me here at Learn Taíno!",
+          //order: 5
+        },
+        {
+          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
+          type: "reading",
+          category: "introduction",
+          text: "Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.",
+          //order: 6
+        },
+        {
+          title: "Lesson 1: Greetings",
+          category: "introduction",
+          type: "cover",
+          description: "Learn how to introduce yourself by saying “hello, my name is…",
+          image: "./assets/images/emoji _waving hand.png",
         },
         {
           id: '482F80CA-D720-41C8-945D-93A6CD90F487',

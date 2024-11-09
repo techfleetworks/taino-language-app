@@ -20,11 +20,12 @@ import Result from '@/components/TLPResult';
 import MultipleChoiceOption from '@/components/MultipleChoiceOption';
 import { LessonSlide } from '@/types/lessons';
 import { useRouter } from 'expo-router';
+import TextStyles from '@/constants/TextStyles';
 
 type displayflex = FlexStyle['display']
 
 const fetchLessonSlides = () => {
-  return mockData.lessons[0].slides.slice(1, 3);
+  return mockData.lessons[0].slides.slice(1, 5);
 }
 
 export default function Welcome(): JSX.Element {
@@ -51,12 +52,8 @@ export default function Welcome(): JSX.Element {
   const onPress = () => setIntroText(false); 
 
   const handleIsIntroText = () => {
-
-    if (lessonSlides.length === 0) {
-      return false;
-    }
-
     return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
+    //return lessonSlides[currentSlide + 1]?.category === 'introduction' && lessonSlides[currentSlide + 1]?.order === 1 ? true : false;
   }
 
   const handleClick = () => {
@@ -95,7 +92,12 @@ export default function Welcome(): JSX.Element {
   setTimeout(() => setDisplayNone('flex'), 5000);
 
   return (
-    <View style={lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' ? styles.welcomeContainer : styles.questionContainer}>
+    <View style={[
+      lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' 
+        ? styles.welcomeContainer 
+        : styles.questionContainer,
+      { backgroundColor: displayFlex === 'flex' ? Colors.primary : Colors.background }
+    ]}>
       <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
         {/* ProgressStep: not visible on intro text */}
         {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category !== 'introduction' && (
@@ -104,14 +106,26 @@ export default function Welcome(): JSX.Element {
       </View>
 
        {lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' && <View style={styles.imageContainer}>
-          <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
+          <Image style={styles.image} source={displayFlex === 'flex' ? require('@/assets/humming_bird_lg.png') : require('@/assets/humming_bird.png')} />
         </View>}
 
-        <View style={[styles.welcomeTextWrapper, {display:displayFlex as displayflex}]}>
-          <Text style={styles.welcomeText}>
+        <View style={[
+          styles.welcomeTextWrapper, 
+          {
+            display: displayFlex as displayflex,
+            backgroundColor: displayFlex === 'flex' ? Colors.primary : 'transparent'
+          }
+        ]}>
+          <Text style={[
+            styles.welcomeText,
+            { color: displayFlex === 'flex' ? '#FFFFFF' : '#101828' }
+          ]}>
             Mabríka! 
           </Text>
-          <Text style={styles.welcomeText}>
+          <Text style={[
+            styles.welcomeText2,
+            { color: displayFlex === 'flex' ? '#FFFFFF' : '#101828' }
+          ]}>
             Welcome to Learn Taíno! 
           </Text>
         </View>
@@ -180,6 +194,7 @@ export default function Welcome(): JSX.Element {
         buttonText={styles.buttonText}
         otherProps={{...styles.buttonNav, ref: buttonRef}} 
         zIndex={1}
+        //position={'absolute'}
         position={'relative'}
         />
       </TLPBottomButtonNav>
@@ -194,7 +209,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems:'center',
-    backgroundColor: Colors.background,
     padding: 8,
   },
   progressWrapper: {
@@ -233,17 +247,34 @@ const styles = StyleSheet.create({
     lineHeight: 44, /* 122.222% */
     letterSpacing: -0.72,
   },
+  // introTextWrapper: {
+  //   display: 'flex',
+  //   width: 326,
+  //   height: 142,
+  //   flexDirection: 'column',
+  //   alignItems: 'flex-start',
+  //   gap: 16,
+  // },
+ welcomeText2: {
+    textAlign: 'center',
+    fontFamily: 'Inter',
+    fontSize: TextStyles.heading2.fontSize,
+    fontStyle: 'normal',
+    fontWeight: '600',
+    // lineHeight: TextStyles.heading2.lineHeight,
+  },
   introTextWrapper: {
     display: 'flex',
-    width: 326,
-    height: 142,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    width: 352,
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 16,
+    borderRadius: 8,
+    backgroundColor: '#DEDEDE'
   },
   introText: {
-    // color: '#475467',
-    /* Text lg/Regular */
     fontFamily: 'Inter',
     fontSize: 18,
     fontStyle: 'normal',
@@ -252,6 +283,7 @@ const styles = StyleSheet.create({
   },  
   buttonNav: {
     display: 'flex',
+   // width: 70%,
     padding: 16,
     justifyContent: 'center',
     alignItems: 'center',

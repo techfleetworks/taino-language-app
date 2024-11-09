@@ -6,6 +6,7 @@ import Slides from "@/components/Slides";
 import CorrectImageQuestionSlide from "@/components/CorrectImageQuestionSlide";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/ProgressStep";
+import { useRouter } from "expo-router";
 // import { SafeAreaView } from "react-navigation";
 
 const fetchLessonById = (lessonId: string) => {
@@ -23,6 +24,8 @@ export default function LessonScreen() {
     const [introText, setIntroText] = useState<boolean>(true); 
 
     const lesson = fetchLessonById(lessonId);
+
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -49,6 +52,10 @@ export default function LessonScreen() {
                 correctIndex={cards[currentSlide]?.correctIndex}
                 currentSlide={currentSlide}
                 setCurrentSlide={setCurrentSlide}
+                length={cards.length} //temporary fix for now TODO: fix this
+                onComplete={() => {
+                    router.push('/onboarding');
+                }}
             />
             </View>
         </View>
