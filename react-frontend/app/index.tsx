@@ -17,7 +17,7 @@ export default function Welcome(): JSX.Element {
       </View>
 
       <View style={styles.welcomeTextWrapper}>
-        <Text style={TextStyle.heading1}>Mabríka!</Text>
+        <Text style={[TextStyle.heading1, { marginBottom: 16 }]}>Mabríka!</Text>
         <Text style={TextStyle.heading2}>Welcome to Learn Taíno!</Text>
       </View>
       <View>
@@ -106,14 +106,17 @@ const styles = StyleSheet.create({
   continueButton: {
     backgroundColor: Colors.background,
     borderWidth: 1,
-    borderColor: Colors.primary,
+    borderColor: Colors.onBackground.highEmphasis,
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 32,
   },
   continueButtonText: {
-    color: Colors.primary,
-    fontWeight: "700",
+    color: Colors.onBackground.highEmphasis,
+    fontWeight: "600",
     textAlign: "center",
+    fontSize: 16,
+    fontFamily: "Inter",
+    lineHeight: 19.36,
   },
 });
