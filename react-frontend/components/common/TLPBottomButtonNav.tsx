@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 
 type TLPBottomButtonNavProps = {
     style?: { [key: string]: any }
@@ -8,9 +8,11 @@ type TLPBottomButtonNavProps = {
 
 export const TLPBottomButtonNav : React.FC<TLPBottomButtonNavProps> = ({ style, children } : TLPBottomButtonNavProps) => {
     return (
-        <View style={[styles.buttonWrapper, style]}>
-          {children}
-        </View>
+        <SafeAreaView>
+          <View style={[styles.buttonWrapper, style]}>
+              {children}
+            </View>
+        </SafeAreaView>
     )
 }
 

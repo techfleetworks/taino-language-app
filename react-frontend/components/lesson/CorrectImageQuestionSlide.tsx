@@ -4,11 +4,11 @@ import {Text,
         View, 
 } from 'react-native';
 import {useState} from 'react';
-import StyledButton from '@/components/TLPButton';
-import Result from '@/components/TLPResult';
-import CorrectImageOption from '@/components/CorrectImageOption';
+import StyledButton from '@/components/common/TLPButton';
+import Result from '@/components/lesson/TLPResult';
+import CorrectImageOption from '@/components/lesson/CorrectImageOption';
 import TextStyle from '@/constants/TextStyles';
-import { TLPBottomButtonNav } from './TLPBottomButtonNav';
+import { TLPBottomButtonNav } from '../common/TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
 import { LessonSlide } from '@/types/lessons';
 
@@ -125,7 +125,8 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
 
 const styles = StyleSheet.create({
   newVocabText: {
-    fontSize: parseInt(TextStyle.body.fontSize, 10),
+    fontSize: TextStyle.body.fontSize,
+    // fontSize: parseInt(TextStyle.body.fontSize, 10),
     fontWeight: '700'
   },
   cardWrapper: {
@@ -144,11 +145,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   promptText: {
-    fontSize: parseInt(TextStyle.heading2.fontSize, 10),
+    fontSize: TextStyle.heading2.fontSize,
+    // fontSize: parseInt(TextStyle.heading2.fontSize, 10),
     fontWeight: '700', 
   },
   questionText: {
-    fontSize: parseInt(TextStyle.heading2.fontSize, 10),
+    fontSize: TextStyle.heading2.fontSize,
+    // fontSize: parseInt(TextStyle.heading2.fontSize, 10),
     fontWeight: '700', 
     height: 50
   },

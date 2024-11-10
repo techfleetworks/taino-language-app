@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, StyleSheet, View, Image } from "react-native";
 import { useNavigation } from "expo-router";
-import StyledButton from "@/components/TLPButton";
+import StyledButton from "@/components/common/TLPButton";
 import Colors from "@/constants/Colors";
 import TextStyle from "@/constants/TextStyles";
+import { TLPBottomButtonNav } from "@/components/common/TLPBottomButtonNav";
 
-export default function Welcome(): JSX.Element {
+export default function IndexPage(): JSX.Element {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -20,34 +21,33 @@ export default function Welcome(): JSX.Element {
         <Text style={[TextStyle.heading1, { marginBottom: 16 }]}>Mabríka!</Text>
         <Text style={TextStyle.heading2}>Welcome to Learn Taíno!</Text>
       </View>
-      <View>
-        <View style={styles.buttonContainer}>
-          <Text style={styles.promptText}>Want to start learning?</Text>
-          <StyledButton
-            title="Sign up"
+      <TLPBottomButtonNav>
+      {/* <View style={styles.buttonContainer}> */}
+        <StyledButton
+            title="Ready to start learning?"
             titleSize={16}
             height={48}
             accessibilityLabel="Sign up"
             onPress={() => {
-              navigation.navigate("signup");
+              navigation.navigate("onboarding/introduction");
             }}
             buttonText={styles.signUpButtonText}
             otherProps={styles.signUpButton}
           />
-        </View>
-        <Text style={styles.promptText}>Already have an account?</Text>
+        {/* </View> */}
         <StyledButton
-          title="Continue your journey"
+          title="Already have an account?"
           titleSize={16}
           height={48}
-          accessibilityLabel="Continue your journey"
+          accessibilityLabel="Already have an account?"
           onPress={() => {
-            navigation.navigate("onboarding");
+            navigation.navigate("signin");
           }}
           buttonText={styles.continueButtonText}
           otherProps={styles.continueButton}
         />
-      </View>
+        {/* </View> */}
+      </TLPBottomButtonNav>
     </View>
   );
 }

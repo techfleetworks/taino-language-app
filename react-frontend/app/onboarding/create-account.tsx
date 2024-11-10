@@ -21,7 +21,7 @@ export default function Onboarding() {
       <Text style={styles.welcomeText}>Welcome Gabriela! </Text>
       <Text style={styles.subText}>Create an account to keep learning Taíno!</Text>
 
-      <Link href="/signup" style={[styles.createAccountButton, { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
+      <Link href="/onboarding/signup" style={[styles.createAccountButton, { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
         <Text style={styles.createAccountButtonText}>Create Account</Text>
       </Link>
 

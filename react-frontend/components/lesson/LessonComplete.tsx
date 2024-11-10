@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
     Image,
     Text,
     StyleSheet, 
     View,
 } from 'react-native';
-import {useState} from 'react';
-import StyledButton from '@/components/TLPButton';
-import { TLPBottomButtonNav } from './TLPBottomButtonNav';
+import StyledButton from '@/components/common/TLPButton';
+import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
 import Vocabulary from './Vocabulary';
 import { useRouter } from 'expo-router';
 import { mockData } from '@/mock-data';
@@ -26,13 +25,14 @@ const fetchVocabByLesson = (lessonId: string) => {
     return vocabSlide?.vocab || [];
 }
 
-const handleClick = () => {
-    router.push('/lesson');
+const handleClick = (routeName : string) => {
+    router.push(`/${routeName}`);
     return;
 }
 
 
 export default function LessonComplete({lessonId}: LessonCompleteProps) {
+
     const vocabulary = fetchVocabByLesson(lessonId) 
 
     return (
@@ -43,7 +43,7 @@ export default function LessonComplete({lessonId}: LessonCompleteProps) {
                     <Text style={styles.completeText}>Great Job!</Text>
                 </View>
                 <Image
-                    source={require('../assets/icons/emoji_party_popper.png')}
+                    source={require('@/assets/icons/emoji_party_popper.png')}
                     style={styles.image}
                 />
             </View>   
@@ -64,7 +64,7 @@ export default function LessonComplete({lessonId}: LessonCompleteProps) {
                     titleSize={16}
                     height={48}
                     accessibilityLabel={'Continue'}
-                    onPress={handleClick}
+                    onPress={() => handleClick('onboarding/write-your-name')} //TODO: update this so that depending on the lesson, it will redirect the user to home if this is not the first lesson
                     icon={false}
                     buttonText={styles.buttonText}
                     otherProps={styles.buttonNav}
@@ -77,7 +77,6 @@ export default function LessonComplete({lessonId}: LessonCompleteProps) {
         </>
     )
 }
-
 
 const styles = StyleSheet.create({
     vocabWrapper: {

@@ -10,7 +10,7 @@ import {
   ImageStyle,
 } from 'react-native';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 import { ViewStyle } from 'react-native';
 
 export type themeprops = {

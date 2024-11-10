@@ -5,8 +5,8 @@
  */
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import ProgressStep from '@/components/ProgressStep';
-import StyledButton from '@/components/TLPButton';
+import ProgressStep from '@/components/lesson/ProgressStep';
+import StyledButton from '@/components/common/TLPButton';
 import Colors from '@/constants/Colors';
 
 export default function OnboardIntro(): JSX.Element {

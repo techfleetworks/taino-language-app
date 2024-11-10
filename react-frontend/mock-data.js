@@ -44,13 +44,6 @@ export const mockData = {
           id: "482F80CA-D720-41C8-945D-93A6CD90F487",
           type: "reading",
           category: "introduction",
-          text: "Whether you are looking to reconnect with your Taíno ancestry or are curious about Taíno culture, I Welcome you to join me here at Learn Taíno!",
-          //order: 5
-        },
-        {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "reading",
-          category: "introduction",
           text: "Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.",
           //order: 6
         },

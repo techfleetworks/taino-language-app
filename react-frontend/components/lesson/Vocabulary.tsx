@@ -18,7 +18,7 @@ export default function Vocabulary({
             </View>
             <Image 
                 style={styles.arrowContainer}
-                source={require('../assets/icons/arrow-right.png')}
+                source={require('@/assets/icons/arrow-right.png')}
             />
             <View style={styles.textContainer}>
                 <Text style={styles.vocabText}>{english}</Text>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        backgroundColor: Colors.background,
+        backgroundColor: Colors.surface,
         minWidth: 96,
     },
     vocabText: {

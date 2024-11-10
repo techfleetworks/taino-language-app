@@ -1,3 +1,4 @@
+import Colors from '@/constants/Colors';
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -98,6 +99,7 @@ export default function SignupScreen(): JSX.Element {
 
     Alert.alert('Congrats on signing up!');
   };
+
   return (
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -170,6 +172,7 @@ export default function SignupScreen(): JSX.Element {
 
       <Text style={styles.passwordText}>Password must be 8-16 characters long, and contain one upper case and one lowercase character.</Text>
 
+      {/* //TODO replace this with the TLPBottomButtonNav component */}
       <TouchableOpacity
         onPress={handleSignup}
         disabled={isDisabled}
@@ -192,7 +195,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontFamily: 'Inter',
     fontSize: 16,
-    color: '#1D1D1D',
+    color: Colors.onBackground.highEmphasis,
     fontWeight: '600',
     marginBottom: 4,
     marginLeft: 48,
@@ -200,7 +203,7 @@ const styles = StyleSheet.create({
   input: {
     height: 64,
     width: 304,
-    borderColor: '#1D1D1D',
+    borderColor: Colors.onBackground.highEmphasis,
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 16,
@@ -226,20 +229,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
     lineHeight: 1,
-    color: '#FFFFFF',
+    color: Colors.white,
   },
   buttonDisabled: {
-    backgroundColor: '#737373',
+    backgroundColor: Colors.onBackground.disabled,
   },
   buttonEnabled: {
-    backgroundColor: '#355725',
+    backgroundColor: Colors.primary,
   },
   passwordText: {
     fontFamily: 'Inter',
     fontSize: 14,
     fontWeight: 400,
     lineHeight: 16.94,
-    color: 'gray',
+    color: Colors.onBackground.mediumEmphasis,
     marginTop: 5,
     marginBottom: 10,
     marginLeft: 5,
