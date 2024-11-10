@@ -14,9 +14,7 @@ import { LessonSlide } from '@/types/lessons';
 import { useRouter } from 'expo-router';
 import TextStyles from '@/constants/TextStyles';
 
-type displayflex = FlexStyle['display']
-
-//TODO: the first 4 slides are the introduction. You can separate them from the mock-data.js file and add them to their own array 
+//TODO: the first 4 slides are the introduction. You can separate them from the mock-data.js file and add them to their own array as they will probably always be static.
 
 //TODO: then you can use that array to set the lessonSlides state. OR you can just replace this function with the new array.
 const fetchLessonSlides = () => {
@@ -45,7 +43,6 @@ export default function Introduction(): JSX.Element {
   
   const handleIsIntroText = () => {
     return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
-    //return lessonSlides[currentSlide + 1]?.category === 'introduction' && lessonSlides[currentSlide + 1]?.order === 1 ? true : false;
   }
 
   const handleClick = () => {
