@@ -10,7 +10,8 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
     - Framework: React Native + Expo
     - Data Fetching: Axios
 - Backend:
-    - Supabase(Database, Auth and Storage)
+    - PostgreSQL(Avien.io)
+    - Drizzle ORM
     - Nest.js
 
 ## Requirements
@@ -24,7 +25,7 @@ git clone https://github.com/itskarelleh/taino-language-app.git
 ``` 
 
 For the frontend:
-```bash
+```zsh
 cd react-frontend
 cp .env.example .env
 npm install && npx expo start -c
@@ -32,13 +33,11 @@ npm install && npx expo start -c
 
 <!-- For the backend: -->
 For the backend:
-```bash
+```zsh
 cd nest-backend
-cp .env.example .env
-npm install && npm run start:dev
+cp .env.example .env.development
+pnpm install && pnpm run start:dev
 ```
-
-or instead of running these separately, you can run the project with the following command:
 
 For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 

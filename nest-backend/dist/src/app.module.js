@@ -11,16 +11,22 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const cat_controller_1 = require("./cat/cat.controller");
-const cat_service_1 = require("./cat/cat.service");
+const database_module_1 = require("./database/database.module");
+const hello_world_module_1 = require("./hello-world/hello-world.module");
+const hello_world_controller_1 = require("./hello-world/hello-world.controller");
+const hello_world_service_1 = require("./hello-world/hello-world.service");
+const drizzle_module_1 = require("./drizzle/drizzle.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [config_1.ConfigModule.forRoot()],
-        controllers: [app_controller_1.AppController, cat_controller_1.CatController],
-        providers: [app_service_1.AppService, cat_service_1.CatService],
+        imports: [config_1.ConfigModule.forRoot({
+                envFilePath: ['.env.development', '.env.production'],
+                isGlobal: true
+            }), database_module_1.DatabaseModule, hello_world_module_1.HelloWorldModule, drizzle_module_1.DrizzleModule],
+        controllers: [app_controller_1.AppController, hello_world_controller_1.HelloWorldController],
+        providers: [app_service_1.AppService, hello_world_service_1.HelloWorldService]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
