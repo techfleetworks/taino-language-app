@@ -26,10 +26,9 @@ const fetchPhraseByLesson = (lessonId: string) => {
     return vocabSlide?.phrase || [];
 }
 
-const handleClick = () => {
-    router.push('/lesson');
-    return;
-}
+const handleClick = (lessonId: string) => {
+    router.push(`/lesson/${lessonId}`);
+  };
 
 export default function VocabularyOverviewComponent({ lessonId }: VocabOverviewProps) {
     const vocabulary = fetchVocabByLesson(lessonId);
@@ -71,7 +70,7 @@ export default function VocabularyOverviewComponent({ lessonId }: VocabOverviewP
                     titleSize={16}
                     height={48}
                     accessibilityLabel={'Continue'}
-                    onPress={handleClick}
+                    onPress={() => handleClick(lessonId)}
                     icon={false}
                     buttonText={styles.buttonText}
                     otherProps={styles.buttonNav}
