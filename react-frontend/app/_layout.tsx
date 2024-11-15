@@ -12,6 +12,7 @@ import * as Font from 'expo-font';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View, Text } from 'react-native';
+import { AuthProvider } from '@/lib/AuthProvider';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -111,22 +112,25 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
     : { flex: 1 };
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <View style={containerStyle} onLayout={onLayout}>
-        <View style={phoneFrameStyle}>
-          <View style={contentStyle}>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="index" />
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="lesson" />
-              <Stack.Screen name="onboarding" />
-              <Stack.Screen name="signup" />
-              <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-            </Stack>
+    <AuthProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <View style={containerStyle} onLayout={onLayout}>
+          <View style={phoneFrameStyle}>
+            <View style={contentStyle}>
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" />
+                <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="lesson" />
+                <Stack.Screen name="onboarding" />
+                <Stack.Screen name="signup" />
+                <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+                <Stack.Screen name="(auth)/callback" />
+              </Stack>
+            </View>
           </View>
         </View>
-      </View>
-    </ThemeProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
