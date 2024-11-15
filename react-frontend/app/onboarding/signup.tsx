@@ -32,7 +32,7 @@ import { useRouter } from 'expo-router';
  * @function
  */
 
-const router = useRouter();
+// const router = useRouter();
 
 export default function SignupScreen(): JSX.Element {
   const [email, setEmail] = useState<string>('');
@@ -102,7 +102,7 @@ export default function SignupScreen(): JSX.Element {
 
     Alert.alert('Congrats on signing up!');
     // store user data in DB
-    router.push('/welcome');
+    // router.push('onboarding/welcome');
   };
 
   return (
