@@ -1,5 +1,5 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
-import Vocabulary from './Vocabulary';
+import Vocabulary from './lesson/Vocabulary';
 import { mockData } from '@/mock-data';
 import StyledButton from '@/components/common/TLPButton';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
