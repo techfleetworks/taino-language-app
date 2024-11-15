@@ -122,6 +122,8 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
               <Stack.Screen name="onboarding" />
               <Stack.Screen name="signup" />
               <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+              {/* for now until we get our header */}
+              <Stack.Screen name="onboarding/vocabulary-overview" options={{ headerShown: false }} />
             </Stack>
           </View>
         </View>
