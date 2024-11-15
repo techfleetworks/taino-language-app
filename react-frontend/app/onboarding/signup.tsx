@@ -13,6 +13,7 @@ import {
   Platform
 } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useRouter } from 'expo-router';
 
 
 /**
@@ -30,6 +31,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
  * @returns {JSX.Element}
  * @function
  */
+
+const router = useRouter();
 
 export default function SignupScreen(): JSX.Element {
   const [email, setEmail] = useState<string>('');
@@ -98,6 +101,8 @@ export default function SignupScreen(): JSX.Element {
     setIsDisabled(false);
 
     Alert.alert('Congrats on signing up!');
+    // store user data in DB
+    router.push('/welcome');
   };
 
   return (
