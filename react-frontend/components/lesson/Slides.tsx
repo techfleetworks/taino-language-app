@@ -7,11 +7,11 @@ import {Text,
         FlexStyle
 } from 'react-native';
 import {useState} from 'react';
-import StyledButton from '@/components/TLPButton';
+import StyledButton from '@/components/common/TLPButton';
 import ProgressStep from '@/components/ProgressStep';
 import Colors from '@/constants/Colors';
-import { TLPBottomButtonNav } from '@/components/TLPBottomButtonNav';
-import Result from '@/components/TLPResult';
+import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
+import Result from '@/components/common/TLPResult';
 import MultipleChoiceOption from '@/components/MultipleChoiceOption';
 import { LessonSlide } from '@/types/lessons';
 

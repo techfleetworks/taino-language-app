@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {Hello} from '../Hello';
+import {Hello} from '../common/Hello';
 
 it('renders correctly with defaults', () => {
   const button = renderer

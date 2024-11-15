@@ -28,7 +28,7 @@ import {
   AccessibilityProps,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {default as Colors} from '../constants/Colors';
+import {default as Colors} from '../../constants/Colors';
 import { ColorValue } from 'react-native';
 // import { IconProps } from 'react-native-paper/lib/typescript/components/MaterialCommunityIcon';
 // import { IconButtonProps } from 'react-native-paper';

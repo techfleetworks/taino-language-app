@@ -37,6 +37,8 @@ export default {
     onPrimary: '#FFFFFF',
     onSurface: '#000000',
   },
+  white: '#FFFFFF',
+  black: '#000000',
 //these two are used in: (tabs)\_layout.tsx, leaving to avoid breaking
   light: {
     tint: '#355725',

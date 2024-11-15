@@ -2,7 +2,7 @@ import React from 'react';
 // import { StatusBar } from 'status-bar';
 import { Platform, StyleSheet } from 'react-native';
 import Colors from '@/constants/Colors';
-import { Text, View } from '@/components/Themed';
+import { Text, View } from '@/components/globals/Themed';
 
 export default function ModalScreen() {
   return (

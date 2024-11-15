@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Image } from 'expo-image';
-import TextStyle from '@/constants/Text';
+import TextStyle from '@/constants/TextStyles';
 import Colors from '@/constants/Colors';
 
 interface CorrectImageOptionProps {
