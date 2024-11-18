@@ -12,9 +12,6 @@ import { useRouter } from 'expo-router';
 import { mockData } from '@/mock-data';
 import Colors from '@/constants/Colors';
 
-
-const router = useRouter();
-
 interface LessonCompleteProps {
     lessonId: string
 }
@@ -25,13 +22,14 @@ const fetchVocabByLesson = (lessonId: string) => {
     return vocabSlide?.vocab || [];
 }
 
-const handleClick = (routeName : string) => {
-    router.push(`/${routeName}`);
-    return;
-}
-
-
 export default function LessonComplete({lessonId}: LessonCompleteProps) {
+
+    const router = useRouter();
+
+    const handleClick = (routeName : string) => {
+        router.push(`/${routeName}`);
+        return;
+    }
 
     const vocabulary = fetchVocabByLesson(lessonId) 
 

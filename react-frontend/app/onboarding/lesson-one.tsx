@@ -40,6 +40,7 @@ export default function LessonScreen() {
             <SafeAreaView>
                 {lessonInProgress && <ProgressStep
                     currentStep={currentSlide + 1}
+                    setCurrentStep={setCurrentSlide}
                     totalSteps={3}
                 />}
             </SafeAreaView>
