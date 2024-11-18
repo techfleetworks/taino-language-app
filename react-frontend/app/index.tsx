@@ -5,11 +5,11 @@ import StyledButton from "@/components/common/TLPButton";
 import Colors from "@/constants/Colors";
 import TextStyle from "@/constants/TextStyles";
 import { TLPBottomButtonNav } from "@/components/common/TLPBottomButtonNav";
-
+import PageContainer from "@/components/common/PageContainer";
 export default function IndexPage(): JSX.Element {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <PageContainer>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -22,7 +22,6 @@ export default function IndexPage(): JSX.Element {
         <Text style={TextStyle.heading2}>Welcome to Learn Taíno!</Text>
       </View>
       <TLPBottomButtonNav>
-      {/* <View style={styles.buttonContainer}> */}
         <StyledButton
             title="Ready to start learning?"
             titleSize={16}
@@ -34,7 +33,6 @@ export default function IndexPage(): JSX.Element {
             buttonText={styles.signUpButtonText}
             otherProps={styles.signUpButton}
           />
-        {/* </View> */}
         <StyledButton
           title="Already have an account?"
           titleSize={16}
@@ -48,7 +46,7 @@ export default function IndexPage(): JSX.Element {
         />
         {/* </View> */}
       </TLPBottomButtonNav>
-    </View>
+    </PageContainer>
   );
 }
 
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 64,
     backgroundColor: Colors.background,
-
     padding: 16,
   },
   imageContainer: {

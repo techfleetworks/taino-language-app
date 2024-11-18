@@ -6,62 +6,55 @@
  */
 
 import React,{useState, useEffect} from 'react';
-import {View, Image, StyleSheet, Text} from 'react-native';
+import {View, Image, StyleSheet, Text, Pressable} from 'react-native';
 import Colors from '@/constants/Colors';
+import { useRouter } from 'expo-router';
 
 type ProgressStepProps = {
   currentStep: number;
+  setCurrentStep: (step: number) => void;
   totalSteps: number;
 }
 
-export default function ProgressStep({ currentStep, totalSteps }: ProgressStepProps): JSX.Element {
-  const step = [];
+export default function ProgressStep({ currentStep, setCurrentStep, totalSteps }: ProgressStepProps) : JSX.Element {
+  const router = useRouter();
+
   const stepWidth = 100 / totalSteps;
 
-  for (var i = 1; i <= currentStep; i++) {
-    // @ts-ignore
-    step.push(
-      <View style={[styles.step, styles.stepGreen, { width: `${stepWidth}%` }]}></View>
-      // <Image 
-      //   source={require('@/assets/images/step_green.png')} 
-      //   style={{ width: `${stepWidth}%` }}
-      // />
+  const steps = Array.from({ length: totalSteps }, (_, index) => {
+    const stepStyle = index < currentStep ? styles.stepGreen : styles.stepWhite;
+    return (
+      <View key={index} style={[styles.step, stepStyle, { width: `${stepWidth}%` }]}></View>
     );
-  }
-  for (var j = currentStep + 1; j <= totalSteps; j++) {
-    // @ts-ignore
-    step.push(
+  });
 
-      <View style={[styles.step, styles.stepWhite, { width: `${stepWidth}%` }]}></View>
-      // <Image
-      //   source={require('@/assets/images/step_white.png')} 
-      //   style={{ width: `${stepWidth}%` }}
-      // />
-    );
-  }
+  const handleBack = () => {
+    console.log('Back button pressed');
+    console.log('Current step:', currentStep);
 
-  const [fill, setFIll] = useState<boolean>(false);
+    if (currentStep > 0) {
+      console.log('Decrementing step');
+      setCurrentStep(currentStep - 1);
+    } else {
+      console.log('Navigating back');
+      router.back();
+    }
+  }
 
   return (
     <View style={styles.progressContainer}>
-      <View style={styles.arrowWrapper}>
+      <Pressable onPress={handleBack} style={styles.arrowWrapper}>
         <Image
           style={styles.arrow}
           source={require('@/assets/images/arrow_back_ios_new.png')}
         />
-      </View>
+      </Pressable>
       <View style={styles.stepContainer}>
-        {step}
+        {steps}
       </View>
     </View>     
   );
 }
-
-// <Image source={fill ? require('../assets/step_white.png') : require('../assets/step_gray.png') } />
-// <Image source={fill ? require('../assets/step_white.png') : require('../assets/step_gray.png') } />
-// <Image source={fill ? require('../assets/step_white.png') : require('../assets/step_gray.png') } />
-// <Image source={fill ? require('../assets/step_white.png') : require('../assets/step_gray.png') } />
-// <Image source={fill ? require('../assets/step_white.png') : require('../assets/step_gray.png') } />
 
 const styles = StyleSheet.create({
   progressContainer: {
@@ -101,5 +94,5 @@ const styles = StyleSheet.create({
   },
   stepWhite: {
     backgroundColor: Colors.surfaceVariant,
-  },
-});
+  }
+})

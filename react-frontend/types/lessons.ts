@@ -10,7 +10,7 @@ export interface LessonSlide {
 export type Lesson = {
     id: string;
     title: string;
-    slides: LessonSlide[];
-    image: string;
-    description: string;
+    introduction: LessonSlide[];
+    activities: LessonSlide[];
+    completion: LessonSlide[];
 }

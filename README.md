@@ -1,18 +1,21 @@
-# Taino Language App
+# Learn Taino
+Learn Taino is a language-learning app that helps Taino descendants and culture enthusiasts learn the Taino language and culture.
 
-<!-- TODO: Write more about the background of this project -->
-This project is for a PWA(Progressive Web App) that lets those who seek to learn the Taino language do so. 
+## Background
+The Taíno, the Indigenous people of the Caribbean and parts of the southern U.S., were the first Native Americans to meet Europeans in 1492. Though long thought extinct after colonization, they survived - many Caribbean people today have Taíno ancestry, and efforts are ongoing to preserve their culture and language.
 
 <!-- TODO: Add background section  -->
 
 ## Stack 
 - Frontend:
-    - Framework: React Native + Expo
-    - Data Fetching: Axios
+    - React Native
+    - Expo
 - Backend:
     - PostgreSQL(Avien.io)
     - Prisma ORM
     - Nest.js
+    - Auth0
+    - Cloudflare R2
 
 ## Requirements
 - Node.js v20
