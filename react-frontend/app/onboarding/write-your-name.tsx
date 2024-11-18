@@ -1,12 +1,15 @@
 import NameInput from "@/components/auth/NameInput";
+import PageContainer from "@/components/common/PageContainer";
 
 export default function WriteYourName() {
     return (
-        <NameInput 
-            value={''}
+        <PageContainer>
+            <NameInput 
+                value={''}
             placeholderTextColor={''}
             onChangeText={() => {}}
             keyboardType={'default'}
             />
+        </PageContainer>
     )
 }

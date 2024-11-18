@@ -2,15 +2,17 @@ import { View, StyleSheet } from "react-native";
 import Colors from "@/constants/Colors";
 
 //A container for the main content of the app with a font family of Inter and padding
-export default function PageContainer({ children }: { children: React.ReactNode }) {
-    return <View style={styles.root}>{children}</View>
+export default function PageContainer({ children } : { children: React.ReactNode }) {
+    return <View style={styles.container}>{children}</View>
 }
 
 const styles = StyleSheet.create({
-    root: {
+    container: {
         flex: 1,
+        justifyContent: "center",
         fontFamily: 'Inter',
-        padding: 16,
+        gap: 64,
         backgroundColor: Colors.background,
-    },
+        padding: 16,
+    }
 });
