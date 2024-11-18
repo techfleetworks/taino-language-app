@@ -11,7 +11,9 @@ The Taíno, the Indigenous people of the Caribbean and parts of the southern U.S
     - React Native
     - Expo
 - Backend:
-    - PostgreSQL
+    - PostgreSQL(Avien.io)
+    - Prisma ORM
+    - Nest.js
     - Auth0
     - Cloudflare R2
 
@@ -26,7 +28,7 @@ git clone https://github.com/itskarelleh/taino-language-app.git
 ``` 
 
 For the frontend:
-```bash
+```zsh
 cd react-frontend
 cp .env.example .env
 npm install && npx expo start -c
@@ -34,13 +36,11 @@ npm install && npx expo start -c
 
 <!-- For the backend: -->
 For the backend:
-```bash
+```zsh
 cd nest-backend
-cp .env.example .env
-npm install && npm run start:dev
+cp .env.example .env.development
+pnpm install && pnpm run start:dev
 ```
-
-or instead of running these separately, you can run the project with the following command:
 
 For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
 

@@ -6,7 +6,6 @@ const PORT = Number.parseInt(process.env.PORT);
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
     const origins = [process.env.FRONTEND_URL];
-    console.log(origins);
     app.enableCors({
         origin: origins,
         credentials: true,
