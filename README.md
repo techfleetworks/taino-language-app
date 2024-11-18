@@ -11,7 +11,7 @@ This project is for a PWA(Progressive Web App) that lets those who seek to learn
     - Data Fetching: Axios
 - Backend:
     - PostgreSQL(Avien.io)
-    - Drizzle ORM
+    - Prisma ORM
     - Nest.js
 
 ## Requirements

@@ -2,17 +2,18 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { HelloWorldModule } from './hello-world/hello-world.module';
-import { HelloWorldController } from './hello-world/hello-world.controller';
-import { HelloWorldService } from './hello-world/hello-world.service';
-import { DrizzleModule } from './drizzle/drizzle.module';
+import { PrismaService } from './prisma/prisma.service';
+import { VocabularyItemService } from './vocabulary-item/vocabulary-item.service';
+import { VocabularyItemController } from './vocabulary-item/vocabulary-item.controller';
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    envFilePath: ['.env', '.env.development', '.env.production'],
-    isGlobal: true
-  }), DrizzleModule, HelloWorldModule],
-  controllers: [AppController, HelloWorldController],
-  providers: [AppService, HelloWorldService]
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env', '.env.development', '.env.production'],
+      isGlobal: true,
+    }),
+  ],
+  controllers: [AppController, VocabularyItemController],
+  providers: [AppService, PrismaService, VocabularyItemService],
 })
 export class AppModule {}
