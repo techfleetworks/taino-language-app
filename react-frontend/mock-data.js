@@ -145,6 +145,13 @@ export const mockData = {
           id: '482F80CA-D720-41C8-945D-93A6CD90F487',
           category: 'vocabulary',
           type: 'vocab',
+          phrase:[
+            {
+              id: '1',
+              taino: 'Tau, dak’anulia',
+              english: 'Hello, my name is',
+            }
+          ],
           vocab: [
             {
               id: '1',
