@@ -10,20 +10,20 @@ import CorrectImageOption from '@/components/lesson/CorrectImageOption';
 import TextStyle from '@/constants/TextStyles';
 import { TLPBottomButtonNav } from '../common/TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
-import { LessonSlide } from '@/types/lessons';
+import { LessonActivity } from '@/types/lessons';
 
 // 0 = english, 1 = spanish
 const currentLangIndex = 0;
 
-type CorrectImageQuestionSlideProps = LessonSlide & {
-  currentSlide: number;
-  setCurrentSlide: (slide: number) => void;
+type CorrectImageQuestionActivityProps = LessonActivity & {
+  currentActivity: number;
+  setCurrentActivity: (activity: number) => void;
   onComplete?: () => void;
   length: number;
 }
 
 
-export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide, length, onComplete } : CorrectImageQuestionSlideProps): JSX.Element {
+export default function CorrectImageQuestionActivity({ question, options, correctIndex, currentActivity, setCurrentActivity, length, onComplete } : CorrectImageQuestionActivityProps): JSX.Element {
   
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
@@ -51,13 +51,13 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
     setResult(optionResult);
     setShowResult(true);
 
-    //if the user got the correct answer, when they press continue again, go to the next slide
+    //if the user got the correct answer, when they press continue again, go to the next activity
     if (optionResult && showResult) {
-      setCurrentSlide(currentSlide + 1);  
+      setCurrentActivity(currentActivity + 1);  
       reset();
 
           //if user is at the end and got the correct answer, trigger completion
-    if (currentSlide === length - 1 && optionResult) {
+    if (currentActivity === length - 1 && optionResult) {
       if (onComplete) {
         onComplete();
       }

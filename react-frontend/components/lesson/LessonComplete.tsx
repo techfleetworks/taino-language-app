@@ -18,8 +18,8 @@ interface LessonCompleteProps {
 
 const fetchVocabByLesson = (lessonId: string) => {
     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
-    const vocabSlide = lesson?.slides.find((slide) => slide.type === "vocab");
-    return vocabSlide?.vocab || [];
+    const vocabActivity = lesson?.activities.find((activity) => activity.type === "vocab");
+    return vocabActivity?.vocab || [];
 }
 
 export default function LessonComplete({lessonId}: LessonCompleteProps) {
