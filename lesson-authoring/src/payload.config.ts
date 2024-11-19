@@ -7,8 +7,12 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
+// import collections
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Activity } from './collections/Activity'
+import { Lesson } from './collections/Lesson'
+import { VocabularyItem } from './collections/VocabularyItem'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Activity, Lesson, VocabularyItem],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
