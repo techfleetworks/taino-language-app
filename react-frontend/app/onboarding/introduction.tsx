@@ -10,15 +10,15 @@ import StyledButton from '@/components/common/TLPButton';
 import Colors from '@/constants/Colors';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
 import { mockData } from '@/mock-data';
-import { LessonSlide } from '@/types/lessons';
+import { LessonActivity } from '@/types/lessons';
 import { useRouter } from 'expo-router';
 import TextStyles from '@/constants/TextStyles';
 
-//TODO: the first 4 slides are the introduction. You can separate them from the mock-data.js file and add them to their own array as they will probably always be static.
+//TODO: the first 4 activities are the introduction. You can separate them from the mock-data.js file and add them to their own array as they will probably always be static.
 
-//TODO: then you can use that array to set the lessonSlides state. OR you can just replace this function with the new array.
-const fetchLessonSlides = () => {
-  return mockData.lessons[0].slides.slice(0, 4);
+//TODO: then you can use that array to set the lessonActivities state. OR you can just replace this function with the new array.
+const fetchLessonActivities = () => {
+  return mockData.lessons[0].activities.slice(0, 4);
 }
 
 //An introduction to Learn Taíno's mascot, ZunZun
@@ -27,13 +27,13 @@ const fetchLessonSlides = () => {
 export default function Introduction(): JSX.Element {
   // const [displayFlex, setDisplayFlex] = useState<string>('flex');
   // const [displayNone, setDisplayNone] = useState<string>('none');
-  const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
+  const [ currentActivity, setCurrentActivity ] = useState<number>(0);  
   const [introText, setIntroText] = useState<boolean>(true); 
   const buttonRef = useRef<any>(null);
 
   const router = useRouter();
   
-  const [lessonSlides, setLessonSlides] = useState<LessonSlide[]>([
+  const [lessonActivities, setLessonActivities] = useState<LessonActivity[]>([
     {
       type: '', 
       text: '',
@@ -42,7 +42,7 @@ export default function Introduction(): JSX.Element {
   ]);  
   
   const handleIsIntroText = () => {
-    return lessonSlides[currentSlide + 1]?.category === 'introduction' ? true : false;
+    return lessonActivities[currentActivity + 1]?.category === 'introduction' ? true : false;
   }
 
   const handleClick = () => {
@@ -53,20 +53,20 @@ export default function Introduction(): JSX.Element {
       return;
     }
 
-    setCurrentSlide(prev => prev + 1);
+    setCurrentActivity(prev => prev + 1);
   }
 
   useEffect(() => {
-    const data = fetchLessonSlides();
-    setLessonSlides(data.map(slide => ({
-      ...slide,
-      text: slide.text || ''
+    const data = fetchLessonActivities();
+    setLessonActivities(data.map(activity => ({
+      ...activity,
+      text: activity.text || ''
     })));
   }, []);
 
   return (
     <View style={[
-      lessonSlides.length > 0 && lessonSlides[currentSlide]?.category === 'introduction' 
+      lessonActivities.length > 0 && lessonActivities[currentActivity]?.category === 'introduction' 
       && styles.welcomeContainer
     ]}>
         <View style={styles.imageContainer}>
@@ -75,7 +75,7 @@ export default function Introduction(): JSX.Element {
 
         <View style={[styles.introTextWrapper]}>
           <Text style={styles.introText}>
-              {lessonSlides[currentSlide].text}
+              {lessonActivities[currentActivity].text}
             </Text> 
         </View>
     

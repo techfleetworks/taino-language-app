@@ -14,16 +14,16 @@ interface VocabOverviewProps {
 
 const fetchVocabByLesson = (lessonId: string) => {
     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
-    const vocabSlide = lesson?.slides.find((slide) => slide.type === "vocab");
-    console.log('vocab slide for vocab', vocabSlide);
-    return vocabSlide?.vocab || [];
+    const vocabActivity = lesson?.activities.find((activity) => activity.type === "vocab");
+    console.log('vocab activity for vocab', vocabActivity);
+    return vocabActivity?.vocab || [];
 }
 
 const fetchPhraseByLesson = (lessonId: string) => {
     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
-    const vocabSlide = lesson?.slides.find((slide) => slide.type == "vocab");
-    console.log('vocab slide for phrase', vocabSlide);
-    return vocabSlide?.phrase || [];
+    const vocabActivity = lesson?.activities.find((activity) => activity.type == "vocab");
+    console.log('vocab activity for phrase', vocabActivity);
+    return vocabActivity?.phrase || [];
 }
 
 const handleClick = (lessonId: string) => {

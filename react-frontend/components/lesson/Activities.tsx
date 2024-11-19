@@ -8,33 +8,33 @@ import {Text,
 } from 'react-native';
 import {useState} from 'react';
 import StyledButton from '@/components/common/TLPButton';
-import ProgressStep from '@/components/ProgressStep';
+import ProgressStep from '@/components/lesson/ProgressStep';
 import Colors from '@/constants/Colors';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
-import Result from '@/components/common/TLPResult';
-import MultipleChoiceOption from '@/components/MultipleChoiceOption';
-import { LessonSlide } from '@/types/lessons';
+import Result from '@/components/lesson/TLPResult';
+import MultipleChoiceOption from '@/components/lesson/MultipleChoiceOption';
+import { LessonActivity } from '@/types/lessons';
 
 type displayflex = FlexStyle['display']
-interface SlideProps {
-    slides: LessonSlide[];
+interface ActivityProps {
+    activities: LessonActivity[];
     handleOptionSelect: (id: string) => void;
 }
 /**
- * Renders the slides for the lesson
- * Will show one slide/card at a time based on the current slide index
- * and will render the slide based on the category of the slide
- * @param slides - the array of slides/cards for the lesson
+ * Renders the activities for the lesson
+ * Will show one activity/card at a time based on the current activity index
+ * and will render the activity based on the category of the activity
+ * @param activities - the array of activities/cards for the lesson
  * @param handleOptionSelect - the function to handle the selection of the multiple choice option
  * @returns 
  */
-export default function Slides({ slides, handleOptionSelect }: { 
-    slides: LessonSlide[], 
+export default function Activities({ activities, handleOptionSelect }: { 
+    activities: LessonActivity[], 
     handleOptionSelect: (id: string) => void }
 ): JSX.Element {
   const [displayFlex, setDisplayFlex] = useState<string>('flex');
   const [displayNone, setDisplayNone] = useState<string>('none');
-  const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
+  const [ currentActivity, setCurrentActivity ] = useState<number>(0);  
   const [introText, setIntroText] = useState<boolean>(true);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [result, setResult] = useState<boolean | null>(null);
@@ -46,14 +46,14 @@ export default function Slides({ slides, handleOptionSelect }: {
 
   const handleIsIntroText = () => {
 
-    return slides[currentSlide + 1]?.category === 'introduction' ? true : false;
+    return activities[currentActivity + 1]?.category === 'introduction' ? true : false;
   }
 
-  const handleClick = () => setCurrentSlide(prev => prev + 1);
+  const handleClick = () => setCurrentActivity(prev => prev + 1);
 
 
   const handleSubmit = () => {
-    let correctOption = slides[currentSlide].correctIndex;
+    let correctOption = activities[currentActivity].correctIndex;
     let optionResult = selectedOption === correctOption;
 
     setResult(optionResult);
@@ -63,15 +63,15 @@ export default function Slides({ slides, handleOptionSelect }: {
   setTimeout(() => setDisplayFlex('none'), 5000);
   setTimeout(() => setDisplayNone('flex'), 5000);
   return (
-    <View style={slides.length > 0 && slides[currentSlide]?.category === 'introduction' ? styles.welcomeContainer : styles.questionContainer}>
+    <View style={activities.length > 0 && activities[currentActivity]?.category === 'introduction' ? styles.welcomeContainer : styles.questionContainer}>
       <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
         {/* ProgressStep: not visible on intro text */}
-        {slides.length > 0 && slides[currentSlide]?.category !== 'introduction' && (
-          <ProgressStep currentStep={currentSlide} totalSteps={slides.length} />
+        {activities.length > 0 && activities[currentActivity]?.category !== 'introduction' && (
+          <ProgressStep currentStep={currentActivity} totalSteps={activities.length} />
         )}
       </View>
 
-       {slides.length > 0 && slides[currentSlide]?.category === 'introduction' && <View style={styles.imageContainer}>
+       {activities.length > 0 && activities[currentActivity]?.category === 'introduction' && <View style={styles.imageContainer}>
           <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
         </View>}
 
@@ -86,26 +86,26 @@ export default function Slides({ slides, handleOptionSelect }: {
 
 
       {/* Intro text: not visible on non-intro text */}
-      {slides.length > 0 && slides[currentSlide]?.category === 'introduction' && (
+      {activities.length > 0 && activities[currentActivity]?.category === 'introduction' && (
         <>
         <View style={[styles.introTextWrapper, {display:displayNone as displayflex}]}>
           <Text style={styles.introText}>
-              {slides[currentSlide].text}
+              {activities[currentActivity].text}
             </Text> 
         </View>
         </>
       )}
 
       {/* Assessment card */}
-      {slides.length > 0 && slides[currentSlide]?.category === 'assessment' && (
+      {activities.length > 0 && activities[currentActivity]?.category === 'assessment' && (
         <>
         <View style={styles.textWrapper}>
-            <Text style={styles.text}>{slides[currentSlide].question}</Text>
+            <Text style={styles.text}>{activities[currentActivity].question}</Text>
         </View>
 
         {/* TODO: remove and replace the index params witth actual id */}
         <View style={styles.answersContainer}>
-        {slides[currentSlide]?.options && slides[currentSlide].options.map((option: any, index: number) => (
+        {activities[currentActivity]?.options && activities[currentActivity].options.map((option: any, index: any) => (
             <MultipleChoiceOption
             key={index}
             option={option}
@@ -135,7 +135,7 @@ export default function Slides({ slides, handleOptionSelect }: {
         </>
       )}
 
-    {slides.length > 0 && slides[currentSlide]?.category === 'introduction' && (
+    {activities.length > 0 && activities[currentActivity]?.category === 'introduction' && (
         <TLPBottomButtonNav style={{display:displayNone as displayflex}}>
 
         <StyledButton

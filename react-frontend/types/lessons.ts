@@ -1,4 +1,4 @@
-export interface LessonSlide {
+export interface LessonActivity {
     type: string;
     text: string;
     category?: string;
@@ -10,7 +10,7 @@ export interface LessonSlide {
 export type Lesson = {
     id: string;
     title: string;
-    introduction: LessonSlide[];
-    activities: LessonSlide[];
-    completion: LessonSlide[];
+    introduction: LessonActivity[];
+    activities: LessonActivity[];
+    completion: LessonActivity[];
 }
