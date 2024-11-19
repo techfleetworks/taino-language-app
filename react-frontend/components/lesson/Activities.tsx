@@ -105,7 +105,7 @@ export default function Activities({ activities, handleOptionSelect }: {
 
         {/* TODO: remove and replace the index params witth actual id */}
         <View style={styles.answersContainer}>
-        {activities[currentActivity]?.options && activities[currentActivity].options.map((option: any, index: number) => (
+        {activities[currentActivity]?.options && activities[currentActivity].options.map((option: any, index: any) => (
             <MultipleChoiceOption
             key={index}
             option={option}
