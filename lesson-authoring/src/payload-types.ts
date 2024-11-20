@@ -13,7 +13,6 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    activities: Activity;
     lessons: Lesson;
     'vocabulary-items': VocabularyItem;
     'payload-locked-documents': PayloadLockedDocument;
@@ -24,7 +23,6 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    activities: ActivitiesSelect<false> | ActivitiesSelect<true>;
     lessons: LessonsSelect<false> | LessonsSelect<true>;
     'vocabulary-items': VocabularyItemsSelect<false> | VocabularyItemsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -101,29 +99,21 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "activities".
- */
-export interface Activity {
-  id: number;
-  type: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "lessons".
  */
 export interface Lesson {
   id: number;
-  title: string;
-  description?: string | null;
+  cover: {
+    title: string;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
   introduction?:
     | {
         dialogue?: string | null;
         id?: string | null;
       }[]
     | null;
-  activities?: (number | Activity)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -133,10 +123,8 @@ export interface Lesson {
  */
 export interface VocabularyItem {
   id: number;
-  taino_word?: string | null;
-  english_word?: string | null;
-  audio_url?: string | null;
-  image_url?: string | null;
+  taino_translation?: string | null;
+  english_translation?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -154,10 +142,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'activities';
-        value: number | Activity;
       } | null)
     | ({
         relationTo: 'lessons';
@@ -244,27 +228,22 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "activities_select".
- */
-export interface ActivitiesSelect<T extends boolean = true> {
-  type?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "lessons_select".
  */
 export interface LessonsSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
+  cover?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   introduction?:
     | T
     | {
         dialogue?: T;
         id?: T;
       };
-  activities?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -273,10 +252,8 @@ export interface LessonsSelect<T extends boolean = true> {
  * via the `definition` "vocabulary-items_select".
  */
 export interface VocabularyItemsSelect<T extends boolean = true> {
-  taino_word?: T;
-  english_word?: T;
-  audio_url?: T;
-  image_url?: T;
+  taino_translation?: T;
+  english_translation?: T;
   updatedAt?: T;
   createdAt?: T;
 }

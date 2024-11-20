@@ -10,7 +10,6 @@ import sharp from 'sharp'
 // import collections
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Activity } from './collections/Activity'
 import { Lesson } from './collections/Lesson'
 import { VocabularyItem } from './collections/VocabularyItem'
 
@@ -24,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Activity, Lesson, VocabularyItem],
+  collections: [Users, Media, Lesson, VocabularyItem],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -15,6 +15,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
     "@payloadcms/richtext-lexical": "latest",
@@ -24,8 +25,8 @@
     "payload": "latest",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
-    "sharp": "0.32.6",
-    "@payloadcms/db-postgres": "latest"
+    "react-native": "^0.76.2",
+    "sharp": "0.32.6"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
