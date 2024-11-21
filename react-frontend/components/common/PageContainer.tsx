@@ -13,5 +13,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter',
         backgroundColor: Colors.background,
         padding: 16,
+        position: 'relative',
     }
 });

@@ -1,8 +1,8 @@
 import { TLPBottomButtonNav } from "@/components/common/TLPBottomButtonNav";
 import StyledButton from "@/components/common/TLPButton";
 import Colors from "@/constants/Colors";
-import { View, Text, Image, StyleSheet } from "react-native";
-import PageContainer from "../common/PageContainer";
+import { View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 import TextStyles from "@/constants/TextStyles";
 
 export default function LessonIntro({ title, image, description, handleClick } 
@@ -11,13 +11,13 @@ export default function LessonIntro({ title, image, description, handleClick }
 
    return (
 
-    <PageContainer>
+    <>
         <View style={styles.textWrapper}>
             <View style={styles.headingTextContainer}>
                 <Text style={styles.headingText}>{title}</Text>
             </View>
             <Image
-                source={{ uri: image && image }}
+                source={require('@/assets/images/emoji_waving_hand.png')}
                 style={styles.subjectImage}
             />
             <Text style={styles.descriptionText}>{description}</Text>
@@ -39,7 +39,7 @@ export default function LessonIntro({ title, image, description, handleClick }
         backgroundColor={Colors.primary}
         />
         </TLPBottomButtonNav>
-    </PageContainer>
+    </>
    )
 }
 
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     },
     descriptionText: {
         fontSize: TextStyles.heading2.fontSize,
-        fontWeight: TextStyles.heading2.fontWeight,
+        width: 306,
+        fontWeight: TextStyles.body.fontWeight,
         textAlign: 'center',
     },
     buttonNav: {

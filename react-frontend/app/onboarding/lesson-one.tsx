@@ -6,9 +6,10 @@ import CorrectImageActivity from "@/components/lesson/CorrectImageActivity";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/lesson/ProgressStep";
 import LessonComplete from "@/components/lesson/LessonComplete";
-
 import LessonIntro from "@/components/lesson/LessonIntro";
 import VocabularyOverviewComponent from "@/components/lesson/VocabularyOverviewComponent";
+import { BackHeader } from "@/components/common/Header";
+import { useRouter } from "expo-router";
 const fetchLessonById = (lessonId: string) => {
     return mockData.lessons.find(lesson => lesson.id === lessonId);
 }
@@ -17,11 +18,15 @@ const lessonIdForFirstLesson = '482F80CA-D720-41C8-945D-93A6CD90F487'; //TODO: u
 
 export default function LessonScreen() {
 
+    const router = useRouter();
+
     const [ activities, setActivities ] = useState<Activity[]>([]);
     const [ currentSection, setCurrentSection ] = useState<'' | 'introduction' | 'activities' | 'completion'>('');
     const [ currentActivity, setCurrentActivity ] = useState<number>(0); 
 
     const lesson = fetchLessonById(lessonIdForFirstLesson);
+
+    const image = '@/assets/images/emoji_waving_hand.png';
 
     useEffect(() => {
         if (lesson) {
@@ -59,7 +64,7 @@ export default function LessonScreen() {
         switch (activities[currentActivity]?.type) {
             case 'overview':
                 return <VocabularyOverviewComponent 
-                    image={lesson.image} 
+                    image={image} 
                     phrase={activities[currentActivity]?.phrase} 
                     vocab={activities[currentActivity]?.vocab} 
                     handleClick={handleNextSection} 
@@ -71,17 +76,17 @@ export default function LessonScreen() {
     return (
         <View style={styles.container}>
             <SafeAreaView>
-                {currentSection === 'activities' && <ProgressStep
+                {currentSection === 'activities' ? <ProgressStep
                     currentStep={currentActivity + 1}
                     setCurrentStep={setCurrentActivity}
                     totalSteps={3}
-                />}
+                /> : <BackHeader router={router} />}
             </SafeAreaView>
             <View style={styles.questionContainer}>
                 {currentSection === '' && <LessonIntro
                     handleClick={handleNextSection}
                     title={lesson.title}
-                    image={lesson.image}
+                    image={image}
                     description={lesson.description}
                 />}
                 {currentSection === 'introduction' && renderIntro()}
