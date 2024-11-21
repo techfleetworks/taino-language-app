@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
-import VocabularyOverviewComponent from '@/components/VocabularyOverviewComponent';
+import VocabularyOverviewComponent from '@/components/lesson/VocabularyOverviewComponent';
 
 
 const VocabularyOverview = () => {

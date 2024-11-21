@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import { LessonActivity } from "@/types/lessons";
-import { mockData } from "@/mock-data";
-import CorrectImageQuestionActivity from "@/components/lesson/CorrectImageQuestionActivity";
+import { Activity } from "@/types/lessons";
+import { mockData } from "@/mock-data-v2";
+import CorrectImageQuestionActivity from "@/components/lesson/correct-image-activity";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/lesson/ProgressStep";
 import LessonComplete from "@/components/lesson/LessonComplete";
 
+import LessonIntro from "@/components/lesson/LessonIntro";
+import VocabularyOverviewComponent from "@/components/lesson/VocabularyOverviewComponent";
 const fetchLessonById = (lessonId: string) => {
     return mockData.lessons.find(lesson => lesson.id === lessonId);
 }
@@ -15,54 +17,85 @@ const lessonIdForFirstLesson = '482F80CA-D720-41C8-945D-93A6CD90F487'; //TODO: u
 
 export default function LessonScreen() {
 
-    const [ cards, setCards ] = useState<LessonActivity[]>([]);
+    const [ activities, setActivities ] = useState<Activity[]>([]);
+    const [ currentSection, setCurrentSection ] = useState<'' | 'introduction' | 'activities' | 'completion'>('');
     const [ currentActivity, setCurrentActivity ] = useState<number>(0); 
-    const [ lessonInProgress, setLessonInProgress ] = useState<boolean>(true);
-    const [ isComplete, setIsComplete ] = useState<boolean>(false);
 
     const lesson = fetchLessonById(lessonIdForFirstLesson);
 
     useEffect(() => {
-        const correctImageActivities = lesson?.activities.filter(activity => activity.type === "correct_image");
-        if (lesson && correctImageActivities) {
-            setCards(correctImageActivities as LessonActivity[]);
+        if (lesson) {
+            if (currentSection === 'introduction') {
+                setActivities(lesson.introduction as unknown as Activity[]);
+                setCurrentActivity(0);
+            } else {
+                setActivities(lesson.activities as unknown as Activity[]);
+                setCurrentActivity(0);
+            }
         }
-    }, [lesson]);
+    }, [lesson, currentSection]);
+
+    //handles the user clicking on the last button of an activity and moving to the next section ie: introduction -> activities -> completion
+    const handleNextSection = () => {
+        if(currentSection === '') {
+            setCurrentSection('introduction')
+        }
+        if (currentSection === 'introduction' && currentActivity === activities.length - 1) {
+            setCurrentSection('activities');
+        } else if (currentSection === 'activities') {
+            setCurrentSection('completion');
+        }
+    }
 
     //if lesson is not found, redirect to onboarding
     if (!lesson) {
         //display error message
         console.error('Lesson not found');
+        return <></>;
+    }
+
+    //renders the introduction section of the lesson
+    const renderIntro = () => {
+        switch (activities[currentActivity]?.type) {
+            case 'overview':
+                return <VocabularyOverviewComponent 
+                    image={lesson.image} 
+                    phrase={activities[currentActivity]?.phrase} 
+                    vocab={activities[currentActivity]?.vocab} 
+                    handleClick={handleNextSection} 
+                />
+            default: <></>
+        }
     }
 
     return (
         <View style={styles.container}>
             <SafeAreaView>
-                {lessonInProgress && <ProgressStep
+                {currentSection === 'activities' && <ProgressStep
                     currentStep={currentActivity + 1}
                     setCurrentStep={setCurrentActivity}
                     totalSteps={3}
                 />}
             </SafeAreaView>
             <View style={styles.questionContainer}>
-                {!isComplete ? (
+                {currentSection === '' && <LessonIntro
+                    handleClick={handleNextSection}
+                    title={lesson.title}
+                    image={lesson.image}
+                    description={lesson.description}
+                />}
+                {currentSection === 'introduction' && renderIntro()}
+                {currentSection === 'activities' &&
                     <CorrectImageQuestionActivity
-                        type={cards[currentActivity]?.type}
-                        text={cards[currentActivity]?.text}
-                        question={cards[currentActivity]?.question} 
-                        options={cards[currentActivity]?.options} 
-                        correctIndex={cards[currentActivity]?.correctIndex}
-                        currentActivity={currentActivity}
-                        setCurrentActivity={setCurrentActivity}
-                        length={cards.length}
-                        onComplete={() => {
-                            setLessonInProgress(false);
-                            setIsComplete(true);
-                        }}
-                    />
-                ) : (
-                    <LessonComplete lessonId={lessonIdForFirstLesson} />
-                )}
+                    activity={activities[currentActivity]}
+                    currentActivity={currentActivity}
+                    setCurrentActivity={setCurrentActivity}
+                    length={activities.length}
+                    onComplete={() => {
+                        handleNextSection();
+                    } } />
+                }
+                {currentSection === 'completion' && <LessonComplete lessonId={lessonIdForFirstLesson} />}
             </View>
         </View>
     );

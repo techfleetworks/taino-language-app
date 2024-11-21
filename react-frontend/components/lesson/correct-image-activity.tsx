@@ -10,20 +10,28 @@ import CorrectImageOption from '@/components/lesson/CorrectImageOption';
 import TextStyle from '@/constants/TextStyles';
 import { TLPBottomButtonNav } from '../common/TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
-import { LessonActivity } from '@/types/lessons';
+import { Activity } from '@/types/lessons';
 
 // 0 = english, 1 = spanish
 const currentLangIndex = 0;
 
-type CorrectImageQuestionActivityProps = LessonActivity & {
+type CorrectImageActivityProps = {
+  activity: Activity;
   currentActivity: number;
   setCurrentActivity: (activity: number) => void;
   onComplete?: () => void;
   length: number;
 }
 
+export default function CorrectImageActivity({ 
+  activity,
+  currentActivity, 
+  setCurrentActivity, 
+  length, 
+  onComplete 
+}: CorrectImageActivityProps): JSX.Element {
 
-export default function CorrectImageQuestionActivity({ question, options, correctIndex, currentActivity, setCurrentActivity, length, onComplete } : CorrectImageQuestionActivityProps): JSX.Element {
+    const { prompt, options, correctIndex } = activity;
   
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
@@ -78,7 +86,7 @@ export default function CorrectImageQuestionActivity({ question, options, correc
           <Text style={styles.newVocabText}>New vocabulary</Text>
           <Text style={styles.promptText}>Select the correct image</Text>
         </View>
-        <Text style={styles.questionText}>{question}</Text>
+        <Text style={styles.questionText}>{prompt}</Text>
       </View>
 
       <View style={styles.answersContainer}>

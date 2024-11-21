@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { LessonActivity } from "@/types/lessons";
 import { mockData } from "@/mock-data";
-import CorrectImageQuestionActivity from "@/components/lesson/CorrectImageQuestionActivity";
+import CorrectImageQuestionActivity from "@/components/lesson/correct-image-activity";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/lesson/ProgressStep";
 import LessonComplete from "@/components/lesson/LessonComplete";
