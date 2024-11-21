@@ -1,8 +1,16 @@
-import { View, Text } from "react-native";
+import React, { useEffect } from "react";
+import { useRouter } from 'expo-router';
+
+
 export default function Callback() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Logging you in...</Text>
-      </View>
-    );
+  const router = useRouter();
+
+  useEffect(() => {
+    // wait for saving of data the redirect
+    const timeout = setTimeout(() => {
+      router.push('/onboarding/welcome');
+    }, 300); 
+
+    return () => clearTimeout(timeout);
+  }, [router]);
   }
