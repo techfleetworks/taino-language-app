@@ -8,11 +8,11 @@ import {Text,
 } from 'react-native';
 import {useState} from 'react';
 import StyledButton from '@/components/common/TLPButton';
-import ProgressStep from '@/components/ProgressStep';
+import ProgressStep from '@/components/lesson/ProgressStep';
 import Colors from '@/constants/Colors';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
-import Result from '@/components/common/TLPResult';
-import MultipleChoiceOption from '@/components/MultipleChoiceOption';
+import Result from '@/components/lesson/TLPResult';
+import MultipleChoiceOption from '@/components/lesson/MultipleChoiceOption';
 import { LessonSlide } from '@/types/lessons';
 
 type displayflex = FlexStyle['display']
@@ -67,7 +67,7 @@ export default function Slides({ slides, handleOptionSelect }: {
       <View style={[styles.progressWrapper, {display:displayNone as displayflex}]}>
         {/* ProgressStep: not visible on intro text */}
         {slides.length > 0 && slides[currentSlide]?.category !== 'introduction' && (
-          <ProgressStep currentStep={currentSlide} totalSteps={slides.length} />
+          <ProgressStep currentStep={currentSlide} totalSteps={slides.length} setCurrentStep={setCurrentSlide}/>
         )}
       </View>
 
