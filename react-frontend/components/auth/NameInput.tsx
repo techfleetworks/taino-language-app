@@ -9,7 +9,6 @@ type NameInputProps = {
   placeholder?: string;
   placeholderTextColor: string;
   onChangeText: (text: string) => void;
-  keyboardType: 'default' | 'phone-pad';
 };
 
 //TODO: update this so that it better matches the design prototype
@@ -20,7 +19,6 @@ export default function NameInput(props: NameInputProps) {
     placeholder = 'Write your name',
     placeholderTextColor = Colors.onBackground.mediumEmphasis,
     onChangeText,
-    keyboardType = 'default',
   } = props;
 
   const [isButtonEnabled, setButtonEnabled] = useState<boolean>(false);
@@ -57,7 +55,6 @@ export default function NameInput(props: NameInputProps) {
             onChangeText={handleNameInput}
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
-            keyboardType={keyboardType}
           />
           <View style={styles.divider}></View>
         </View>

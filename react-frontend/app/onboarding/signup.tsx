@@ -13,7 +13,6 @@ import {
   Platform
 } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useRouter } from 'expo-router';
 
 
 /**
@@ -32,7 +31,6 @@ import { useRouter } from 'expo-router';
  * @function
  */
 
-// const router = useRouter();
 
 export default function SignupScreen(): JSX.Element {
   const [email, setEmail] = useState<string>('');

@@ -128,6 +128,8 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
                 <Stack.Screen name="lesson" options={{ headerShown: false }} />
                 <Stack.Screen name="onboarding/write-your-name" options={{ headerShown: true, header: () => <Header variant="empty" /> }} />
                 <Stack.Screen name="onboarding/lesson-one" options={{ headerShown: false }} />
+                <Stack.Screen name="onboarding/create-account" options={{ headerShown: false }} />
+                <Stack.Screen name="onboarding/welcome" options={{ headerShown: false }} />
                 <Stack.Screen name="onboarding/introduction" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
                 <Stack.Screen name="signup" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
                 <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
