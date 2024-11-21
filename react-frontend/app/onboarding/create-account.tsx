@@ -1,9 +1,21 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
+import { AuthContext } from '@/lib/AuthProvider';
 
 export default function Onboarding() {
+  const authContext = useContext(AuthContext);
+  const googleLogin = async () => {
+    if (authContext) {
+      const result = await authContext.login();
+      if (result.type === 'success') {
+        Alert.alert('We did That!!!');
+      } else {
+        Alert.alert('Login Failed!!!!!');
+      }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -27,7 +39,7 @@ export default function Onboarding() {
 
       <Text style={styles.orText}>or</Text>
 
-      <TouchableOpacity style={styles.googleButton}>
+      <TouchableOpacity style={styles.googleButton} onPress={googleLogin}>
         <Text style={styles.thirdPartyButtonText}>Sign up with Google</Text>
       </TouchableOpacity>
 
