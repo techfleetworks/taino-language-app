@@ -55,14 +55,13 @@ export default function LessonComplete({lessonId}: LessonCompleteProps) {
                         />
                     ))} 
                 </View>
-
             <TLPBottomButtonNav style={styles.buttonWrapper}>
                 <StyledButton
                     title={'Continue'}
                     titleSize={16}
                     height={48}
                     accessibilityLabel={'Continue'}
-                    onPress={() => handleClick('onboarding/write-your-name')} //TODO: update this so that depending on the lesson, it will redirect the user to home if this is not the first lesson
+                    onPress={() => handleClick('onboarding/create-account')} //TODO: update this so that depending on the lesson, it will redirect the user to home if this is not the first lesson
                     icon={false}
                     buttonText={styles.buttonText}
                     otherProps={styles.buttonNav}
@@ -84,6 +83,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     vocabularyContainer: {
+        display: 'flex',
+        width: '100%',
         marginBottom: 40,
     },
     completeTextContainer: {

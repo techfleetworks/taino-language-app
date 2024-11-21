@@ -9,7 +9,7 @@ import PageContainer from "@/components/common/PageContainer";
 export default function IndexPage(): JSX.Element {
   const navigation = useNavigation();
   return (
-    <PageContainer>
+    <PageContainer style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -19,7 +19,7 @@ export default function IndexPage(): JSX.Element {
 
       <View style={styles.welcomeTextWrapper}>
         <Text style={[TextStyle.heading1, { marginBottom: 16 }]}>Mabríka!</Text>
-        <Text style={TextStyle.heading2}>Welcome to Learn Taíno!</Text>
+        <Text style={[TextStyle.heading1, { textAlign: 'center' }]}>Welcome to Learn Taíno!</Text>
       </View>
       <TLPBottomButtonNav>
         <StyledButton
@@ -28,7 +28,7 @@ export default function IndexPage(): JSX.Element {
             height={48}
             accessibilityLabel="Sign up"
             onPress={() => {
-              navigation.navigate("onboarding/introduction");
+              navigation.navigate("onboarding/introduction" as never);
             }}
             buttonText={styles.signUpButtonText}
             otherProps={styles.signUpButton}
@@ -39,12 +39,11 @@ export default function IndexPage(): JSX.Element {
           height={48}
           accessibilityLabel="Already have an account?"
           onPress={() => {
-            navigation.navigate("signin");
+            navigation.navigate("signin" as never);
           }}
           buttonText={styles.continueButtonText}
           otherProps={styles.continueButton}
         />
-        {/* </View> */}
       </TLPBottomButtonNav>
     </PageContainer>
   );
@@ -54,12 +53,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    position: 'relative',
     gap: 64,
     backgroundColor: Colors.background,
     padding: 16,
   },
   imageContainer: {
-    paddingBottom: 20,
+    marginTop: 100,
+    padding: 64,
     alignItems: "center",
   },
   image: {
@@ -82,9 +83,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     color: Colors.onSurface.highEmphasis,
     lineHeight: 16.95,
-  },
-  buttonContainer: {
-    marginBottom: 32,
   },
   signUpButton: {
     backgroundColor: Colors.primary,

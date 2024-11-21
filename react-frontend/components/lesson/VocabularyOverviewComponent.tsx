@@ -1,12 +1,8 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
 import Vocabulary from './Vocabulary';
-import { mockData } from '@/mock-data';
 import StyledButton from '@/components/common/TLPButton';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
-import { useRouter } from 'expo-router';
 import Colors from '@/constants/Colors';
-
-const router = useRouter();
 
 interface VocabOverviewProps {
     image: string;
@@ -14,24 +10,6 @@ interface VocabOverviewProps {
     vocab?: { id: string, taino: string, english: string }[];
     handleClick: () => void;
 }
-
-// const fetchVocabByLesson = (lessonId: string) => {
-//     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
-//     const vocabActivity = lesson?.activities.find((activity) => activity.type === "vocab");
-//     console.log('vocab activity for vocab', vocabActivity);
-//     return vocabActivity?.vocab || [];
-// }
-
-// const fetchPhraseByLesson = (lessonId: string) => {
-//     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
-//     const vocabActivity = lesson?.activities.find((activity) => activity.type == "vocab");
-//     console.log('vocab activity for phrase', vocabActivity);
-//     return vocabActivity?.phrase || [];
-// }
-
-// const handleClick = (lessonId: string) => {
-//     router.push(`/lesson/${lessonId}`);
-//   };
 
 export default function VocabularyOverviewComponent({ image, phrase, vocab, handleClick } : VocabOverviewProps) {
 
@@ -42,7 +20,7 @@ export default function VocabularyOverviewComponent({ image, phrase, vocab, hand
                     <Text style={styles.headingText}>Vocabulary Overview</Text>
                 </View>
                 <Image
-                    source={{ uri: image }}
+                    source={require('@/assets/images/emoji_waving_hand.png')}
                     style={styles.subjectImage}
                 />
                 <View>
@@ -131,12 +109,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 34,
     },
-
     subjectImage: {
         paddingTop: 40,
         marginBottom: 36,
     },
-
     buttonNav: {
         display: 'flex',
         padding: 16,
@@ -160,6 +136,5 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         gap: 16,
-    },
-
+    }
 });
