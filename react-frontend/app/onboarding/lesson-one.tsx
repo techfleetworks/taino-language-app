@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { Activity } from "@/types/lessons";
 import { mockData } from "@/mock-data-v2";
-import CorrectImageQuestionActivity from "@/components/lesson/correct-image-activity";
+import CorrectImageActivity from "@/components/lesson/CorrectImageActivity";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/lesson/ProgressStep";
 import LessonComplete from "@/components/lesson/LessonComplete";
@@ -86,7 +86,7 @@ export default function LessonScreen() {
                 />}
                 {currentSection === 'introduction' && renderIntro()}
                 {currentSection === 'activities' &&
-                    <CorrectImageQuestionActivity
+                    <CorrectImageActivity
                     activity={activities[currentActivity]}
                     currentActivity={currentActivity}
                     setCurrentActivity={setCurrentActivity}
