@@ -11,48 +11,44 @@ export const mockData = {
       id: '482F80CA-D720-41C8-945D-93A6CD90F487',
       updated_at: '2024-10-01T10:00:00Z',
       created_at: '2024-10-01T10:00:00Z',
-      slides: [
+      activities: [
         {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "reading",
-          category: "introduction",
+          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+          type: 'reading',
+          category: 'introduction',
           text: "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. \n\nI’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
-          //order: 1
         },
         {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "reading",
-          category: "introduction",
-          text: "In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.",
-          //order: 2
+          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+          type: 'reading',
+          category: 'introduction',
+          text: 'In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.',
         },
         {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "reading",
-          category: "introduction",
-          text: "Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.",
-          //order: 3
+          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+          type: 'reading',
+          category: 'introduction',
+          text: 'Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.',
         },
         {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "reading",
-          category: "introduction",
-          text: "Ready to try your first lesson?",
-          //order: 4
+          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+          type: 'reading',
+          category: 'introduction',
+          text: 'Ready to try your first lesson?',
         },
         {
-          id: "482F80CA-D720-41C8-945D-93A6CD90F487",
-          type: "reading",
-          category: "introduction",
-          text: "Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.",
-          //order: 6
+          id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+          type: 'reading',
+          category: 'introduction',
+          text: 'Before we start our Taíno learning journey, let’s take a moment to learn about the history of the  Taíno language.',
         },
         {
-          title: "Lesson 1: Greetings",
-          category: "introduction",
-          type: "cover",
-          description: "Learn how to introduce yourself by saying “hello, my name is…",
-          image: "./assets/images/emoji _waving hand.png",
+          title: 'Lesson 1: Greetings',
+          category: 'introduction',
+          type: 'cover',
+          description:
+            'Learn how to introduce yourself by saying “hello, my name is…',
+          image: './assets/images/emoji _waving hand.png',
         },
         {
           id: '482F80CA-D720-41C8-945D-93A6CD90F487',
@@ -145,6 +141,13 @@ export const mockData = {
           id: '482F80CA-D720-41C8-945D-93A6CD90F487',
           category: 'vocabulary',
           type: 'vocab',
+          phrase: [
+            {
+              id: '1',
+              taino: 'Tau, dak’anulia',
+              english: 'Hello, my name is',
+            },
+          ],
           vocab: [
             {
               id: '1',

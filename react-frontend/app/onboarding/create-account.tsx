@@ -1,9 +1,29 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import Colors from '@/constants/Colors';
-import { Link } from 'expo-router';
-
+import { Link } from 'expo-router'; 
+import { AuthContext } from '@/lib/AuthProvider';
+import { useRouter } from 'expo-router';
+import GoogleAuthButton from '@/components/auth/GoogleAuthButton';
 export default function Onboarding() {
+  const authContext = useContext(AuthContext);
+  const router = useRouter();
+  
+  const googleLogin = async () => {
+    console.log('googleLogin');
+    if (authContext) {
+      const result = await authContext.login();
+      console.log('result', result);
+      if (result.type === 'success') {
+        Alert.alert('We did That!!!');
+        console.log('redirecting to welcome');
+        window.location.href = '/onboarding/welcome'; // Redirect in the same tab
+      } else {
+        console.log('login failed');
+        Alert.alert('Login Failed!!!!!');
+      }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -25,15 +45,14 @@ export default function Onboarding() {
         <Text style={styles.createAccountButtonText}>Create Account</Text>
       </Link>
 
-      <Text style={styles.orText}>or</Text>
+      <View style={styles.orContainer}>
+        <View style={styles.orLine} />
+        <Text style={styles.orText}>or</Text>
+        <View style={styles.orLine} />
+      </View>
 
-      <TouchableOpacity style={styles.googleButton}>
-        <Text style={styles.thirdPartyButtonText}>Sign up with Google</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.appleButton}>
-        <Text style={styles.thirdPartyButtonText}>Sign up with Apple</Text>
-      </TouchableOpacity>
+      <GoogleAuthButton onPress={googleLogin} />
+      {/* Removed apple button for now */}
     </View>
   );
 }
@@ -42,9 +61,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 8,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.onPrimary.highEmphasis,
+  },
+  orContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  orLine: {
+    width: 128,
+    height: 1, 
+    backgroundColor: Colors.onSurface.mediumEmphasis
   },
   backButton: {
     position: 'absolute',
@@ -86,23 +117,10 @@ const styles = StyleSheet.create({
   },
   orText: {
     fontSize: 16,
-    color: '#888',
+    color: Colors.onSurface.mediumEmphasis,
+    paddingHorizontal: 10,
+    flex: 1,
     marginBottom: 15,
-  },
-  googleButton: {
-    backgroundColor: Colors.surface,
-    padding: 15,
-    borderRadius: 5,
-    marginBottom: 10,
-    width: '80%',
-    alignItems: 'center',
-  },
-  appleButton: {
-    backgroundColor: Colors.surface,
-    padding: 15,
-    borderRadius: 5,
-    width: '80%',
-    alignItems: 'center',
   },
   thirdPartyButtonText: {
     color: '#000',
@@ -110,4 +128,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-

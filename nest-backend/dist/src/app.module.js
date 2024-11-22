@@ -11,16 +11,22 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const cat_controller_1 = require("./cat/cat.controller");
-const cat_service_1 = require("./cat/cat.service");
+const prisma_service_1 = require("./prisma/prisma.service");
+const vocabulary_item_service_1 = require("./vocabulary-item/vocabulary-item.service");
+const vocabulary_item_controller_1 = require("./vocabulary-item/vocabulary-item.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [config_1.ConfigModule.forRoot()],
-        controllers: [app_controller_1.AppController, cat_controller_1.CatController],
-        providers: [app_service_1.AppService, cat_service_1.CatService],
+        imports: [
+            config_1.ConfigModule.forRoot({
+                envFilePath: ['.env', '.env.development', '.env.production'],
+                isGlobal: true,
+            }),
+        ],
+        controllers: [app_controller_1.AppController, vocabulary_item_controller_1.VocabularyItemController],
+        providers: [app_service_1.AppService, prisma_service_1.PrismaService, vocabulary_item_service_1.VocabularyItemService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

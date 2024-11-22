@@ -12,26 +12,24 @@ import { useRouter } from 'expo-router';
 import { mockData } from '@/mock-data';
 import Colors from '@/constants/Colors';
 
-
-const router = useRouter();
-
 interface LessonCompleteProps {
     lessonId: string
 }
 
 const fetchVocabByLesson = (lessonId: string) => {
     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
-    const vocabSlide = lesson?.slides.find((slide) => slide.type === "vocab");
-    return vocabSlide?.vocab || [];
+    const vocabActivity = lesson?.activities.find((activity) => activity.type === "vocab");
+    return vocabActivity?.vocab || [];
 }
-
-const handleClick = (routeName : string) => {
-    router.push(`/${routeName}`);
-    return;
-}
-
 
 export default function LessonComplete({lessonId}: LessonCompleteProps) {
+
+    const router = useRouter();
+
+    const handleClick = (routeName : string) => {
+        router.push(`/${routeName}`);
+        return;
+    }
 
     const vocabulary = fetchVocabByLesson(lessonId) 
 
@@ -57,14 +55,13 @@ export default function LessonComplete({lessonId}: LessonCompleteProps) {
                         />
                     ))} 
                 </View>
-
             <TLPBottomButtonNav style={styles.buttonWrapper}>
                 <StyledButton
                     title={'Continue'}
                     titleSize={16}
                     height={48}
                     accessibilityLabel={'Continue'}
-                    onPress={() => handleClick('onboarding/write-your-name')} //TODO: update this so that depending on the lesson, it will redirect the user to home if this is not the first lesson
+                    onPress={() => handleClick('onboarding/create-account')} //TODO: update this so that depending on the lesson, it will redirect the user to home if this is not the first lesson
                     icon={false}
                     buttonText={styles.buttonText}
                     otherProps={styles.buttonNav}
@@ -86,6 +83,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     vocabularyContainer: {
+        display: 'flex',
+        width: '100%',
         marginBottom: 40,
     },
     completeTextContainer: {

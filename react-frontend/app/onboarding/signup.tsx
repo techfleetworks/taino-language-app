@@ -31,6 +31,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
  * @function
  */
 
+
 export default function SignupScreen(): JSX.Element {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -98,6 +99,8 @@ export default function SignupScreen(): JSX.Element {
     setIsDisabled(false);
 
     Alert.alert('Congrats on signing up!');
+    // store user data in DB
+    // router.push('onboarding/welcome');
   };
 
   return (
