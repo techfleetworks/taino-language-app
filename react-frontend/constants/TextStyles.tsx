@@ -4,34 +4,34 @@ export default {
     heading1: {
         color: 'black',
         fontSize: 32,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '700' as FontWeight,
         wordWrap: 'break-word'
     },
     heading2: {
         color: 'black',
         fontSize: 24,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '700' as FontWeight,
         wordWrap: 'break-word'
     },
     button1: {
         fontSize: 20,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '600' as FontWeight,
         wordWrap: 'break-word'
     },
     button2: {
         color: 'black',
         fontSize: 16,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '600' as FontWeight,
         wordWrap: 'break-word'
     },
     body: {
         color: 'black',
         fontSize: 16,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '400' as FontWeight,
         lineHeight: 28,
         wordWrap: 'break-word'
@@ -39,14 +39,14 @@ export default {
     caption: {
         color: 'black',
         fontSize: 14,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '400' as FontWeight,
         wordWrap: 'break-word'
     },   
     button2Underlined: {
         color: 'black',
         fontSize: 16,
-        fontFamily: 'Inter',
+        fontFamily: 'Arial',
         fontWeight: '600' as FontWeight,
         textDecoration: 'underline',
         wordWrap: 'break-word'
