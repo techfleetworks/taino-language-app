@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     paddingTop: 192,
     paddingBottom: 144,
     flexDirection: 'column',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 16,
   },
@@ -153,11 +154,11 @@ const styles = StyleSheet.create({
     width: 352,
     paddingVertical: 24,
     paddingHorizontal: 16,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 16,
     borderRadius: 8,
-    backgroundColor: '#DEDEDE' //TODO: this hex code exists in the Colors file. Use it instead.
+    backgroundColor: Colors.surface
   },
   introText: {
     fontFamily: 'Inter',
