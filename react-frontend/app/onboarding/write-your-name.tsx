@@ -8,7 +8,6 @@ export default function WriteYourName() {
                 value={''}
             placeholderTextColor={''}
             onChangeText={() => {}}
-            keyboardType={'default'}
             />
         </PageContainer>
     )

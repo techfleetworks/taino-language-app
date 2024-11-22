@@ -10,20 +10,28 @@ import CorrectImageOption from '@/components/lesson/CorrectImageOption';
 import TextStyle from '@/constants/TextStyles';
 import { TLPBottomButtonNav } from '../common/TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
-import { LessonSlide } from '@/types/lessons';
+import { Activity } from '@/types/lessons';
 
 // 0 = english, 1 = spanish
 const currentLangIndex = 0;
 
-type CorrectImageQuestionSlideProps = LessonSlide & {
-  currentSlide: number;
-  setCurrentSlide: (slide: number) => void;
+type CorrectImageActivityProps = {
+  activity: Activity;
+  currentActivity: number;
+  setCurrentActivity: (activity: number) => void;
   onComplete?: () => void;
   length: number;
 }
 
+export default function CorrectImageActivity({ 
+  activity,
+  currentActivity, 
+  setCurrentActivity, 
+  length, 
+  onComplete 
+}: CorrectImageActivityProps): JSX.Element {
 
-export default function CorrectImageQuestionSlide({ question, options, correctIndex, currentSlide, setCurrentSlide, length, onComplete } : CorrectImageQuestionSlideProps): JSX.Element {
+    const { prompt, options, correctIndex } = activity;
   
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
@@ -51,13 +59,13 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
     setResult(optionResult);
     setShowResult(true);
 
-    //if the user got the correct answer, when they press continue again, go to the next slide
+    //if the user got the correct answer, when they press continue again, go to the next activity
     if (optionResult && showResult) {
-      setCurrentSlide(currentSlide + 1);  
+      setCurrentActivity(currentActivity + 1);  
       reset();
 
           //if user is at the end and got the correct answer, trigger completion
-    if (currentSlide === length - 1 && optionResult) {
+    if (currentActivity === length - 1 && optionResult) {
       if (onComplete) {
         onComplete();
       }
@@ -78,7 +86,7 @@ export default function CorrectImageQuestionSlide({ question, options, correctIn
           <Text style={styles.newVocabText}>New vocabulary</Text>
           <Text style={styles.promptText}>Select the correct image</Text>
         </View>
-        <Text style={styles.questionText}>{question}</Text>
+        <Text style={styles.questionText}>{prompt}</Text>
       </View>
 
       <View style={styles.answersContainer}>

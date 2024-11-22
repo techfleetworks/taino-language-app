@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import { LessonSlide } from "@/types/lessons";
+import { Activity } from "@/types/lessons";
 import { mockData } from "@/mock-data";
-import CorrectImageQuestionSlide from "@/components/lesson/CorrectImageQuestionSlide";
+import CorrectImageActivity from "@/components/lesson/CorrectImageActivity";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/lesson/ProgressStep";
 import LessonComplete from "@/components/lesson/LessonComplete";
@@ -15,17 +15,17 @@ const fetchLessonById = (lessonId: string) => {
 export default function LessonScreen() {
 
     const { id } = useLocalSearchParams<{ id: string }>();
-    const [ cards, setCards ] = useState<LessonSlide[]>([]);
-    const [ currentSlide, setCurrentSlide ] = useState<number>(0); 
+    const [ cards, setCards ] = useState<Activity[]>([]);
+    const [ currentActivity, setCurrentActivity ] = useState<number>(0); 
     const [ lessonInProgress, setLessonInProgress ] = useState<boolean>(true);
     const [ isComplete, setIsComplete ] = useState<boolean>(false);
 
     const lesson = fetchLessonById(id);
 
     useEffect(() => {
-        const correctImageSlides = lesson?.slides.filter(slide => slide.type === "correct_image");
-        if (lesson && correctImageSlides) {
-            setCards(correctImageSlides as LessonSlide[]);
+        const correctImageActivities = lesson?.activities.filter(activity => activity.type === "correct_image");
+        if (lesson && correctImageActivities) {
+            setCards(correctImageActivities as Activity[]);
         }
     }, [lesson]);
 
@@ -38,21 +38,18 @@ export default function LessonScreen() {
     return (
         <View style={styles.container}>
             <SafeAreaView>
-                {lessonInProgress && <ProgressStep
-                    currentStep={currentSlide + 1}
+                {lessonInProgress && <ProgressStep 
+                    currentStep={currentActivity + 1}
+                    setCurrentStep={setCurrentActivity}
                     totalSteps={3}
                 />}
             </SafeAreaView>
             <View style={styles.questionContainer}>
                 {!isComplete ? (
-                    <CorrectImageQuestionSlide
-                        type={cards[currentSlide]?.type}
-                        text={cards[currentSlide]?.text}
-                        question={cards[currentSlide]?.question} 
-                        options={cards[currentSlide]?.options} 
-                        correctIndex={cards[currentSlide]?.correctIndex}
-                        currentSlide={currentSlide}
-                        setCurrentSlide={setCurrentSlide}
+                    <CorrectImageActivity
+                        activity={cards[currentActivity]}
+                        currentActivity={currentActivity}
+                        setCurrentActivity={setCurrentActivity}
                         length={cards.length}
                         onComplete={() => {
                             setLessonInProgress(false);
