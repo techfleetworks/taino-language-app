@@ -25,7 +25,12 @@ The Taíno, the Indigenous people of the Caribbean and parts of the southern U.S
 Clone this repository:
 ```bash
 git clone https://github.com/itskarelleh/taino-language-app.git
-``` 
+```
+
+This mono repository has three main folders: 
+react-frontend: The mobile app for Learn Taino - React + Expo
+nest-backend: The API and services that the mobile app sends requests and receives responses - Nest.js
+lesson-authoring: The headless CMS that allows content creators, lesson authors and admin users to create and edit lessons and vocabulary - Payload CMS
 
 For the frontend:
 ```zsh
@@ -42,7 +47,14 @@ cp .env.example .env.development
 pnpm install && pnpm run start:dev
 ```
 
-For more details on how to run the project, please refer to the [get started guide](./docs/getting-started.md).
+For the lesson authoring tool:
+```zsh
+cd lesson-authoring
+pnpm install && pnpm run dev
+```
+
+
+For more details on how to run, deploy, and navigate this project, read the wiki: [Learn Taino GitHub Wiki](https://github.com/itskarelleh/taino-language-app/wiki)
 
 <!-- TODO: Add Contributors section -->
 <!-- ## Contributors -->
