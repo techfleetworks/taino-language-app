@@ -28,9 +28,9 @@ git clone https://github.com/itskarelleh/taino-language-app.git
 ```
 
 This mono repository has three main folders: 
-react-frontend: The mobile app for Learn Taino - React + Expo
-nest-backend: The API and services that the mobile app sends requests and receives responses - Nest.js
-lesson-authoring: The headless CMS that allows content creators, lesson authors and admin users to create and edit lessons and vocabulary - Payload CMS
+- react-frontend: The mobile app for Learn Taino - React + Expo
+- nest-backend: The API and services that the mobile app sends requests and receives responses - Nest.js
+- lesson-authoring: The headless CMS that allows content creators, lesson authors and admin users to create and edit lessons and vocabulary - Payload CMS
 
 For the frontend:
 ```zsh
