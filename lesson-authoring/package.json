@@ -48,5 +48,6 @@
   "overrides": {
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-  }
+  },
+  "packageManager": "pnpm@9.1.4+sha1.2432063d815cfa88fd9fef1d85a445e3f609851d"
 }

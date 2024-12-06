@@ -41,20 +41,7 @@ export const mockData = {
       updated_at: '2024-10-01T10:00:00Z',
       created_at: '2024-10-01T10:00:00Z',
       introduction: [
-        // {
-        //   id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-        //   type: 'zunzun',
-        //   category: 'introduction',
-        //   text: 'Let’s learn how to introduce \nourselves in Taíno!',
-        // },
-        // {
-        //   id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-        //   type: 'cover',
-        //   category: 'introduction',
-        //   text: 'Tau, dak’anulia... \nHello, my name is...',
-        // },
-        {
-            id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+            {
             category: 'introduction',
             type: 'overview',
             phrase: {
@@ -62,7 +49,7 @@ export const mockData = {
                 taino: "Tau, dak'anulia",
                 english: 'Hello, my name is',
               },
-            vocab: [
+            vocab_overview: [
               {
                 id: '1',
                 taino: 'tau',
@@ -79,7 +66,7 @@ export const mockData = {
                 english: 'name',
               },
             ],
-          },
+          }
       ],
       activities: [
         {
