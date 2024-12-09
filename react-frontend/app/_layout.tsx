@@ -32,8 +32,9 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [loaded, error] = useFonts({
-    Inter_900Black,
-    ...FontAwesome.font,
+    // Inter_900Black,
+    // ...FontAwesome.font,
+    'Tainonaiki': require('@/assets/fonts/Tainonaiki Script OTF.otf'),
   });
 
   useEffect(() => {
