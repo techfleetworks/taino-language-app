@@ -26,6 +26,7 @@
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "react-native": "^0.76.2",
+    "react-native-vector-icons": "^10.2.0",
     "sharp": "0.32.6"
   },
   "devDependencies": {

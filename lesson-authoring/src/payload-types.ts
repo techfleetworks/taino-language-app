@@ -103,14 +103,11 @@ export interface Media {
  */
 export interface Lesson {
   id: number;
-  cover: {
-    title: string;
-    description?: string | null;
-    image?: (number | null) | Media;
-  };
-  introduction?:
+  title: string;
+  description: string;
+  thumbnail: number | Media;
+  activities?:
     | {
-        dialogue?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -231,17 +228,13 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "lessons_select".
  */
 export interface LessonsSelect<T extends boolean = true> {
-  cover?:
+  title?: T;
+  description?: T;
+  thumbnail?: T;
+  activities?:
     | T
     | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
-  introduction?:
-    | T
-    | {
-        dialogue?: T;
+        activity?: T;
         id?: T;
       };
   updatedAt?: T;

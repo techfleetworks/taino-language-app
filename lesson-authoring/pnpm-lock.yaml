@@ -45,6 +45,9 @@ importers:
       react-native:
         specifier: ^0.76.2
         version: 0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)
+      react-native-vector-icons:
+        specifier: ^10.2.0
+        version: 10.2.0
       sharp:
         specifier: 0.32.6
         version: 0.32.6
@@ -2734,6 +2737,9 @@ packages:
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
 
+  cliui@7.0.4:
+    resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
+
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
@@ -4830,6 +4836,10 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
+  react-native-vector-icons@10.2.0:
+    resolution: {integrity: sha512-n5HGcxUuVaTf9QJPs/W22xQpC2Z9u0nb0KgLPnVltP8vdUvOp6+R26gF55kilP/fV4eL4vsAHUqUjewppJMBOQ==}
+    hasBin: true
+
   react-native@0.76.2:
     resolution: {integrity: sha512-mkEBKGOmJxhfq8IOsvmk0QuTzlBt9vS+uo0gwbqfUmEDqoC359v80zhUf94WimYBrBkpRQWFbEu5iqMDHrYzlQ==}
     engines: {node: '>=18'}
@@ -5649,9 +5659,17 @@ packages:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
 
+  yargs-parser@20.2.9:
+    resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
+    engines: {node: '>=10'}
+
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
+
+  yargs@16.2.0:
+    resolution: {integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==}
+    engines: {node: '>=10'}
 
   yargs@17.7.2:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
@@ -9303,6 +9321,12 @@ snapshots:
 
   client-only@0.0.1: {}
 
+  cliui@7.0.4:
+    dependencies:
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      wrap-ansi: 7.0.0
+
   cliui@8.0.1:
     dependencies:
       string-width: 4.2.3
@@ -11811,6 +11835,11 @@ snapshots:
 
   react-is@18.3.1: {}
 
+  react-native-vector-icons@10.2.0:
+    dependencies:
+      prop-types: 15.8.1
+      yargs: 16.2.0
+
   react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1):
     dependencies:
       '@jest/create-cache-key-function': 29.7.0
@@ -12753,7 +12782,19 @@ snapshots:
 
   yaml@1.10.2: {}
 
+  yargs-parser@20.2.9: {}
+
   yargs-parser@21.1.1: {}
+
+  yargs@16.2.0:
+    dependencies:
+      cliui: 7.0.4
+      escalade: 3.2.0
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      string-width: 4.2.3
+      y18n: 5.0.8
+      yargs-parser: 20.2.9
 
   yargs@17.7.2:
     dependencies:

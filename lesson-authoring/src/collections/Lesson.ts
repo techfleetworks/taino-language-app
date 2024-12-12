@@ -28,7 +28,7 @@ export const Lesson: CollectionConfig = {
           type: 'ui',
           admin: {
             components: {
-              Field: "@/fields/ActivityField",
+              Field: "../components/activity/ActivityField",
             }
           }
         },
