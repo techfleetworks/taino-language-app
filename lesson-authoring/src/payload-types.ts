@@ -108,6 +108,7 @@ export interface Lesson {
   thumbnail: number | Media;
   activities?:
     | {
+        activity?: string | null;
         id?: string | null;
       }[]
     | null;

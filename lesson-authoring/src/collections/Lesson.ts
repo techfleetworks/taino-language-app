@@ -25,11 +25,11 @@ export const Lesson: CollectionConfig = {
       fields: [
         {
           name: 'activity',
-          type: 'ui',
+          type: 'text',
           admin: {
             components: {
-              Field: "../components/activity/ActivityField",
-            }
+              Field: "../components/activity/ActivityFieldComponent",
+            },
           }
         },
       ],

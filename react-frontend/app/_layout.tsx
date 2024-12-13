@@ -123,9 +123,7 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
             <View style={contentStyle}>
               <Stack>
                 <Stack.Screen name="index" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="(tabs)"
-                />
+                <Stack.Screen name="(tabs)" />
                 <Stack.Screen name="lesson" options={{ headerShown: false }} />
                 <Stack.Screen name="onboarding/write-your-name" options={{ headerShown: true, header: () => <Header variant="empty" /> }} />
                 <Stack.Screen name="onboarding/lesson-one" options={{ headerShown: false }} />

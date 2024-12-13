@@ -4,16 +4,14 @@ import StyledButton from './TLPButton.web';
 import Colors from './Colors';
 import { TLPBottomButtonNav } from './TLPBottomButtonNav.web';
 import Image from 'next/image';
-import { TextareaField } from 'payload';
 
 export interface CustomStyles extends React.CSSProperties {
   imageContainer?: React.CSSProperties; // Add custom properties as needed
 }
 
 interface ZunZunDialogProps {
-    text: string | TextareaField;
+    text: string | any;
     button: ZunZunDialogButtonProps
-    onChange: () => void
 }
 
 interface ZunZunDialogButtonProps {
@@ -36,8 +34,7 @@ export default function ZunZunDialog({ text, button } : ZunZunDialogProps) {
   
           <div style={styles.introTextWrapper}>
             <div style={styles.introText}>
-              
-                {/* {typeof Text === 'string' ? text ? <textarea></textarea>} */}
+              {text && text}
               </div> 
           </div>
       
