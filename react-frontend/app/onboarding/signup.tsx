@@ -5,15 +5,13 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Alert,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Platform
 } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import { useForm, Controller } from 'react-hook-form';
+import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
+import PageContainer from '@/components/common/PageContainer';
+import axios from 'axios';
 
 /**
  * sign-up to the application
@@ -30,45 +28,51 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
  * @returns {JSX.Element}
  * @function
  */
-
-
 export default function SignupScreen(): JSX.Element {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
-  const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<boolean>(false);
+  
+  const { control, handleSubmit, setValue, watch, formState: { errors, isSubmitting } } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: ""
+    }
+  });
+  
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
   const [emailError, setEmailError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
   const [signupError, setSignupError] = useState<boolean>(true);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  const onSubmit = async (data: any) => {
+    const { email, password } = data;
 
-  const validatePassword = (password: string) => {
-    const minLength = 8;
-    const maxLength = 16;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
 
-    return (
-      password.length >= minLength &&
-      password.length <= maxLength &&
-      hasUpperCase &&
-      hasLowerCase
-    );
+    try {
+      const response = await axios.post(`https://${process.env.EXPO_PUBLIC_AUTH0_DOMAIN}/dbconnections/signup`, {
+        email,
+        password,
+        connection: 'Username-Password-Authentication'
+      });
+
+      if(response.status == 200) {
+        window.location.href = '/onboarding/welcome'; // Redirect in the same tab
+      }
+
+    console.log(response.data)
+      
+    } catch (error) {
+      console.log('Signup failed: ' + error);
+    }
   };
 
   const checkForErrors = () => {
-    const isEmailValid = validateEmail(email);
-    const isPasswordValid = validatePassword(password);
-    const isConfirmPasswordValid = password === confirmPassword;
-
-    if (!isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
+    const password = watch('password');
+    const confirmPassword = watch('confirmPassword');
+    
+    if (passwordError || confirmPasswordError) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
@@ -77,122 +81,126 @@ export default function SignupScreen(): JSX.Element {
 
   useEffect(() => {
     checkForErrors();
-  }, [email, password, confirmPassword]);
-
-  const handleSignup = () => {
-    if (!validateEmail(email)) {
-      Alert.alert('Error', 'Invalid email address');
-      return;
-    }
-    if (!validatePassword(password)) {
-      setPasswordError('Password must be between 8 and 16 characters, contain at least one uppercase and one lowercase letter');
-      return;
-    }
-    if (password !== confirmPassword) {
-      setConfirmPasswordError('Passwords do not match');
-      return;
-    }
-
-    setEmailError('');
-    setPasswordError('');
-    setConfirmPasswordError('');
-    setIsDisabled(false);
-
-    Alert.alert('Congrats on signing up!');
-    // store user data in DB
-    // router.push('onboarding/welcome');
-  };
+  }, [watch()]);
 
   return (
-    // <KeyboardAvoidingView
-    //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    //   style={styles.container}
-    // >
-    // <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View style={styles.container}>
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        style={styles.input}
-        value={email}
-        onChangeText={text => {
-          setEmail(text);
-          if (validateEmail(text)) {
-            setEmailError('');
-          } else {
-            setEmailError('Invalid email address');
-          }
-          checkForErrors();
-        }}
-      />
-      <Text style={styles.label}>Password</Text>
+    <PageContainer style={styles.container}>
       <View>
-        <TextInput
-          style={styles.input}
-          value={password}
-          onChangeText={text => {
-            setPassword(text);
-            if (text.length >= 8 && text.length <= 16) {
-              setPasswordError('');
-            } else {
-              setPasswordError('Password must be 8-16 characters long, and contain one upper case and one lowercase character.');
+        <Text style={styles.label}>Email</Text>
+        <Controller
+          control={control}
+          name="email"
+          defaultValue=""
+          rules={{
+            required: 'Email is required',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: 'Invalid email address'
             }
-            checkForErrors();
           }}
-          secureTextEntry={!passwordVisibility}
-          maxLength={16}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={styles.input}
+              value={value}
+              onBlur={onBlur}
+              onChangeText={onChange}
+            />
+          )}
         />
-        <TouchableOpacity onPress={() => setPasswordVisibility(!passwordVisibility)} style={styles.iconContainer}>
-          <Icon name={passwordVisibility ? 'visibility' : 'visibility-off'}
-            size={24}
-            color="gray"
-          />
-        </TouchableOpacity>
+
+        <Text style={styles.label}>Password</Text>
+        <Controller
+          control={control}
+          name="password"
+          defaultValue=""
+          rules={{
+            required: 'Password is required',
+            minLength: { value: 8, message: 'Password must be at least 8 characters' },
+            validate: value => {
+              const hasUpperCase = /[A-Z]/.test(value);
+              const hasLowerCase = /[a-z]/.test(value);
+              const hasNumbers = /\d/.test(value);
+              const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+              
+              if (!hasUpperCase) return 'Password must have at least one uppercase letter';
+              if (!hasLowerCase) return 'Password must have at least one lowercase letter';
+              if (!hasNumbers) return 'Password must have at least one number';
+              if (!hasSpecialChars) return 'Password must have at least one special character';
+              return true; // If all validations pass
+            }
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                secureTextEntry={!passwordVisibility}
+              />
+              <TouchableOpacity onPress={() => setPasswordVisibility(!passwordVisibility)} style={styles.iconContainer}>
+                <Icon name={passwordVisibility ? 'visibility' : 'visibility-off'}
+                  size={24}
+                  color="gray"
+                />
+              </TouchableOpacity>
+            </View>
+          )}
+        />
+
+        <Text style={styles.label}>Re-enter Password</Text>
+        <Controller
+          control={control}
+          name="confirmPassword"
+          defaultValue=""
+          rules={{ required: 'Confirm Password is required', validate: value => value === watch('password') || 'Passwords do not match' }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                secureTextEntry={!confirmPasswordVisibility}
+              />
+
+                <TouchableOpacity onPress={() => setConfirmPasswordVisibility(!confirmPasswordVisibility)} style={styles.iconContainer}>
+                  <Icon name={confirmPasswordVisibility ? 'visibility' : 'visibility-off'}
+                    size={24}
+                    color="gray"
+                  />
+              </TouchableOpacity>
+            </View>
+          )}
+        />
       </View>
 
-      <Text style={styles.label}>Re-enter Password</Text>
-      <View>
-        <TextInput
-          style={styles.input}
-          value={confirmPassword}
-          onChangeText={text => {
-            setConfirmPassword(text);
-            if (text === password) {
-              setConfirmPasswordError('');
-            } else {
-              setConfirmPasswordError('Passwords do not match');
-            }
-            checkForErrors();
-          }}
-          secureTextEntry={!confirmPasswordVisibility}
-        />
-        <TouchableOpacity onPress={() => setConfirmPasswordVisibility(!confirmPasswordVisibility)} style={styles.iconContainer}>
-          <Icon name={confirmPasswordVisibility ? 'visibility' : 'visibility-off'}
-            size={24}
-            color="gray"
-          />
-        </TouchableOpacity>
+      <View style={styles.flexGrow}>
+        <Text style={styles.passwordText}>Password must be 8-16 characters long, and contain one upper case and one lowercase character.</Text>
       </View>
-
-      <Text style={styles.passwordText}>Password must be 8-16 characters long, and contain one upper case and one lowercase character.</Text>
-
-      {/* //TODO replace this with the TLPBottomButtonNav component */}
-      <TouchableOpacity
-        onPress={handleSignup}
-        disabled={isDisabled}
-        style={[styles.btn, isDisabled ? styles.buttonDisabled : styles.buttonEnabled]}
-        accessibilityLabel="Continue">
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
-    </View>
+      <TLPBottomButtonNav>
+        <TouchableOpacity
+          onPress={handleSubmit(onSubmit)}
+          disabled={isDisabled}
+          style={[styles.btn, isDisabled ? styles.buttonDisabled : styles.buttonEnabled]}
+          accessibilityLabel="Continue">
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
+      </TLPBottomButtonNav>
+    </PageContainer>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: Colors.background,
+    paddingTop: 60
+  },
+  flexGrow: {
+    flex: 1,
   },
   label: {
     alignSelf: 'flex-start',
@@ -200,8 +208,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.onBackground.highEmphasis,
     fontWeight: '600',
-    marginBottom: 4,
-    marginLeft: 48,
+    marginBottom: 10,
+    // marginLeft: 48,
   },
   input: {
     height: 64,
@@ -217,6 +225,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: 20,
+    color: Colors.onBackground.highEmphasis
   },
   btn: {
     width: 326,
@@ -251,6 +260,5 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     width: 304,
     height: 51,
-  },
-
+  }
 });

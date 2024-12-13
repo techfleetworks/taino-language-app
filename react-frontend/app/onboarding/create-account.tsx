@@ -5,9 +5,10 @@ import { Link } from 'expo-router';
 import { AuthContext } from '@/lib/AuthProvider';
 import { useRouter } from 'expo-router';
 import GoogleAuthButton from '@/components/auth/GoogleAuthButton';
+
 export default function Onboarding() {
   const authContext = useContext(AuthContext);
-  const router = useRouter();
+  // const router = useRouter();
   
   const googleLogin = async () => {
     console.log('googleLogin');
@@ -15,7 +16,6 @@ export default function Onboarding() {
       const result = await authContext.login();
       console.log('result', result);
       if (result.type === 'success') {
-        Alert.alert('We did That!!!');
         console.log('redirecting to welcome');
         window.location.href = '/onboarding/welcome'; // Redirect in the same tab
       } else {
