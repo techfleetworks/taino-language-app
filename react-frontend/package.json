@@ -37,6 +37,7 @@
     "expo-web-browser": "^13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.54.1",
     "react-native": "0.74.5",
     "react-native-paper": "^5.12.5",
     "react-native-reanimated": "~3.10.1",
@@ -67,5 +68,6 @@
         }
       }
     }
-  }
+  },
+  "packageManager": "pnpm@9.1.4+sha1.2432063d815cfa88fd9fef1d85a445e3f609851d"
 }
