@@ -14,6 +14,8 @@ const app_service_1 = require("./app.service");
 const prisma_service_1 = require("./prisma/prisma.service");
 const vocabulary_item_service_1 = require("./vocabulary-item/vocabulary-item.service");
 const vocabulary_item_controller_1 = require("./vocabulary-item/vocabulary-item.controller");
+const lessons_controller_1 = require("./lessons/lessons.controller");
+const lessons_service_1 = require("./lessons/lessons.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,8 +27,8 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
         ],
-        controllers: [app_controller_1.AppController, vocabulary_item_controller_1.VocabularyItemController],
-        providers: [app_service_1.AppService, prisma_service_1.PrismaService, vocabulary_item_service_1.VocabularyItemService],
+        controllers: [app_controller_1.AppController, vocabulary_item_controller_1.VocabularyItemController, lessons_controller_1.LessonsController],
+        providers: [app_service_1.AppService, prisma_service_1.PrismaService, vocabulary_item_service_1.VocabularyItemService, lessons_service_1.LessonsService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

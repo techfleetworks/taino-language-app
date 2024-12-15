@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { PrismaService } from './prisma/prisma.service';
 import { VocabularyItemService } from './vocabulary-item/vocabulary-item.service';
 import { VocabularyItemController } from './vocabulary-item/vocabulary-item.controller';
+import { LessonsController } from './lessons/lessons.controller';
+import { LessonsService } from './lessons/lessons.service';
 
 @Module({
   imports: [
@@ -13,7 +15,7 @@ import { VocabularyItemController } from './vocabulary-item/vocabulary-item.cont
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, VocabularyItemController],
-  providers: [AppService, PrismaService, VocabularyItemService],
+  controllers: [AppController, VocabularyItemController, LessonsController],
+  providers: [AppService, PrismaService, VocabularyItemService, LessonsService],
 })
 export class AppModule {}
