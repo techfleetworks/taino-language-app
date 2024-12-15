@@ -16,7 +16,7 @@ model VocabularyItem {
   updated_at DateTime @updatedAt @default(now())
 }
 
-model lessons {
+model Lessons {
   id           String   @id(map: "lessons_pk") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title        String   @db.VarChar
   description  String?  @db.VarChar
