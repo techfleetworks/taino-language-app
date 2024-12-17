@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Image } from 'expo-image';
+import { Audio } from "expo-av";
 import TextStyle from '@/constants/TextStyles';
 import Colors from '@/constants/Colors';
 
 interface CorrectImageOptionProps {
     userTranslation: any;
     image: any;
+    audio: any;
     index: number;
     isSelected: boolean;
     onPress: () => void;
@@ -16,7 +18,8 @@ interface CorrectImageOptionProps {
 
 export default function CorrectImageOption({ 
     userTranslation, 
-    image, 
+    image,
+    audio, 
     isSelected, 
     onPress,
     disabled,
@@ -34,10 +37,23 @@ export default function CorrectImageOption({
         return styles.optionDefault;
     };
 
+    //handle onPress with audio 
+    const handlePress = async () => {
+        onPress();
+        if (audio) {
+          try {
+            const { sound } = await Audio.Sound.createAsync(audio);
+            await sound.playAsync();
+          } catch (error) {
+            console.error('Error playing sound:', error);
+          }
+        }
+      };
+
     return (
         <TouchableOpacity 
             style={[getOptionStyle(), styles.optionContainer]}
-            onPress={onPress}
+            onPress={handlePress}
             disabled={disabled}
         >
             <View style={styles.imageContainer}>

@@ -4,69 +4,74 @@ import me from '@/assets/images/me.png';
 import sorry from '@/assets/images/sorry.png';
 import name from '@/assets/images/name.png';
 import thankYou from '@/assets/images/thank-you.png';
+import nameAudio from '@/assets/audio/anúlia.mp3';
+import helloAudio from '@/assets/audio/tau.mp3';
+import meAudio from '@/assets/audio/dak.mp3';
+import thankYouAudio from '@/assets/audio/jajóm.mp3';
 
 export const mockData = {
-    onboarding_intro: [
-        {
-            id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-            type: 'reading',
-            category: 'introduction',
-            text: "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. \n\nI’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
-          },
-          {
-            id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-            type: 'reading',
-            category: 'introduction',
-            text: 'In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.',
-          },
-          {
-            id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-            type: 'reading',
-            category: 'introduction',
-            text: 'Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.',
-          },
-          {
-            id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-            type: 'reading',
-            category: 'introduction',
-            text: 'Ready to try your first lesson?',
-          },
-    ],
+  onboarding_intro: [
+    {
+      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+      type: 'reading',
+      category: 'introduction',
+      text: "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. \n\nI’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
+    },
+    {
+      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+      type: 'reading',
+      category: 'introduction',
+      text: 'In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.',
+    },
+    {
+      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+      type: 'reading',
+      category: 'introduction',
+      text: 'Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.',
+    },
+    {
+      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
+      type: 'reading',
+      category: 'introduction',
+      text: 'Ready to try your first lesson?',
+    },
+  ],
   lessons: [
     {
       id: '482F80CA-D720-41C8-945D-93A6CD90F487',
       title: 'Lesson 1: Greetings',
-      description: 'Learn how to introduce yourself by saying “hello, my name is…',
+      description:
+        'Learn how to introduce yourself by saying “hello, my name is…',
       image: './assets/images/emoji_waving_hand.png',
       updated_at: '2024-10-01T10:00:00Z',
       created_at: '2024-10-01T10:00:00Z',
       introduction: [
+        {
+          category: 'introduction',
+          type: 'overview',
+          phrase: {
+            id: '1',
+            taino: "Tau, dak'anulia",
+            english: 'Hello, my name is',
+          },
+          vocab_overview: [
             {
-            category: 'introduction',
-            type: 'overview',
-            phrase: {
-                id: '1',
-                taino: "Tau, dak'anulia",
-                english: 'Hello, my name is',
-              },
-            vocab_overview: [
-              {
-                id: '1',
-                taino: 'tau',
-                english: 'hello',
-              },
-              {
-                id: '2',
-                taino: 'dak',
-                english: 'I',
-              },
-              {
-                id: '3',
-                taino: 'anúlia',
-                english: 'name',
-              },
-            ],
-          }
+              id: '1',
+              taino: 'tau',
+              english: 'hello',
+            },
+            {
+              id: '2',
+              taino: 'dak',
+              english: 'I',
+            },
+            {
+              id: '3',
+              taino: 'anúlia',
+              english: 'name',
+            },
+          ],
+        },
       ],
       activities: [
         {
@@ -78,18 +83,22 @@ export const mockData = {
             {
               image: hello,
               user_translations: ['hello', 'hola'],
+              audio: helloAudio,
             },
             {
               image: goodbye,
               user_translations: ['bye', 'adios'],
+              audio: null,
             },
             {
               image: thankYou,
               user_translations: ['thanks', 'gracias'],
+              audio: thankYouAudio,
             },
             {
               image: sorry,
               user_translations: ['sorry', 'lo siento'],
+              audio: null,
             },
           ],
           correctIndex: 0,
@@ -103,18 +112,22 @@ export const mockData = {
             {
               image: hello,
               user_translations: ['hello', 'hola'],
+              audio: helloAudio,
             },
             {
               image: goodbye,
               user_translations: ['bye', 'adios'],
+              audio: null,
             },
             {
               image: me,
               user_translations: ['i', 'yo'],
+              audio: meAudio,
             },
             {
               image: sorry,
               user_translations: ['sorry', 'lo siento'],
+              audio: null,
             },
           ],
           correctIndex: 2,
@@ -128,18 +141,22 @@ export const mockData = {
             {
               image: hello,
               user_translations: ['hello', 'hola'],
+              audio: helloAudio,
             },
             {
               image: goodbye,
               user_translations: ['bye', 'adios'],
+              audio: null,
             },
             {
               image: name,
               user_translations: ['name', 'nombre'],
+              audio: nameAudio,
             },
             {
               image: sorry,
               user_translations: ['sorry', 'lo siento'],
+              audio: null,
             },
           ],
           correctIndex: 2,
