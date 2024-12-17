@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@babel/runtime": "^7.26.0",
     "@expo-google-fonts/inter": "^0.2.3",
     "@expo/metro-runtime": "~3.2.3",
     "@react-native-async-storage/async-storage": "1.23.1",
@@ -23,7 +24,6 @@
     "@react-navigation/stack": "^6.4.1",
     "@types/react": "~18.2.79",
     "@types/react-native": "^0.72.8",
-    "@types/react-navigation": "^3.0.8",
     "axios": "^1.7.7",
     "expo": "~51.0.39",
     "expo-auth-session": "~5.5.2",
@@ -46,7 +46,6 @@
     "react-native-splash-screen": "^3.3.0",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.10",
-    "taino-language-app": "file:",
     "typescript": "~5.3.3"
   },
   "devDependencies": {
