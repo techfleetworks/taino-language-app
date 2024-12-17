@@ -96,6 +96,7 @@ export default function CorrectImageActivity({
               userTranslation={option.user_translations?.[currentLangIndex] || option.user_translations || ''}
               image={option.image}
               index={index}
+              audio={option.audio}
               isSelected={selectedOptionIndex === index}
               onPress={() => handleOptionSelect(index)}
               disabled={showResult}
