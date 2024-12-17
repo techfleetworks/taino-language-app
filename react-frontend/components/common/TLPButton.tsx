@@ -1,26 +1,8 @@
-/**
- * custom button for application
- * @param {string} title - title and identifier of button
- * @param {TextStyle.color} titleColor - color of title
- * @param {TextStyle.fontSize} titleSize - size of the title
- * @param {ColorValue} backgroundColor - background color of the button
- * @param {DimensionValue} width - width of button
- * @param {DimensionValue} height - height of button
- * @param {AccessibilityProps.accessibilityLabel} accessibilityLabel - accessibility label for screen reader
- * @param {GestureResponderEvent} onPress - event handle of the gesture of pushing the button
- * @param {any} icon - passing the icon to the button
- * @param {any} otherProps - any other style properties
- * @param {string} buttonText - text for the button 
- * @returns {JSX.Element}
- * @function
- */
-
 import React from 'react';
 import {
   Pressable,
   Text,
   StyleSheet,
-  Button,
   TouchableOpacity,
   GestureResponderEvent,
   DimensionValue,

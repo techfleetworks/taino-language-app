@@ -7,6 +7,7 @@ type TLPBottomButtonNavProps = {
 }
 
 export const TLPBottomButtonNav : React.FC<TLPBottomButtonNavProps> = ({ style, children } : TLPBottomButtonNavProps) => {
+
     return (
         <SafeAreaView>
           <View style={[styles.buttonWrapper, style]}>
@@ -15,7 +16,6 @@ export const TLPBottomButtonNav : React.FC<TLPBottomButtonNavProps> = ({ style, 
         </SafeAreaView>
     )
 }
-
 
 const styles = StyleSheet.create({
     buttonNav: {
