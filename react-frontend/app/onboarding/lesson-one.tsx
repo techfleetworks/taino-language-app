@@ -10,12 +10,15 @@ import LessonIntro from "@/components/lesson/LessonIntro";
 import VocabularyOverviewComponent from "@/components/lesson/VocabularyOverviewComponent";
 import { BackHeader } from "@/components/common/Header";
 import { useRouter } from "expo-router";
+
+//TODO: Update this so that it fetches from server 
 const fetchLessonById = (lessonId: string) => {
     return mockData.lessons.find(lesson => lesson.id === lessonId);
 }
 
 const lessonIdForFirstLesson = '482F80CA-D720-41C8-945D-93A6CD90F487'; //TODO: update this to the actual lesson ID(maybe as a environment variable?)
 
+//TODO: consider making this and other screens under onboarding one singular page using Stack
 export default function LessonScreen() {
 
     const router = useRouter();

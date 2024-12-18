@@ -108,10 +108,10 @@ export default function CorrectImageActivity({
       </View>
 
       {showResult && (
-          <Result selectionResult={result}/>
-        )}
+        <Result selectionResult={result}/>
+      )}
 
-      <TLPBottomButtonNav style={{paddingHorizontal: 0}}>
+      <TLPBottomButtonNav style={{ paddingHorizontal: 0 }}>
         <StyledButton
           title={showResult && !result ? 'Try Again' : 'Continue'}
           titleSize={16}
@@ -135,7 +135,6 @@ export default function CorrectImageActivity({
 const styles = StyleSheet.create({
   newVocabText: {
     fontSize: TextStyle.body.fontSize,
-    // fontSize: parseInt(TextStyle.body.fontSize, 10),
     fontWeight: '700'
   },
   cardWrapper: {

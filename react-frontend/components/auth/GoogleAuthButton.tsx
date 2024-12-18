@@ -1,6 +1,8 @@
+import React from 'react'
 import Colors from "@/constants/Colors";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Image } from "expo-image";
+
 export default function GoogleAuthButton({ onPress }: { onPress: () => void }) {
     return (
         <TouchableOpacity style={styles.googleButton} onPress={onPress}>

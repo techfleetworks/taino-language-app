@@ -46,4 +46,4 @@ export default {
   dark: {
     tint: '#fff',
   },
-};
+} as const;

@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import Colors from '@/constants/Colors';
-import { Link } from 'expo-router'; 
+import { Link, useLocalSearchParams } from 'expo-router'; 
 import { AuthContext } from '@/lib/AuthProvider';
 import { useRouter } from 'expo-router';
 import GoogleAuthButton from '@/components/auth/GoogleAuthButton';
 
 export default function Onboarding() {
+  
   const authContext = useContext(AuthContext);
-  // const router = useRouter();
+  const router = useRouter();
+  const { name } = useLocalSearchParams<{ name: string }>()
+
   
   const googleLogin = async () => {
     console.log('googleLogin');
@@ -38,7 +41,7 @@ export default function Onboarding() {
       </TouchableOpacity>
 
       <Image source={require('@/assets/humming_bird.png')} style={styles.icon} />
-      <Text style={styles.welcomeText}>Welcome Gabriela! </Text>
+      <Text style={styles.welcomeText}>Welcome {name}! </Text>
       <Text style={styles.subText}>Create an account to keep learning Taíno!</Text>
 
       <Link href="/onboarding/signup" style={[styles.createAccountButton, { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
@@ -52,7 +55,6 @@ export default function Onboarding() {
       </View>
 
       <GoogleAuthButton onPress={googleLogin} />
-      {/* Removed apple button for now */}
     </View>
   );
 }

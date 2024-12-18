@@ -4,10 +4,10 @@ import me from '@/assets/images/me.png';
 import sorry from '@/assets/images/sorry.png';
 import name from '@/assets/images/name.png';
 import thankYou from '@/assets/images/thank-you.png';
-import nameAudio from '@/assets/audio/anúlia.mp3';
+import nameAudio from '@/assets/audio/anulia.mp3';
 import helloAudio from '@/assets/audio/tau.mp3';
 import meAudio from '@/assets/audio/dak.mp3';
-import thankYouAudio from '@/assets/audio/jajóm.mp3';
+import thankYouAudio from '@/assets/audio/jajóm.mp3';
 
 export const mockData = {
   onboarding_intro: [

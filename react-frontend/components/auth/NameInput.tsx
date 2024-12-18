@@ -3,75 +3,47 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import Colors from '@/constants/Colors'; 
 import TextStyles from '@/constants/TextStyles'; 
 import { useRouter } from 'expo-router';
+import { Control, Controller, useForm } from 'react-hook-form'
 
-type NameInputProps = {
-  value: string;
-  placeholder?: string;
-  placeholderTextColor: string;
-  onChangeText: (text: string) => void;
-};
 
-//TODO: update this so that it better matches the design prototype
-export default function NameInput(props: NameInputProps) {
+interface NameInputProps {
+  control: Control<{ name: string }>; // Ensure this matches the expected type
+}
 
-  const {
-    value,
-    placeholder = 'Write your name',
-    placeholderTextColor = Colors.onBackground.mediumEmphasis,
-    onChangeText,
-  } = props;
-
-  const [isButtonEnabled, setButtonEnabled] = useState<boolean>(false);
-
-  const router = useRouter();
-
-  const handleNameInput = (text: string) => {
-    onChangeText(text);
-    setButtonEnabled(text.length >= 2); // Enable Continue button if name is at least 2 characters
-  };
+export default function NameInput({ control } : { control : Control<{name: string}> }) {
 
   return (
-    <View style={styles.outerContainer}>
       <View style={styles.innerContainer}>
         <View style={styles.textContainer}>
           <Text style={[styles.heading1, { color: Colors.onBackground.highEmphasis }]}>
             Let’s put these new skills to use!
           </Text>
 
-          <Text style={[styles.button1, { color: Colors.onBackground.highEmphasis }]}>
+          <Text style={[styles.tainoTranslation, { color: Colors.onBackground.highEmphasis }]}>
             Tau, dak’anulia...
           </Text>
 
-          <Text style={[styles.body, { color: Colors.onBackground.highEmphasis }]}>
+          <Text style={[styles.englishTranslation, { color: Colors.onBackground.mediumEmphasis }]}>
             Hello, my name is...
           </Text>
         </View>
 
         <View style={styles.inputContainer}>
-          {/* // TODO: fix this. The handleNameInput event is not being called */}
-          <TextInput
-            style={[styles.body, { color: Colors.onBackground.mediumEmphasis }]}
-            value={value}
-            onChangeText={handleNameInput}
-            placeholder={placeholder}
-            placeholderTextColor={placeholderTextColor}
-          />
-          <View style={styles.divider}></View>
+            <Controller
+                control={control}
+                name="name"
+                render={({ field: { onBlur, onChange, value } }) => (
+                    <TextInput
+                        value={value}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        placeholder="Write your name"
+                    />
+                )}
+            />
+            <View style={styles.divider} />
         </View>
-
-        {/* //TODO: update this so that it's using the TLPBottomButtonNav and StyledButton components */}
-        <TouchableOpacity
-          style={[
-            styles.button,
-            { backgroundColor: isButtonEnabled ? Colors.onPrimary.highEmphasis : Colors.onBackground.disabled },
-          ]}
-          onPress={() => router.push('/onboarding/create-account')}
-          disabled={!isButtonEnabled}
-        >
-          <Text style = {styles.button2}>Continue</Text>
-        </TouchableOpacity>
       </View>
-    </View>
   );
 }
 
@@ -97,11 +69,11 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     width: 326,
-    marginBottom: 20,
+    marginBottom: 90,
   },
   inputContainer: {
     width: 326,
-    height: 43,
+    height: 44,
     position: 'relative',
     marginBottom: 20, 
   },
@@ -121,7 +93,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20, 
   },
-  body: {
+  englishTranslation: {
     color: 'black', //TODO: remove any hardcoded colors. use the colors constants
     fontSize: 16,
     fontFamily: 'Inter',
@@ -134,7 +106,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontWeight: '600',
   },
-  button1: {
+  tainoTranslation: {
     fontSize: 20, //TODO: remove any hardcoded font sizes. use the text styles constants
     fontFamily: 'Inter',
     fontWeight: '600',
