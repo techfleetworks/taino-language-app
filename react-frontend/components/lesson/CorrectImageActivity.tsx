@@ -31,7 +31,7 @@ export default function CorrectImageActivity({
   onComplete 
 }: CorrectImageActivityProps): JSX.Element {
 
-    const { prompt, options, correctIndex } = activity;
+    console.log(activity)
   
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
@@ -53,7 +53,7 @@ export default function CorrectImageActivity({
   }
 
   const handleSubmit = () => {
-    let correctOption = correctIndex;
+    let correctOption = activity?.correctIndex;
     let optionResult = selectedOptionIndex === correctOption;
 
     setResult(optionResult);
@@ -86,22 +86,21 @@ export default function CorrectImageActivity({
           <Text style={styles.newVocabText}>New vocabulary</Text>
           <Text style={styles.promptText}>Select the correct image</Text>
         </View>
-        <Text style={styles.questionText}>{prompt}</Text>
       </View>
 
       <View style={styles.answersContainer}>
-        {options && options.map((option: any, index: number) => (
+        {activity?.options && activity?.options.map((option: any, index: number) => (
           <View key={index} style={styles.optionWrapper}>
             <CorrectImageOption
               userTranslation={option.user_translations?.[currentLangIndex] || option.user_translations || ''}
-              image={option.image}
+              image={option?.image}
               index={index}
-              audio={option.audio}
+              audio={option?.audio}
               isSelected={selectedOptionIndex === index}
               onPress={() => handleOptionSelect(index)}
               disabled={showResult}
               showResult={showResult}
-              isCorrect={index === correctIndex}
+              isCorrect={index === activity?.correctIndex}
             />
           </View>
         ))}

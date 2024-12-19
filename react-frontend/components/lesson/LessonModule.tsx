@@ -12,47 +12,10 @@ import { BackHeader, LessonModuleBackHeader } from "../common/Header";
 import { router } from "expo-router";
 import VocabularyOverviewComponent from "./VocabularyOverviewComponent";
 
-export function LessonModule({ data} : { data: Lesson}) {
+export function LessonModule({ id } : { id: string }) {
 
 
-    const { lesson, currentSection, currentActivityIndex, activities, goToPreviousActivity, advanceLesson } = useLessonModule();
-
-    console.log("Lesson introduction", lesson.introduction)
-
-    // const image = '@/assets/images/emoji_waving_hand.png';
-
-
-
-    // //handles the user clicking on the last button of an activity and moving to the next section ie: introduction -> activities -> completion
-    // const handleNextSection = () => {
-    //     if(currentSection === '') {
-    //         setCurrentSection('introduction')
-    //     }
-    //     if (currentSection === 'introduction' && currentActivity === activities.length - 1) {
-    //         setCurrentSection('activities');
-    //     } else if (currentSection === 'activities') {
-    //         setCurrentSection('completion');
-    //     }
-    // }
-
-    // //if lesson is not found, redirect to onboarding
-    // if (!lesson) {
-    //     //display error message
-    //     console.error('Lesson not found');
-    //     return <></>;
-    // }
-
-    //renders the introduction section of the lesson
-    const renderIntro = () => {
-        console.log("rendering intro....")
-        console.log("Current activity", activities[currentActivityIndex])
-
-        switch (activities[currentActivityIndex]?.type) {
-            case 'introduction':
-                return <VocabularyOverviewComponent />
-            default: <></>
-        }
-    }
+    const { currentSection, currentActivityIndex, activities, goToPreviousActivity, advanceLesson } = useLessonModule();
 
     return (
         <View style={styles.container}>
@@ -74,7 +37,6 @@ export function LessonModule({ data} : { data: Lesson}) {
                     setCurrentActivity={advanceLesson}
                     length={activities.length}
                     onComplete={() => {
-                        // handleNextSection();
                         advanceLesson()
                     } } />
                 } {/* Shows the interactive activities. Currently only one type of activity*/}

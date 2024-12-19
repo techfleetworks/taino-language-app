@@ -63,12 +63,6 @@ type LessonModuleContextType = {
         throw new Error(`Lesson with id ${id} not found`);
     }
 
-    // // Combine introduction and main activities
-    // const activities : Activity[] = [
-    //   ...(lesson?.introduction || []).map((activity: any) => ({...activity, id: activity.phrase.id})),
-    //   ...(lesson?.activities || []).map((activity: any) => ({...activity, id: activity.id}))
-    // ];
-
     //go to next section of the lesson
     const advanceLesson = () => {
       if (currentSection === 'introduction') {
@@ -129,22 +123,22 @@ type LessonModuleContextType = {
       }
   }, [lesson, currentSection]);
 
-    return (
-      <LessonContext.Provider value={{
-        id,
-        lesson,
-        activities,
-        currentSection,
-        currentActivityIndex,
-        totalActivities: activities!.length,
-        advanceLesson,
-        goToPreviousActivity,
-        resetLesson,
-        startLesson,
-        goBack
-      }}>
-        {children}
-      </LessonContext.Provider>
+  return (
+    <LessonContext.Provider value={{
+      id,
+      lesson,
+      activities,
+      currentSection,
+      currentActivityIndex,
+      totalActivities: activities!.length,
+      advanceLesson,
+      goToPreviousActivity,
+      resetLesson,
+      startLesson,
+      goBack
+    }}>
+      {children}
+    </LessonContext.Provider>
     );
   };
 

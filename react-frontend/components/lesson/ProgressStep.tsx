@@ -10,9 +10,9 @@ type ProgressStepProps = {
   totalSteps: number;
 }
 
-export default function ProgressStep({ currentStep, handleGoToPrevious, totalSteps }: ProgressStepProps) : JSX.Element {
+export default function ProgressStep({ currentStep, totalSteps }: ProgressStepProps) : JSX.Element {
 
-  const { totalActivities } = useLessonModule();
+  const { totalActivities, currentActivityIndex, goToPreviousActivity, goBack } = useLessonModule();
   const router = useRouter();
 
   const stepWidth = 100 / totalActivities;
@@ -25,14 +25,8 @@ export default function ProgressStep({ currentStep, handleGoToPrevious, totalSte
   });
 
   const handleBack = () => {
-    console.log('Back button pressed');
-    console.log('Current step:', currentStep);
-
-    if (currentStep > 0) {
-      handleGoToPrevious;
-    } else {
-      router.back();
-    }
+   if(currentActivityIndex === 0) goBack();
+   else goToPreviousActivity();
   }
 
   return (
