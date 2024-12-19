@@ -1,11 +1,6 @@
 // Define the LessonIntro type
 export type LessonIntro = {
     category: string;
-    // phrase: { 
-    //     id: string; 
-    //     taino: string; 
-    //     english: string; 
-    // };
     vocab_overview: VocabOverview[]
 };
 
@@ -26,6 +21,7 @@ export type Activity = {
     type?: 'introduction' | 'activities' | 'complete';
     prompt?: string;
     options?: string[];
+    audio?: string,
     correctIndex?: number;
     phrase?: { id: string; taino: string; english: string; };
     vocab?: { id: string; taino: string; english: string; }[];

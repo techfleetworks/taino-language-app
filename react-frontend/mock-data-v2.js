@@ -11,32 +11,7 @@ import thankYouAudio from '@/assets/audio/jajóm.mp3';
 import lessonThumbnail from '@/assets/images/emoji_waving_hand.png'
 
 export const mockData = {
-  onboarding_intro: [
-    {
-      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-      type: 'reading',
-      category: 'introduction',
-      text: "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. \n\nI’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
-    },
-    {
-      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-      type: 'reading',
-      category: 'introduction',
-      text: 'In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.',
-    },
-    {
-      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-      type: 'reading',
-      category: 'introduction',
-      text: 'Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.',
-    },
-    {
-      id: '482F80CA-D720-41C8-945D-93A6CD90F487',
-      type: 'reading',
-      category: 'introduction',
-      text: 'Ready to try your first lesson?',
-    },
-  ],
+
   lessons: [
     {
       id: '482F80CA-D720-41C8-945D-93A6CD90F487',

@@ -16,7 +16,7 @@ publish = "/Users/karelle/vscprojects/tech-fleet/taino-language-app/react-fronte
 publishOrigin = "ui"
 commandOrigin = "ui"
 base = "/Users/karelle/vscprojects/tech-fleet/taino-language-app/react-frontend"
-command = "npm run build"
+command = "pnpm run build"
 
 [build.environment]
 

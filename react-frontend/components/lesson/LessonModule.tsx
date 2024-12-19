@@ -14,7 +14,6 @@ import VocabularyOverviewComponent from "./VocabularyOverviewComponent";
 
 export function LessonModule({ id } : { id: string }) {
 
-
     const { currentSection, currentActivityIndex, activities, goToPreviousActivity, advanceLesson } = useLessonModule();
 
     return (
@@ -50,6 +49,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background,
+        position: 'relative',
+        justifyContent: 'space-between'
     },
     questionContainer: {
         flex: 1,
@@ -58,5 +59,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.background,
         padding: 8,
         paddingHorizontal: 32,
+        position: 'relative'
     },
 })

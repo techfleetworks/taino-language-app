@@ -10,7 +10,8 @@ import StyledButton from '@/components/common/TLPButton';
 import Colors from '@/constants/Colors';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
 import { mockData } from '@/mock-data';
-import { LessonActivity } from '@/types/lessons';
+import ZunZunDialog from '@/components/common/ZunZunDialog';
+import { Activity } from '@/types/lessons';
 import { useRouter } from 'expo-router';
 import TextStyles from '@/constants/TextStyles';
 
@@ -21,80 +22,43 @@ const fetchLessonActivities = () => {
   return mockData.lessons[0].activities.slice(0, 4);
 }
 
+//TODO: Use the elements from this component to create a new reusable component ex: ZunZunConversation
+
+
+const onboardingIntroDialogues = [
+    "Tau! Hello! I'm Zunzún, I’ll be your guide on your learning journey. \n\nI’m a hummingbird, known to be a messenger of Yaya, the Taíno Great Spirit.",
+    'In the Taíno culture, Hummingbirds are sacred symbol of rebirth and bring new life into the world.',
+    'Learn Taíno aims to help the revitalization of the Taíno by helping you learn all about the origins, culture, people and language.',
+    'Ready to try your first lesson?'
+]
+
 //An introduction to Learn Taíno's mascot, ZunZun
 
-//TODO: Use the elements from this component to create a new reusable component ex: ZunZunConversation
 export default function Introduction(): JSX.Element {
-  // const [displayFlex, setDisplayFlex] = useState<string>('flex');
-  // const [displayNone, setDisplayNone] = useState<string>('none');
-  const [ currentActivity, setCurrentActivity ] = useState<number>(0);  
-  const [introText, setIntroText] = useState<boolean>(true); 
-  const buttonRef = useRef<any>(null);
+  const [ index, setIndex ] = useState<number>(0);  
 
   const router = useRouter();
-  
-  const [lessonActivities, setLessonActivities] = useState<LessonActivity[]>([
-    {
-      type: '', 
-      text: '',
-      options: []
-    }
-  ]);  
-  
-  const handleIsIntroText = () => {
-    return lessonActivities[currentActivity + 1]?.category === 'introduction' ? true : false;
+
+  const buttonText = () => {
+    if(index === 0) return "Let's get started!"
+    if(index == onboardingIntroDialogues.length -1) return "Let's go!"
+
+    return;
   }
 
+  
   const handleClick = () => {
-    const isIntroText = handleIsIntroText();
-    
-    if (!isIntroText) {  // If it's not intro text, it means we're showing "Let's get started!"
+
+    if (index === onboardingIntroDialogues.length - 1) {  // If it's not intro text, it means we're showing "Let's get started!"
       router.push(`/onboarding/lesson-one`);
       return;
     }
 
-    setCurrentActivity(prev => prev + 1);
+    setIndex(prev => prev + 1)
   }
 
-  useEffect(() => {
-    const data = fetchLessonActivities();
-    setLessonActivities(data.map(activity => ({
-      ...activity,
-      text: activity.text || ''
-    })));
-  }, []);
-
   return (
-    <View style={[
-      lessonActivities.length > 0 && lessonActivities[currentActivity]?.category === 'introduction' 
-      && styles.welcomeContainer
-    ]}>
-        <View style={styles.imageContainer}>
-          <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
-        </View>
-
-        <View style={[styles.introTextWrapper]}>
-          <Text style={styles.introText}>
-              {lessonActivities[currentActivity].text}
-            </Text> 
-        </View>
-    
-        <TLPBottomButtonNav>
-          <StyledButton
-          title={handleIsIntroText() ? 'Continue' : 'Let’s get started!'}
-          titleSize={16}
-          height={48}
-          accessibilityLabel={'Button'}
-          onPress= {handleClick}
-          icon={false}
-          buttonText={styles.buttonText}
-          otherProps={{...styles.buttonNav, ref: buttonRef}} 
-          zIndex={1}
-          position={'relative'}
-          />
-        </TLPBottomButtonNav>
-      
-    </View>
+    <ZunZunDialog text={onboardingIntroDialogues[index]} onButtonClick={handleClick} buttonText={buttonText()} />
   );
 }
 

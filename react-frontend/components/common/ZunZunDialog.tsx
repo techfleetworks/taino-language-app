@@ -14,72 +14,36 @@ import { Activity } from '@/types/lessons';
 import { useRouter } from 'expo-router';
 import TextStyles from '@/constants/TextStyles';
 
-const fetchLessonSlides = () => {
-    return mockData.lessons[0].activities.slice(0, 4);
-  }
+type ZunZunDialogProps = {
+  text: string,
+  buttonText?: string,
+  onButtonClick?: () => void
+}
 
-export default function ZunZunDialog() {
-    const [ currentSlide, setCurrentSlide ] = useState<number>(0);  
-    const [introText, setIntroText] = useState<boolean>(true); 
+export default function ZunZunDialog({ text, buttonText, onButtonClick } : ZunZunDialogProps) {
     const buttonRef = useRef<any>(null);
   
-    const router = useRouter();
-    
-    const [lessonActivities, setLessonActivities] = useState<Activity[]>([
-      {
-        id: '',
-        category: '',
-        type: '', 
-        prompt: '',
-        options: []
-      }
-    ]);  
-    
-    const handleIsIntroText = () => {
-      return lessonActivities[currentSlide + 1]?.category === 'introduction' ? true : false;
-    }
-  
-    const handleClick = () => {
-      const isIntroText = handleIsIntroText();
-      
-      if (!isIntroText) {  // If it's not intro text, it means we're showing "Let's get started!"
-        router.push(`/onboarding/lesson-one`);
-        return;
-      }
-  
-      setCurrentSlide(prev => prev + 1);
-    }
-  
-    useEffect(() => {
-      const data = fetchLessonSlides();
-      setLessonActivities(data.map(activity => ({
-        ...activity,
-        prompt: activity.prompt || ''
-      })));
-    }, []);
-  
     return (
-       <View style={[
-        lessonActivities.length > 0 && lessonActivities[currentSlide]?.category === 'introduction' 
-        && styles.welcomeContainer
-      ]}>
+       <View style={[styles.welcomeContainer]}>
           <View style={styles.imageContainer}>
-            <Image style={styles.image} source={require('@/assets/humming_bird.png')} />
+            <Image style={styles.image} source={require('@/assets/images/zunzun.png')} />
           </View>
   
-          <View style={[styles.introTextWrapper]}>
-            <Text style={styles.introText}>
-                {lessonActivities[currentSlide].prompt}
-              </Text> 
-          </View>
+         <View style={styles.dialogueContainer}>
+          <View style={[styles.dialogueTextWrapper]}>
+              <Text style={styles.dialogueText}>
+                  {text}
+                </Text> 
+            </View>
+         </View>
       
           <TLPBottomButtonNav>
             <StyledButton
-            title={handleIsIntroText() ? 'Continue' : 'Let’s get started!'}
+            title={buttonText ? buttonText : 'Continue'}
             titleSize={16}
             height={48}
             accessibilityLabel={'Button'}
-            onPress= {handleClick}
+            onPress={onButtonClick}
             icon={false}
             buttonText={styles.buttonText}
             otherProps={{...styles.buttonNav, ref: buttonRef}} 
@@ -95,9 +59,10 @@ export default function ZunZunDialog() {
 const styles = StyleSheet.create({
     welcomeContainer: {
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       alignItems:'center',
       padding: 8,
+      position: 'relative'
     },
     progressWrapper: {
       top: 0,
@@ -105,33 +70,39 @@ const styles = StyleSheet.create({
     imageContainer: {
       display: 'flex',
       position: 'relative',
-      paddingTop: 192,
-      paddingBottom: 144,
+      padding: 64,
       flexDirection: 'column',
       alignItems: 'center',
       gap: 16,
     },
     image: {
-        width: 133.598,
+        width: 128,
         height: 128,
     },
-    introTextWrapper: {
+    dialogueContainer: {
+      paddingTop: 96,
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'flex-start'
+
+    },
+    dialogueTextWrapper: {
       display: 'flex',
       width: 352,
-      paddingVertical: 24,
       paddingHorizontal: 16,
+      paddingVertical: 24,
       justifyContent: 'flex-start',
       alignItems: 'center',
       gap: 16,
       borderRadius: 8,
       backgroundColor: Colors.surface
     },
-    introText: {
+    dialogueText: {
       fontFamily: 'Inter',
       fontSize: 18,
       fontStyle: 'normal',
       fontWeight: '400',
-      lineHeight: 28, /* 155.556% */
+      lineHeight: 28,
     },  
     buttonNav: {
       display: 'flex',

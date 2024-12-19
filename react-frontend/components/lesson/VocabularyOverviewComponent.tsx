@@ -23,12 +23,12 @@ export default function VocabularyOverviewComponent() {
                     <Text style={styles.headingText}>Vocabulary Overview</Text>
                 </View>
                 <Image
-                    source={lesson.thumbnail}
+                    source={lesson?.thumbnail}
                     style={styles.subjectImage}
                 />
                 <View>
                     <Text style={styles.tainoPhrase}>{lesson?.introduction.phrase.taino}...</Text>
-                    <Text style={styles.englishPhrase}>{lesson?.introduction.phrase.taino}...</Text>
+                    <Text style={styles.englishPhrase}>{lesson?.introduction.phrase.english}...</Text>
                 </View>
             </View>
 
@@ -67,6 +67,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         backgroundColor: Colors.background,
+        position: 'relative',
+        justifyContent: 'space-between'
     },
     vocabWrapper: {
         display: 'flex',

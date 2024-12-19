@@ -1,18 +1,46 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import Colors from '@/constants/Colors';
-import { Link, useLocalSearchParams } from 'expo-router'; 
+import { Link } from 'expo-router'; 
 import { AuthContext } from '@/lib/AuthProvider';
 import { useRouter } from 'expo-router';
 import GoogleAuthButton from '@/components/auth/GoogleAuthButton';
+import { set, useForm } from 'react-hook-form';
+import PageContainer from '@/components/common/PageContainer';
+import NameInput from '@/components/auth/NameInput';
+import { TLPBottomButtonNav as BottomButtonNav } from '@/components/common/TLPBottomButtonNav';
+import  { TLPButton as StyledButton } from '@/components/common/TLPButtonV2'
+import { SignUpWithEmailForm } from '@/components/auth/SignUpWithEmailForm';
 
-export default function Onboarding() {
+
+export default function CreateAccount() {
   
   const authContext = useContext(AuthContext);
-  const router = useRouter();
-  const { name } = useLocalSearchParams<{ name: string }>()
+  const [ nameIsPresent, setNameIsPresent ] = useState<boolean>(false)
+  const [ withEmail, setWithEmail ] = useState<boolean>(false);
 
-  
+  const { control, watch, handleSubmit } = useForm({
+      defaultValues: {
+          name: "",
+          email:"",
+          password:"",
+          confirmPassword: ""
+      }
+  })
+
+  const submitName = () => {
+      if (watch('name').trim() === "") {
+          return;
+      }
+
+      setNameIsPresent(true)
+  }
+
+  const handleWithEmail = () => {
+      setWithEmail(true);
+      setNameIsPresent(false)
+  }
+
   const googleLogin = async () => {
     console.log('googleLogin');
     if (authContext) {
@@ -28,35 +56,57 @@ export default function Onboarding() {
     }
   };
 
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity 
-        style={styles.backButton}
-        onPress={() => console.log("Go back!")}
-      >
-        <Image 
-          source={require('@/assets/images/arrow_back_ios_new.png')} 
-          style={styles.backIcon} 
-        />
-      </TouchableOpacity>
+    if(nameIsPresent) {  
+      return (
+      <View style={styles.container}>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => console.log("Go back!")}
+        >
+          <Image 
+            source={require('@/assets/images/arrow_back_ios_new.png')} 
+            style={styles.backIcon} 
+          />
+        </TouchableOpacity>
 
-      <Image source={require('@/assets/humming_bird.png')} style={styles.icon} />
-      <Text style={styles.welcomeText}>Welcome {name}! </Text>
-      <Text style={styles.subText}>Create an account to keep learning Taíno!</Text>
+        <Image source={require('@/assets/humming_bird.png')} style={styles.icon} />
+        <Text style={styles.welcomeText}>Welcome {watch('name')}! </Text>
+        <Text style={styles.subText}>Create an account to keep learning Taíno!</Text>
+        
+        <TouchableOpacity onPress={handleWithEmail} style={[styles.createAccountButton, { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
+          <Text style={styles.createAccountButtonText}>Create Account</Text>
+        </TouchableOpacity>
 
-      <Link href="/onboarding/signup" style={[styles.createAccountButton, { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
-        <Text style={styles.createAccountButtonText}>Create Account</Text>
-      </Link>
-
-      <View style={styles.orContainer}>
-        <View style={styles.orLine} />
-        <Text style={styles.orText}>or</Text>
-        <View style={styles.orLine} />
+        <View style={styles.orContainer}>
+          <View style={styles.orLine} />
+          <Text style={styles.orText}>or</Text>
+          <View style={styles.orLine} />
+        </View>
+        {/* //TODO: use Auth0 API instead of Auth0 client */}
+        <GoogleAuthButton onPress={googleLogin} />
       </View>
+    );}
 
-      <GoogleAuthButton onPress={googleLogin} />
-    </View>
-  );
+    if(withEmail) {
+      return (
+        <SignUpWithEmailForm />
+      )
+    }
+
+      return (
+      <PageContainer>
+        <NameInput 
+            control={control}
+        />
+        <BottomButtonNav>
+            <StyledButton 
+                disabled={watch('name').trim() === ''}
+                title={'Continue'}
+                onPress={submitName}
+                />
+        </BottomButtonNav>
+      </PageContainer>
+      )
 }
 
 const styles = StyleSheet.create({

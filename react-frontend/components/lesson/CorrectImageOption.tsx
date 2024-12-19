@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
     optionText: {
         textAlign: 'center',
-        fontSize: parseInt(TextStyle.button1.fontSize, 10),
+        fontSize: TextStyle.button1.fontSize,
         fontWeight: TextStyle.button1.fontWeight as 'normal' | 'bold',
     }
 });

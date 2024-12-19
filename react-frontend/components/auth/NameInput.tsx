@@ -6,11 +6,12 @@ import { useRouter } from 'expo-router';
 import { Control, Controller, useForm } from 'react-hook-form'
 
 
-interface NameInputProps {
-  control: Control<{ name: string }>; // Ensure this matches the expected type
-}
-
-export default function NameInput({ control } : { control : Control<{name: string}> }) {
+export default function NameInput({ control } : { control : Control<{ 
+  name: string, 
+  email: string, 
+  password: string, 
+  confirmPassword: string 
+}>;  }) {
 
   return (
       <View style={styles.innerContainer}>
