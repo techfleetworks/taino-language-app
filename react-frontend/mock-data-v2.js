@@ -8,6 +8,7 @@ import nameAudio from '@/assets/audio/anulia.mp3';
 import helloAudio from '@/assets/audio/tau.mp3';
 import meAudio from '@/assets/audio/dak.mp3';
 import thankYouAudio from '@/assets/audio/jajóm.mp3';
+import lessonThumbnail from '@/assets/images/emoji_waving_hand.png'
 
 export const mockData = {
   onboarding_intro: [
@@ -42,11 +43,10 @@ export const mockData = {
       title: 'Lesson 1: Greetings',
       description:
         'Learn how to introduce yourself by saying “hello, my name is…',
-      image: './assets/images/emoji_waving_hand.png',
+      thumbnail: lessonThumbnail,
       updated_at: '2024-10-01T10:00:00Z',
       created_at: '2024-10-01T10:00:00Z',
-      introduction: [
-        {
+      introduction: {
           category: 'introduction',
           type: 'overview',
           phrase: {
@@ -72,7 +72,6 @@ export const mockData = {
             },
           ],
         },
-      ],
       activities: [
         {
           id: '482F80CA-D720-41C8-945D-93A6CD90F487',

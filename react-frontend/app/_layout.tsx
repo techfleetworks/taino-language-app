@@ -15,6 +15,7 @@ import { View, Text } from 'react-native';
 import { AuthProvider } from '@/lib/AuthProvider';
 import Header from '@/components/common/Header';
 import Colors from '@/constants/Colors';
+import { LessonModuleProvider } from '@/lib/LessonModuleProvider';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -117,27 +118,29 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
 
   return (
     <AuthProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <View style={containerStyle} onLayout={onLayout}>
-          <View style={phoneFrameStyle}>
-            <View style={contentStyle}>
-              <Stack>
-                <Stack.Screen name="index" options={{ headerShown: false }} />
-                <Stack.Screen name="(tabs)" />
-                <Stack.Screen name="lesson" options={{ headerShown: false }} />
-                <Stack.Screen name="onboarding/write-your-name" options={{ headerShown: true, header: () => <Header variant="empty" /> }} />
-                <Stack.Screen name="onboarding/lesson-one" options={{ headerShown: false }} />
-                <Stack.Screen name="onboarding/create-account" options={{ headerShown: false }} />
-                <Stack.Screen name="onboarding/welcome" options={{ headerShown: false }} />
-                <Stack.Screen name="onboarding/introduction" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
-                <Stack.Screen name="signup" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
-                <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-                <Stack.Screen name="(auth)/callback" />
-              </Stack>
+      <LessonModuleProvider>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <View style={containerStyle} onLayout={onLayout}>
+            <View style={phoneFrameStyle}>
+              <View style={contentStyle}>
+                <Stack>
+                  <Stack.Screen name="index" options={{ headerShown: false }} />
+                  <Stack.Screen name="(tabs)" />
+                  <Stack.Screen name="lesson" options={{ headerShown: false }} />
+                  <Stack.Screen name="onboarding/write-your-name" options={{ headerShown: true, header: () => <Header variant="empty" /> }} />
+                  <Stack.Screen name="onboarding/lesson-one" options={{ headerShown: false }} />
+                  <Stack.Screen name="onboarding/create-account" options={{ headerShown: false }} />
+                  <Stack.Screen name="onboarding/welcome" options={{ headerShown: false }} />
+                  <Stack.Screen name="onboarding/introduction" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
+                  <Stack.Screen name="signup" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
+                  <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+                  <Stack.Screen name="(auth)/callback" />
+                </Stack>
+              </View>
             </View>
           </View>
-        </View>
-      </ThemeProvider>
+        </ThemeProvider>
+      </LessonModuleProvider>
     </AuthProvider>
   );
 }

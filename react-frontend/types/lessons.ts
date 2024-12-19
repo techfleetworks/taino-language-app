@@ -1,31 +1,48 @@
+// Define the LessonIntro type
+export type LessonIntro = {
+    category: string;
+    // phrase: { 
+    //     id: string; 
+    //     taino: string; 
+    //     english: string; 
+    // };
+    vocab_overview: VocabOverview[]
+};
+
 export type Lesson = {
     id: string;
     title: string;
     description: string;
-    image: string;
+    thumbnail: string;
     updated_at: string | Date;
     created_at: string | Date;
-    introduction: [];
-    activities: [];
-    completion: {};
-}
+    introduction: LessonIntro; 
+    activities: Activity
+};
 
-// Update the IntroductionActivity type definition
 export type Activity = {
     id: string;
-    category: string;
-    type: string;
+    category?: string;
+    type?: 'introduction' | 'activities' | 'complete';
     prompt?: string;
     options?: string[];
     correctIndex?: number;
     phrase?: { id: string; taino: string; english: string; };
     vocab?: { id: string; taino: string; english: string; }[];
+    vocab_overview?: VocabOverview
 };
 
+export type Vocabulary = {
+    id: string,
+    taino: string,
+    english: string,
+    audio?: string
+}
+
 export type VocabOverview = {
-    id: string;
-    type: string;
-    category: string;
-    phrase: { id: string, taino: string, english: string }[];
-    vocab: { id: string, taino: string, english: string }[];
+    id: string,
+    taino: string,
+    english: string
+    // phrase: { id: string, taino: string, english: string }[];
+    // vocab: { id: string, taino: string, english: string }[];
 }

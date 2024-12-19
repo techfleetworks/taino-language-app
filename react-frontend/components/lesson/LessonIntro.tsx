@@ -1,45 +1,50 @@
+import React from 'react'
 import { TLPBottomButtonNav } from "@/components/common/TLPBottomButtonNav";
 import StyledButton from "@/components/common/TLPButton";
 import Colors from "@/constants/Colors";
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import TextStyles from "@/constants/TextStyles";
+import { useLessonModule } from "@/lib/LessonModuleProvider";
 
-export default function LessonIntro({ title, image, description, handleClick } 
-    : 
-    { title: string, image: string, description: string, handleClick: () => void }) {
+
+//The very first slide that introduces the user to lesson with a title, description and thumbnail and prompts them
+// to start the lesson
+export default function LessonIntro() {
+
+    const { advanceLesson, lesson, startLesson } = useLessonModule()
+
+    console.log("lesson intro.")
 
    return (
-
     <>
         <View style={styles.textWrapper}>
             <View style={styles.headingTextContainer}>
-                <Text style={styles.headingText}>{title}</Text>
+                <Text style={styles.headingText}>{lesson.title}</Text>
             </View>
             <Image
-                source={require('@/assets/images/emoji_waving_hand.png')}
+                source={lesson.thumbnail}
                 style={styles.subjectImage}
             />
-            <Text style={styles.descriptionText}>{description}</Text>
+            <Text style={styles.descriptionText}>{lesson.description}</Text>
         </View>   
-
-    <TLPBottomButtonNav style={styles.buttonWrapper}>
-        <StyledButton
-        title={'Continue'}
-        titleSize={16}
-        height={48}
-        accessibilityLabel={'Continue'}
-        onPress={handleClick} //TODO: update this so that depending on the lesson, it will redirect the user to home if this is not the first lesson
-        icon={false}
-        buttonText={styles.buttonText}
-        otherProps={styles.buttonNav}
-        disabled={false}
-        zIndex={1}
-        position={'relative'}
-        backgroundColor={Colors.primary}
-        />
+        <TLPBottomButtonNav style={styles.buttonWrapper}>
+            <StyledButton
+            title={'Continue'}
+            titleSize={16}
+            height={48}
+            accessibilityLabel={'Continue'}
+            onPress={startLesson} 
+            icon={false}
+            buttonText={styles.buttonText}
+            otherProps={styles.buttonNav}
+            disabled={false}
+            zIndex={1}
+            position={'relative'}
+            backgroundColor={Colors.primary}
+            />
         </TLPBottomButtonNav>
-    </>
+        </>
    )
 }
 

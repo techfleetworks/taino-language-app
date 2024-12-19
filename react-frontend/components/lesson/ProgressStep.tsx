@@ -1,25 +1,21 @@
-/**
- * simple progress indicator
- * @param {any} props - identification of screen
- * @returns {JSX.Element}
- * @function
- */
-
 import React,{useState, useEffect} from 'react';
 import {View, Image, StyleSheet, Text, Pressable} from 'react-native';
 import Colors from '@/constants/Colors';
 import { useRouter } from 'expo-router';
+import { useLessonModule } from '@/lib/LessonModuleProvider';
 
 type ProgressStepProps = {
   currentStep: number;
-  setCurrentStep: (step: number) => void;
+  handleGoToPrevious: () => void; //go back by 1
   totalSteps: number;
 }
 
-export default function ProgressStep({ currentStep, setCurrentStep, totalSteps }: ProgressStepProps) : JSX.Element {
+export default function ProgressStep({ currentStep, handleGoToPrevious, totalSteps }: ProgressStepProps) : JSX.Element {
+
+  const { totalActivities } = useLessonModule();
   const router = useRouter();
 
-  const stepWidth = 100 / totalSteps;
+  const stepWidth = 100 / totalActivities;
 
   const steps = Array.from({ length: totalSteps }, (_, index) => {
     const stepStyle = index < currentStep ? styles.stepGreen : styles.stepWhite;
@@ -33,10 +29,8 @@ export default function ProgressStep({ currentStep, setCurrentStep, totalSteps }
     console.log('Current step:', currentStep);
 
     if (currentStep > 0) {
-      console.log('Decrementing step');
-      setCurrentStep(currentStep - 1);
+      handleGoToPrevious;
     } else {
-      console.log('Navigating back');
       router.back();
     }
   }

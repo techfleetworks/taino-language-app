@@ -1,36 +1,39 @@
-import { Text, View, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { Image } from 'expo-image'
 import Vocabulary from './Vocabulary';
 import StyledButton from '@/components/common/TLPButton';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
 import Colors from '@/constants/Colors';
+import { useLessonModule } from '@/lib/LessonModuleProvider';
 
-interface VocabOverviewProps {
-    image: string;
-    phrase?: { id: string, taino: string, english: string };
-    vocab?: { id: string, taino: string, english: string }[];
-    handleClick: () => void;
-}
+// interface VocabOverviewProps {
+//     phrase?: { id: string, taino: string, english: string };
+//     vocab?: { id: string, taino: string, english: string }[];
+// }
 
-export default function VocabularyOverviewComponent({ image, phrase, vocab, handleClick } : VocabOverviewProps) {
+export default function VocabularyOverviewComponent() {
 
-    return (
+    const { lesson, advanceLesson } = useLessonModule();
+    // require('@/assets/images/emoji_waving_hand.png')
+    return (    
         <View>
             <View style={styles.vocabWrapper}>
                 <View style={styles.VocabularOverviewTextContainer}>
                     <Text style={styles.headingText}>Vocabulary Overview</Text>
                 </View>
                 <Image
-                    source={require('@/assets/images/emoji_waving_hand.png')}
+                    source={lesson.thumbnail}
                     style={styles.subjectImage}
                 />
                 <View>
-                    <Text style={styles.tainoPhrase}>{phrase?.taino}...</Text>
-                    <Text style={styles.englishPhrase}>{phrase?.english}...</Text>
+                    <Text style={styles.tainoPhrase}>{lesson?.introduction.phrase.taino}...</Text>
+                    <Text style={styles.englishPhrase}>{lesson?.introduction.phrase.taino}...</Text>
                 </View>
             </View>
 
             <View style={styles.vocabularyContainer}>
-                {vocab?.map((pair) => (
+                {lesson?.introduction.vocab_overview.map((pair) => (
                     <Vocabulary
                         key={pair.id}
                         taino={pair.taino}
@@ -45,7 +48,7 @@ export default function VocabularyOverviewComponent({ image, phrase, vocab, hand
                     titleSize={16}
                     height={48}
                     accessibilityLabel={'Continue'}
-                    onPress={handleClick}
+                    onPress={advanceLesson}
                     icon={false}
                     buttonText={styles.buttonText}
                     otherProps={styles.buttonNav}

@@ -11,10 +11,8 @@ import Vocabulary from './Vocabulary';
 import { useRouter } from 'expo-router';
 import { mockData } from '@/mock-data';
 import Colors from '@/constants/Colors';
+import { useLessonModule } from '@/lib/LessonModuleProvider';
 
-interface LessonCompleteProps {
-    lessonId: string
-}
 
 const fetchVocabByLesson = (lessonId: string) => {
     const lesson = mockData.lessons.find((lesson) => lesson.id === lessonId);
@@ -22,7 +20,9 @@ const fetchVocabByLesson = (lessonId: string) => {
     return vocabActivity?.vocab || [];
 }
 
-export default function LessonComplete({lessonId}: LessonCompleteProps) {
+export default function LessonComplete() {
+
+    const { id } = useLessonModule()
 
     const router = useRouter();
 
@@ -31,7 +31,7 @@ export default function LessonComplete({lessonId}: LessonCompleteProps) {
         return;
     }
 
-    const vocabulary = fetchVocabByLesson(lessonId) 
+    const vocabulary = fetchVocabByLesson(id) 
 
     return (
         <>

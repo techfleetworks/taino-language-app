@@ -1,8 +1,10 @@
+import React from "react";
 import { Pressable, Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { Image } from "expo-image";
 import ProgressStep from "@/components/lesson/ProgressStep";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 import Colors from "@/constants/Colors";
+import { useLessonModule } from "@/lib/LessonModuleProvider";
 
 /**
  * Header aka Topbar
@@ -14,10 +16,14 @@ interface HeaderProps {
     totalSteps?: number;
 }
 
-export const BackHeader = ({ router }: { router: any }) => (
+export const BackHeader = ({ router }: { router: any }) => {
+    
+
+
+    return (
     <SafeAreaView>
             <View style={styles.progressContainer}>
-            <Pressable onPress={() => router.back()} style={styles.arrowWrapper}>
+            <Pressable onPress={() => router.goBack()} style={styles.arrowWrapper}>
                 <Image
                     style={styles.arrow}
                     source={require('@/assets/images/arrow_back_ios_new.png')}
@@ -25,8 +31,37 @@ export const BackHeader = ({ router }: { router: any }) => (
             </Pressable>
         </View>
     </SafeAreaView>
-);
+);}
 
+
+
+export const LessonModuleBackHeader = () => {
+    const { currentSection, currentActivityIndex, goBack } = useLessonModule() 
+
+
+    const handleGoBack = () => {
+        if(currentSection === '' && currentActivityIndex === 0) {
+            router.back()
+        } else {
+            goBack()
+        }
+    }
+
+
+    return (
+        <SafeAreaView>
+            <View style={styles.progressContainer}>
+            {router.canGoBack() && <Pressable onPress={handleGoBack} style={styles.arrowWrapper}>
+                <Image
+                    style={styles.arrow}
+                    source={require('@/assets/images/arrow_back_ios_new.png')}
+                />
+            </Pressable>}
+        </View>
+    </SafeAreaView>
+    )
+
+}
 export const EmptyHeader = () => (
     <SafeAreaView>
         <View style={{ width: 390, padding: 16, height: 48, backgroundColor: Colors.background }} />

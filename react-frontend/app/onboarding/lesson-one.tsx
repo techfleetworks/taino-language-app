@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { Activity } from "@/types/lessons";
-import { mockData } from "@/mock-data-v2";
 import CorrectImageActivity from "@/components/lesson/CorrectImageActivity";
 import Colors from "@/constants/Colors";
 import ProgressStep from "@/components/lesson/ProgressStep";
@@ -10,116 +9,16 @@ import LessonIntro from "@/components/lesson/LessonIntro";
 import VocabularyOverviewComponent from "@/components/lesson/VocabularyOverviewComponent";
 import { BackHeader } from "@/components/common/Header";
 import { useRouter } from "expo-router";
-
-//TODO: Update this so that it fetches from server 
-const fetchLessonById = (lessonId: string) => {
-    return mockData.lessons.find(lesson => lesson.id === lessonId);
-}
-
-const lessonIdForFirstLesson = '482F80CA-D720-41C8-945D-93A6CD90F487'; //TODO: update this to the actual lesson ID(maybe as a environment variable?)
+import { useLessonModule } from "@/lib/LessonModuleProvider";
+import { LessonModule } from "@/components/lesson/LessonModule";
 
 //TODO: consider making this and other screens under onboarding one singular page using Stack
 export default function LessonScreen() {
 
-    const router = useRouter();
+    const { lesson } = useLessonModule();
 
-    const [ activities, setActivities ] = useState<Activity[]>([]);
-    const [ currentSection, setCurrentSection ] = useState<'' | 'introduction' | 'activities' | 'completion'>('');
-    const [ currentActivity, setCurrentActivity ] = useState<number>(0); 
-
-    const lesson = fetchLessonById(lessonIdForFirstLesson);
-
-    const image = '@/assets/images/emoji_waving_hand.png';
-
-    useEffect(() => {
-        if (lesson) {
-            if (currentSection === 'introduction') {
-                setActivities(lesson.introduction as unknown as Activity[]);
-                setCurrentActivity(0);
-            } else {
-                setActivities(lesson.activities as unknown as Activity[]);
-                setCurrentActivity(0);
-            }
-        }
-    }, [lesson, currentSection]);
-
-    //handles the user clicking on the last button of an activity and moving to the next section ie: introduction -> activities -> completion
-    const handleNextSection = () => {
-        if(currentSection === '') {
-            setCurrentSection('introduction')
-        }
-        if (currentSection === 'introduction' && currentActivity === activities.length - 1) {
-            setCurrentSection('activities');
-        } else if (currentSection === 'activities') {
-            setCurrentSection('completion');
-        }
-    }
-
-    //if lesson is not found, redirect to onboarding
-    if (!lesson) {
-        //display error message
-        console.error('Lesson not found');
-        return <></>;
-    }
-
-    //renders the introduction section of the lesson
-    const renderIntro = () => {
-        switch (activities[currentActivity]?.type) {
-            case 'overview':
-                return <VocabularyOverviewComponent 
-                    image={image} 
-                    phrase={activities[currentActivity]?.phrase} 
-                    vocab={activities[currentActivity]?.vocab} 
-                    handleClick={handleNextSection} 
-                />
-            default: <></>
-        }
-    }
-
-    return (
-        <View style={styles.container}>
-            <SafeAreaView>
-                {currentSection === 'activities' ? <ProgressStep
-                    currentStep={currentActivity + 1}
-                    setCurrentStep={setCurrentActivity}
-                    totalSteps={3}
-                /> : <BackHeader router={router} />}
-            </SafeAreaView>
-            <View style={styles.questionContainer}>
-                {currentSection === '' && <LessonIntro
-                    handleClick={handleNextSection}
-                    title={lesson.title}
-                    image={image}
-                    description={lesson.description}
-                />}
-                {currentSection === 'introduction' && renderIntro()}
-                {currentSection === 'activities' &&
-                    <CorrectImageActivity
-                    activity={activities[currentActivity]}
-                    currentActivity={currentActivity}
-                    setCurrentActivity={setCurrentActivity}
-                    length={activities.length}
-                    onComplete={() => {
-                        handleNextSection();
-                    } } />
-                }
-                {currentSection === 'completion' && <LessonComplete lessonId={lessonIdForFirstLesson} />}
-            </View>
-        </View>
-    );
+    return ( 
+        <LessonModule data={lesson} /> 
+    )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.background,
-    },
-    questionContainer: {
-        flex: 1,
-        justifyContent: "space-between",
-        alignItems: "center",
-        backgroundColor: Colors.background,
-        padding: 8,
-        paddingHorizontal: 32,
-    },
-})
