@@ -85,6 +85,9 @@ export default function CorrectImageActivity({
        <View style={styles.vocabTextWrapper}>
           <Text style={styles.newVocabText}>New vocabulary</Text>
           <Text style={styles.promptText}>Select the correct image</Text>
+          <Text style={styles.tainoWord}>
+            {activity?.prompt}
+          </Text>
         </View>
       </View>
 
@@ -153,12 +156,11 @@ const styles = StyleSheet.create({
   },
   promptText: {
     fontSize: TextStyle.heading2.fontSize,
-    // fontSize: parseInt(TextStyle.heading2.fontSize, 10),
     fontWeight: '700', 
+    paddingBottom: 20
   },
-  questionText: {
+  tainoWord: {
     fontSize: TextStyle.heading2.fontSize,
-    // fontSize: parseInt(TextStyle.heading2.fontSize, 10),
     fontWeight: '700', 
     height: 50
   },
