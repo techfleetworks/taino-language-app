@@ -4,7 +4,7 @@ import { mockData } from "@/mock-data-v2";
 
 type LessonModuleContextType = {
     id: string;
-    lesson: Lesson; // Replace with your specific lesson type
+    lesson: Lesson;
     activities: Activity[];
     currentSection: 'introduction' | 'activities' | 'complete' | ''; 
     currentActivityIndex: number;
@@ -36,26 +36,7 @@ type LessonModuleContextType = {
     const id = '482F80CA-D720-41C8-945D-93A6CD90F487' //onboarding lesson id
     // Fetch lesson 
     const lesson: any = mockData.lessons.find(l => l.id === id) 
-    // || { 
-    //     id: '', 
-    //     title: '', 
-    //     description: '', 
-    //     thumbnail: '', 
-    //     updated_at: '', 
-    //     created_at: '', 
-    //     introduction: {
-    //         category: '', // Add appropriate default values
-    //         type: '',
-    //         phrase: {
-    //             id: '',
-    //             taino: '',
-    //             english: ''
-    //         },
-    //         vocab_overview: [
-              
-    //         ] // Ensure this matches the expected type
-    //     }, 
-    //     activities: []
+      
     // }; // Provide a default value
 
     // Alternatively, you can throw an error if the lesson is not found
