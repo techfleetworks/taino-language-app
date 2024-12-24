@@ -42,7 +42,7 @@ npm install && npx expo start -c
 
 To run the server of the Learn Taino App, open another terminal and run the following commands:
 ```zsh
-cd learn-taino-pwa/seerver
+cd learn-taino-pwa/server
 cp .env.example .env # add the correct values in the newly created .env file
 npx prisma db pull # Runs introspection for Prisma ORM
 npx prisma generate #Generates the Prisma ORM client 
