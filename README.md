@@ -2,13 +2,13 @@
 Learn Taino is a language-learning app that helps Taino descendants and culture enthusiasts learn the Taino language and culture.
 
 ## Background
-The Taíno, the Indigenous people of the Caribbean and parts of the southern U.S., were the first Native Americans to meet Europeans in 1492. Though long thought extinct after colonization, they survived - many Caribbean people today have Taíno ancestry, and efforts are ongoing to preserve their culture and language.
+The Taíno, the Indigenous people of the Caribbean and parts of the southern U.S. were the first Native Americans to meet Europeans in 1492. Though long thought extinct after colonization, they survived - many Caribbean people today have Taíno ancestry, and efforts are ongoing to preserve their culture and language.
 
-This project aims to aid in the revitalization of the Taíno culture by giving its descendants as well as language & culture enthusiasts an introduction to the language and culture that was thought to have gone extinct.
+This project aims to aid in the revitalization of the Taíno culture by giving its descendants, as well as language and culture enthusiasts, by providing an easy learning experience for all ages and education levels.
 
-This monorepository contains two major projects for the Taino Language App Project
-- pwa: The mobile app for Learn Taino - React + Expo. It is a progressive web app that the user will access.
-- lesson-authoring-tool: The headless CMS by Payload. This desktop app that allows content creators, lesson authors and admin users to create and edit lessons and vocabulary.
+This mono repository contains two major projects for the Taino Language App Project
+- learn-taino-pwa: The mobile app for Learn Taino - React + Expo. It is a progressive web app that makes the app accessible to all.
+- lesson-authoring-tool: The headless CMS by Payload. This web app allows content creators, lesson authors, and admin users to create and edit lessons and vocabulary.
 
 ## Stack 
 - Frontend:
