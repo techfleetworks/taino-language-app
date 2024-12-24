@@ -1,0 +1,28 @@
+{
+  "node": {
+    "40a20096f3be2e9c2e0075b76bba33a10993a39d9f": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": "(rsc)/./node_modules/.pnpm/next@15.1.0_@babel+core@7.26.0_react-dom@19.0.0-rc-65a56d0e-20241020_react@19.0.0-rc-65a56d0e_iud5roz23dazim363u2c2f5iuy/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fkarelle%2Fvscprojects%2Ftech-fleet%2Ftaino-language-app%2Flesson-authoring%2Fsrc%2Fapp%2F(payload)%2Flayout.tsx%22%2C%5B%5B%2240a20096f3be2e9c2e0075b76bba33a10993a39d9f%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%2C%5B%22%2FUsers%2Fkarelle%2Fvscprojects%2Ftech-fleet%2Ftaino-language-app%2Flesson-authoring%2Fnode_modules%2F.pnpm%2F%40payloadcms%2Bnext%403.6.0_graphql%4016.9.0_monaco-editor%400.52.0_next%4015.1.0_%40babel%2Bcore%407.26.0_rea_6cctsbz4hitjca66qn5qdd2zyq%2Fnode_modules%2F%40payloadcms%2Fnext%2Fdist%2Flayouts%2FRoot%2Findex.js%22%2C%5B%5B%2260ea5e788e7bc3a2e906b4235afd93974ee3599028%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(payload)/admin/[[...segments]]/page": "rsc"
+      }
+    },
+    "60ea5e788e7bc3a2e906b4235afd93974ee3599028": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": "(rsc)/./node_modules/.pnpm/next@15.1.0_@babel+core@7.26.0_react-dom@19.0.0-rc-65a56d0e-20241020_react@19.0.0-rc-65a56d0e_iud5roz23dazim363u2c2f5iuy/node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fkarelle%2Fvscprojects%2Ftech-fleet%2Ftaino-language-app%2Flesson-authoring%2Fsrc%2Fapp%2F(payload)%2Flayout.tsx%22%2C%5B%5B%2240a20096f3be2e9c2e0075b76bba33a10993a39d9f%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%2C%5B%22%2FUsers%2Fkarelle%2Fvscprojects%2Ftech-fleet%2Ftaino-language-app%2Flesson-authoring%2Fnode_modules%2F.pnpm%2F%40payloadcms%2Bnext%403.6.0_graphql%4016.9.0_monaco-editor%400.52.0_next%4015.1.0_%40babel%2Bcore%407.26.0_rea_6cctsbz4hitjca66qn5qdd2zyq%2Fnode_modules%2F%40payloadcms%2Fnext%2Fdist%2Flayouts%2FRoot%2Findex.js%22%2C%5B%5B%2260ea5e788e7bc3a2e906b4235afd93974ee3599028%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(payload)/admin/[[...segments]]/page": "rsc"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "OM9SHudl647Nrx/LNZxe9S8eTw4ry2vLEj8IdvwM5wg="
+}
