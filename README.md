@@ -1,5 +1,5 @@
-# Learn Taino
-Learn Taino is a language-learning app that helps Taino descendants and culture enthusiasts learn the Taino language and culture.
+# Taino Language App
+Taino Language App is a language-learning app that helps Taino descendants and culture enthusiasts learn the Taino language and culture.
 
 ![taino-language-app](https://github.com/user-attachments/assets/3f942bc5-f779-4efb-9a44-47ff3251894e)
 
