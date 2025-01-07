@@ -1,25 +1,36 @@
 # Learn Taino
 Learn Taino is a language-learning app that helps Taino descendants and culture enthusiasts learn the Taino language and culture.
 
+![taino-language-app](https://github.com/user-attachments/assets/3f942bc5-f779-4efb-9a44-47ff3251894e)
+
 ## Background
 The Taíno, the Indigenous people of the Caribbean and parts of the southern U.S. were the first Native Americans to meet Europeans in 1492. Though long thought extinct after colonization, they survived - many Caribbean people today have Taíno ancestry, and efforts are ongoing to preserve their culture and language.
 
 This project aims to aid in the revitalization of the Taíno culture by giving its descendants, as well as language and culture enthusiasts, by providing an easy learning experience for all ages and education levels.
 
-This mono repository contains two major projects for the Taino Language App Project
-- learn-taino-pwa: The mobile app for Learn Taino - React + Expo. It is a progressive web app that makes the app accessible to all.
-- lesson-authoring-tool: The headless CMS by Payload. This web app allows content creators, lesson authors, and admin users to create and edit lessons and vocabulary.
+This mono repository contains two projects for the Taino Language App Project
+- learn-taino-pwa: The progressive web app for Learn Taino built with Expo, React Native, Nest.js
+- lesson-authoring-tool: Uses Payload CMS. This web app allows content creators, lesson authors, and admin users to create and edit lessons and vocabulary.
 
 ## Stack 
+Learn Taino PWA:
 - Frontend:
     - React Native
     - Expo
+    - Auth0
+    - TypeScript
 - Backend:
+    - TypeScript
+    - Nest.js
     - PostgreSQL(Avien.io)
     - Prisma ORM
-    - Nest.js
-    - Auth0
-    - Cloudflare R2
+    - Cloudinary
+ 
+ Lesson Authoring Tool(Payload CMS):
+ - TypeScript
+ - PostgreSQL(Avien.io)
+ - Next.js
+ - React.js
 
 ## Requirements
 - Node.js v20+
@@ -27,7 +38,7 @@ This mono repository contains two major projects for the Taino Language App Proj
 
 ## Run Locally
 
-Clone this repository:
+First, clone this repository to your local machine:
 ```bash
 git clone https://github.com/itskarelleh/taino-language-app.git
 ```
@@ -48,7 +59,7 @@ npx prisma db pull # Runs introspection for Prisma ORM
 npx prisma generate #Generates the Prisma ORM client 
 pnpm install && pnpm run start:dev
 ```
-
+### Lesson Authoring Tool
 For the lesson-authoring tool, do the following:
 ```zsh
 cd lesson-authoring
