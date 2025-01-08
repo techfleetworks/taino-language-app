@@ -67,3 +67,20 @@ pnpm install && pnpm run dev
 ```
 
 For more details on how to run, deploy, and navigate this project, read the wiki: [Learn Taino GitHub Wiki](https://github.com/itskarelleh/taino-language-app/wiki)
+
+## Credits
+
+### Phase 1
+- Okino Kamali Leiba
+- Paulina Kottlewska Aaron Brinckerhoff
+- Aaron Brinckerhoff Harrison Hughes
+- Harrison Hughes
+
+### Phase 3
+- Karelle Hofler
+- Divine Ebisike
+- Neisha Rose
+- Jasmine Taylor
+- Ha Do
+- Linh Nyugen
+- Angela Lee
