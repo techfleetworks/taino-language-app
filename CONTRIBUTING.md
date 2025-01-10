@@ -1,6 +1,6 @@
 # Contributing: How You Can Add to this Project and Guidelines to Follow
 
-Thank you so much for contributing the the Taino Language App! 
+Thank you so much for contributing the Taino Language App! 
 
 ## Issues
 There are many issues and many more will come. We use labels to ensure that things are easier to navigate.
