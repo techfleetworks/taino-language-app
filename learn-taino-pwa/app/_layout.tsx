@@ -6,7 +6,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 import * as Font from 'expo-font';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -119,15 +119,13 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
     <AuthProvider>
       <LessonModuleProvider>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <View style={containerStyle} onLayout={onLayout}>
+          <SafeAreaView style={containerStyle} onLayout={onLayout}>
             <View style={phoneFrameStyle}>
               <View style={contentStyle}>
                 <Stack>
                   <Stack.Screen name="index" options={{ headerShown: false }} />
                   <Stack.Screen name="(tabs)" />
-                  <Stack.Screen name="lesson" options={{ headerShown: false }} />
-                  <Stack.Screen name="onboarding/write-your-name" options={{ headerShown: true, header: () => <Header variant="empty" /> }} />
-                  <Stack.Screen name="onboarding/lesson-one" options={{ headerShown: false }} />
+                  <Stack.Screen name="onboarding/lesson-one" options={{ headerShown: true, header: () => <Header variant='lesson' /> }} />
                   <Stack.Screen name="onboarding/create-account" options={{ headerShown: false }} />
                   <Stack.Screen name="onboarding/welcome" options={{ headerShown: false }} />
                   <Stack.Screen name="onboarding/introduction" options={{ headerShown: true, header: () => <Header variant="back" /> }} />
@@ -137,7 +135,7 @@ function RootLayoutNav({ onLayout }: { onLayout: () => Promise<void> }) {
                 </Stack>
               </View>
             </View>
-          </View>
+          </SafeAreaView>
         </ThemeProvider>
       </LessonModuleProvider>
     </AuthProvider>

@@ -2,42 +2,45 @@ import React from "react";
 import { Pressable, Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { Image } from "expo-image";
 import ProgressStep from "@/components/lesson/ProgressStep";
-import { router, useRouter } from "expo-router";
+import { router } from "expo-router";
 import Colors from "@/constants/Colors";
 import { useLessonModule } from "@/lib/LessonModuleProvider";
 
-/**
- * Header aka Topbar
- */
 
 interface HeaderProps {
-    variant: 'back' | 'progress' | 'empty';
-    currentStep?: number;
-    totalSteps?: number;
+    variant: 'back' | 'lesson' | 'empty';
 }
 
-export const BackHeader = ({ router }: { router: any }) => {
-    
-
+const BackHeader = ({ handleBack } : { handleBack?: any }) => {
 
     return (
-    <SafeAreaView>
-            <View style={styles.progressContainer}>
-            <Pressable onPress={() => router.goBack()} style={styles.arrowWrapper}>
-                <Image
-                    style={styles.arrow}
-                    source={require('@/assets/images/arrow_back_ios_new.png')}
-                />
-            </Pressable>
-        </View>
-    </SafeAreaView>
-);}
+        <SafeAreaView>
+                <View style={styles.headerContainer}>
+                <Pressable onPress={handleBack ? handleBack : () => router.back} style={styles.arrowWrapper}>
+                    <Image
+                        style={styles.arrow}
+                        source={require('@/assets/images/arrow_back_ios_new.png')}
+                    />
+                </Pressable>
+            </View>
+        </SafeAreaView>
+    );
+}
 
+const ActivityHeader = ({ handleGoBack } : { handleGoBack : () => void }) => {
+    const { totalActivities, currentActivityIndex } = useLessonModule();
 
+    return (
+            <ProgressStep 
+            handleGoToPrevious={handleGoBack} 
+            currentStep={currentActivityIndex} 
+            totalSteps={totalActivities} />
+    );
+}
 
-export const LessonModuleBackHeader = () => {
+const LessonModuleHeader = () => {
+
     const { currentSection, currentActivityIndex, goBack } = useLessonModule() 
-
 
     const handleGoBack = () => {
         if(currentSection === '' && currentActivityIndex === 0) {
@@ -47,64 +50,54 @@ export const LessonModuleBackHeader = () => {
         }
     }
 
-
-    return (
-        <SafeAreaView>
-            <View style={styles.progressContainer}>
-            {router.canGoBack() && <Pressable onPress={handleGoBack} style={styles.arrowWrapper}>
-                <Image
-                    style={styles.arrow}
-                    source={require('@/assets/images/arrow_back_ios_new.png')}
-                />
-            </Pressable>}
-        </View>
-    </SafeAreaView>
-    )
-
-}
-export const EmptyHeader = () => (
-    <SafeAreaView>
-        <View style={{ width: 390, padding: 16, height: 48, backgroundColor: Colors.background }} />
-    </SafeAreaView>
-);
-
-// const ProgressHeader = ({ currentStep, totalSteps }: { currentStep: number; totalSteps: number }) => (
-//     <SafeAreaView>
-//         <View style={styles.progressContainer}>
-//             <Pressable onPress={() => router.back()} style={styles.arrowWrapper}>
-//                 <Image
-//                     style={styles.arrow}
-//                     source={require('@/assets/images/arrow_back_ios_new.png')}
-//                 />
-//             </Pressable>
-//             <View style={styles.centerContentContainer}>
-//                 <ProgressStep currentStep={currentStep} totalSteps={totalSteps} />
-//             </View>
-//         </View>
-//     </SafeAreaView>
-// );
-
-
-export default function Header({ variant, currentStep = 1, totalSteps = 1 } : HeaderProps) {
-    
-    const router = useRouter();
-
-    switch (variant) {
-        case 'back':
-            return <BackHeader router={router} />;
-        case 'empty':
+    switch(currentSection) {
+        case 'activities':
+            return <ActivityHeader handleGoBack={handleGoBack} />
+        case 'complete':
+            return (
+                <EmptyHeader />
+            )
+        case 'introduction':
+            return (
+                <BackHeader />
+            )
+        case '':
         default:
-            return <EmptyHeader />;
+            return <EmptyHeader />
     }
 }
 
+export const EmptyHeader = () => (
+    <SafeAreaView>
+        <View style={styles.emptyHeader} />
+    </SafeAreaView>
+);
+
+
+const headerVariants = {
+    back: <BackHeader />,
+    lesson: <LessonModuleHeader />,
+    empty: <EmptyHeader />
+}
+
+export default function Header({ variant } : HeaderProps) {
+    return headerVariants[variant];
+}
+
 const styles = StyleSheet.create({
-    progressContainer: {
+    emptyHeader: {
+        width: 390, 
+        padding: 16, 
+        height: 48, 
+        backgroundColor: Colors.background 
+    },
+    headerContainer: {
       display: 'flex',
       flexDirection: 'row',
       width: 390,
       padding: 16,
       alignItems: 'center',
+      backgroundColor: Colors.background,
     },
     arrowWrapper: {
       display: 'flex',
@@ -126,6 +119,4 @@ const styles = StyleSheet.create({
       gap: 4,
       flex: 1,
     }
-  });
-  
-
+});

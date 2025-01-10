@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build": "expo export -p web && npx workbox-cli generateSW workbox-config.js",
+    "nest:dev": "cd server && pnpm run start:dev",
     "start:fullstack": "concurrently \"pnpm run start -c\" \"cd server && pnpm run start:dev\"",
     "deploy": "netlify build && netlify deploy",
     "ngrok": "ngrok http 8081",

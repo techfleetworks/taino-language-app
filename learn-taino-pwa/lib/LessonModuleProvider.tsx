@@ -29,11 +29,13 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
   children
 } : { children: React.ReactNode }) => {
 
+
   const [ id, setId ] = useState<string>('');
   const [ currentSection, setCurrentSection ] = useState<'introduction' | 'activities' | 'complete' | ''>('');
   const [ currentActivityIndex, setCurrentActivityIndex ] = useState(0);
   const [ activities, setActivities ] = useState<Activity[]>([]);
   const [ lesson, setLesson ] = useState<Lesson | null>(null);
+
 
   useEffect(() => {
     if(id !== '') {
@@ -52,19 +54,18 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
   }, [id]);
 
 
-  //use this function so that when the user clicks on something like a lesson card,
-  // it will set the id of the lesson to the id of the lesson card
   const handleLessonId = (id: string) => {
     setId(id);
   }
 
-  const clearLessonId = (id: string) => {
+  const clearLessonId = () => {
     setId('');
   }
 
   const fetchLessonById = async (id: string) => {
+    const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL
     //TODO replace hardcoded url with env variable
-    const response = await axios.get(`http://localhost:8000/lessons/${id}`);
+    const response = await axios.get(`${backendUrl}/lessons/${id}`);
     const data = await response.data;
     return data;
   }
@@ -98,6 +99,7 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
   const resetLesson = () => {
     setCurrentSection('');
     setCurrentActivityIndex(0);
+    clearLessonId();
   };
 
   const startLesson = () => {

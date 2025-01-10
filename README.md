@@ -26,7 +26,8 @@ Learn Taino PWA:
     - Prisma ORM
     - Cloudinary
  
- Lesson Authoring Tool(Payload CMS):
+ Lesson Authoring Tool:
+ - Payload CMS
  - TypeScript
  - PostgreSQL(Avien.io)
  - Next.js
@@ -51,7 +52,7 @@ cp .env.example .env # add the correct values in the newly created .env file
 npm install && npx expo start -c
 ```
 
-To run the server of the Learn Taino App, open another terminal and run the following commands:
+To run the Nest.js server of the Learn Taino PWA, open another terminal and run the following commands:
 ```zsh
 cd learn-taino-pwa/server
 cp .env.example .env # add the correct values in the newly created .env file
@@ -59,11 +60,13 @@ npx prisma db pull # Runs introspection for Prisma ORM
 npx prisma generate #Generates the Prisma ORM client 
 pnpm install && pnpm run start:dev
 ```
+
 ### Lesson Authoring Tool
 For the lesson-authoring tool, do the following:
 ```zsh
 cd lesson-authoring
-pnpm install && pnpm run dev
+cp .env.exampe .env # add the correct values in newly created .env
+pnpm install && pnpm run dev #install and gnerate 
 ```
 
 For more details on how to run, deploy, and navigate this project, read the wiki: [Learn Taino GitHub Wiki](https://github.com/itskarelleh/taino-language-app/wiki)

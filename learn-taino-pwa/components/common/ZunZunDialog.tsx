@@ -1,11 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import {Text, 
         StyleSheet, 
         View, 
         Image,
-        FlexStyle
 } from 'react-native';
-import {useState} from 'react';
 import StyledButton from '@/components/common/TLPButton';
 import Colors from '@/constants/Colors';
 import { TLPBottomButtonNav } from '@/components/common/TLPBottomButtonNav';
@@ -20,7 +18,7 @@ export default function ZunZunDialog({ text, buttonText, onButtonClick } : ZunZu
     const buttonRef = useRef<any>(null);
   
     return (
-       <View style={[styles.welcomeContainer]}>
+       <View style={[styles.zunzunContainer]}>
           <View style={styles.imageContainer}>
             <Image style={styles.image} source={require('@/assets/images/zunzun.png')} />
           </View>
@@ -53,15 +51,13 @@ export default function ZunZunDialog({ text, buttonText, onButtonClick } : ZunZu
 }
 
 const styles = StyleSheet.create({
-    welcomeContainer: {
+    zunzunContainer: {
       flex: 1,
       justifyContent: 'space-between',
       alignItems:'center',
       padding: 8,
-      position: 'relative'
-    },
-    progressWrapper: {
-      top: 0,
+      position: 'relative',
+      backgroundColor: Colors.background
     },
     imageContainer: {
       display: 'flex',
@@ -131,4 +127,4 @@ const styles = StyleSheet.create({
       fontStyle: "normal",
       fontWeight: "600",
     }
-  });
+});

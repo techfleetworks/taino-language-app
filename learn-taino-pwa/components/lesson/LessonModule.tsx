@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { SafeAreaView, View, StyleSheet } from "react-native";
-import { Activity } from "@/types/lessons";
-import type { Lesson } from "@/types/lessons";
 import { useLessonModule } from "@/lib/LessonModuleProvider";
 import LessonIntro from "./LessonIntro";
 import Colors from '@/constants/Colors'
@@ -18,13 +16,13 @@ export function LessonModule() {
     return (
         <View style={styles.container}>
             {/* TODO: Update  to use header instead of adding it here.*/}
-            <SafeAreaView>
+            {/* <SafeAreaView>
                 {currentSection === 'activities' ? <ProgressStep
                     currentStep={currentActivityIndex + 1}
                     handleGoToPrevious={goToPreviousActivity}
                     totalSteps={3}
                 /> : <LessonModuleBackHeader />}
-            </SafeAreaView>
+            </SafeAreaView> */}
             <View style={styles.questionContainer}>
                 {currentSection === '' && <LessonIntro /> } {/** Shows the user the lesson introduction */}
                 {currentSection === 'introduction' && <VocabularyOverviewComponent  /> } {/* Shows the user vocabulary overview and zun zun dialogue*/}

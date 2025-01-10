@@ -46,10 +46,12 @@ export default function ProgressStep({ currentStep, totalSteps }: ProgressStepPr
 
 const styles = StyleSheet.create({
   progressContainer: {
+    backgroundColor: Colors.background,
     display: 'flex',
     flexDirection: 'row',
     width: 390,
     padding: 16,
+    marginHorizontal: 'auto',
     alignItems: 'center',
   },
   arrowWrapper: {
