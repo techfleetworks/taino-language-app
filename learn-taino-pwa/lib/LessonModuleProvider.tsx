@@ -9,6 +9,7 @@ type LessonModuleContextType = {
   currentSection: 'introduction' | 'activities' | 'complete' | ''; 
   currentActivityIndex: number;
   totalActivities: number;
+  isLoading: boolean;
   handleLessonId: (id: string) => void;
   fetchLessonById: (id: string) => Promise<Lesson | null>;
   getVocabFromLessonOverview: () => any;
@@ -35,7 +36,7 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
   const [ currentActivityIndex, setCurrentActivityIndex ] = useState(0);
   const [ activities, setActivities ] = useState<Activity[]>([]);
   const [ lesson, setLesson ] = useState<Lesson | null>(null);
-
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
   useEffect(() => {
     if(id !== '') {
@@ -64,12 +65,12 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
 
   const fetchLessonById = async (id: string) => {
     const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL
-    //TODO replace hardcoded url with env variable
+
+    setIsLoading(true);
     const response = await axios.get(`${backendUrl}/lessons/${id}`);
     const data = await response.data;
 
-    console.log(data);
-    
+    setIsLoading(false);
     return data;
   }
 
@@ -145,6 +146,7 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
       currentSection,
       currentActivityIndex,
       totalActivities: activities!.length,
+      isLoading,
       handleLessonId,
       fetchLessonById,
       getVocabFromLessonOverview,

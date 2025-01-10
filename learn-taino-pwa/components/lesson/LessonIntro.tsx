@@ -12,9 +12,7 @@ import { useLessonModule } from "@/lib/LessonModuleProvider";
 // to start the lesson
 export default function LessonIntro() {
 
-    const { advanceLesson, lesson, startLesson } = useLessonModule()
-
-    console.log("lesson intro.")
+    const { lesson, startLesson } = useLessonModule()
 
    return (
     <>

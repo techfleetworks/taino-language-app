@@ -31,8 +31,6 @@ export default function CorrectImageActivity({
   onComplete 
 }: CorrectImageActivityProps): JSX.Element {
 
-    console.log(activity)
-
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [showResult, setShowResult] = useState<boolean>(false);
 

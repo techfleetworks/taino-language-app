@@ -1,15 +1,19 @@
 import React from "react";
 import { useLessonModule } from "@/lib/LessonModuleProvider";
 import { LessonModule } from "@/components/lesson/LessonModule";
+import { ActivityIndicator, View } from "react-native";
+import Colors from "@/constants/Colors";
 
-//TODO: consider making this and other screens under onboarding one singular page using Stack
 export default function LessonScreen() {
 
+    const { isLoading } = useLessonModule();
 
-    const { lesson } = useLessonModule();
-
-    if (!lesson) {
-        return null;
+    if (isLoading) {
+        return (
+            <View style={{ flex: 1, backgroundColor: Colors.background, justifyContent: 'center', alignContent: 'center' }}>
+                <ActivityIndicator size={96} color={Colors.primary} />
+            </View>
+        )
     }
 
     return ( 

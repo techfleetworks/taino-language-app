@@ -31,7 +31,7 @@ module.exports = {
       }
     },
     extra: {
-      backendUrl: "http://localhost:8000"
+      backendUrl: "https://taino-language-app.onrender.com"
     },
     plugins: ["expo-router", "expo-font"]
   }

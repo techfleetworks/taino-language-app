@@ -44,10 +44,8 @@ export function SignUpWithEmailForm() {
             window.location.href = '/onboarding/welcome'; // Redirect in the same tab
           }
     
-        console.log(response.data)
-          
         } catch (error) {
-          console.log('Signup failed: ' + error);
+          console.log('Signup failed: ' + error); //TODO: replace with something else
         }
       };
     

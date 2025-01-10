@@ -12,10 +12,10 @@ package = "@netlify/plugin-lighthouse"
 [plugins.inputs]
 
 [build]
-publish = "/Users/karelle/vscprojects/tech-fleet/taino-language-app/react-frontend/web-build"
+publish = "/Users/karelle/vscprojects/tech-fleet/taino-language-app/learn-taino-pwa/web-build"
 publishOrigin = "ui"
 commandOrigin = "ui"
-base = "/Users/karelle/vscprojects/tech-fleet/taino-language-app/react-frontend"
+base = "/Users/karelle/vscprojects/tech-fleet/taino-language-app/learn-taino-pwa"
 command = "pnpm run build"
 
 [build.environment]
