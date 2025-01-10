@@ -67,6 +67,9 @@ export const LessonModuleProvider: React.FC<LessonModuleProviderProps> = ({
     //TODO replace hardcoded url with env variable
     const response = await axios.get(`${backendUrl}/lessons/${id}`);
     const data = await response.data;
+
+    console.log(data);
+    
     return data;
   }
 

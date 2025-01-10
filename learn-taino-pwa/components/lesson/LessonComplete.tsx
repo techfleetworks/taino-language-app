@@ -14,7 +14,7 @@ import { useLessonModule } from '@/lib/LessonModuleProvider';
 
 export default function LessonComplete() {
 
-    const { id, lesson } = useLessonModule()
+    const { lesson } = useLessonModule()
 
     const router = useRouter();
 
@@ -44,7 +44,7 @@ export default function LessonComplete() {
                             english={pair.english}
                         />
                     ))}
-                </View>
+                </View> 
             <TLPBottomButtonNav style={styles.buttonWrapper}>
                 <StyledButton
                     title={'Continue'}
