@@ -124,6 +124,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-function generateNonce() {
-  return Math.random().toString(36).substring(2, 15);
-}
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+
+  if (!context) throw new Error('useAuth requires being used within the AuthProvider');
+
+  return context;
+};

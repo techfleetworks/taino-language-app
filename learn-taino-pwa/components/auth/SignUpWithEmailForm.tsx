@@ -25,10 +25,8 @@ export function SignUpWithEmailForm() {
       
       const [passwordVisibility, setPasswordVisibility] = useState(false);
       const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
-      const [emailError, setEmailError] = useState<string>('');
       const [passwordError, setPasswordError] = useState<string>('');
       const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
-      const [signupError, setSignupError] = useState<boolean>(true);
       const [isDisabled, setIsDisabled] = useState<boolean>(true);
     
       const onSubmit = async (data: any) => {

@@ -6,7 +6,6 @@ import { router } from "expo-router";
 import Colors from "@/constants/Colors";
 import { useLessonModule } from "@/lib/LessonModuleProvider";
 
-
 interface HeaderProps {
     variant: 'back' | 'lesson' | 'empty';
 }
@@ -72,7 +71,6 @@ export const EmptyHeader = () => (
         <View style={styles.emptyHeader} />
     </SafeAreaView>
 );
-
 
 const headerVariants = {
     back: <BackHeader />,

@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import Colors from '@/constants/Colors';
-import { Link } from 'expo-router'; 
-import { AuthContext } from '@/lib/AuthProvider';
-import { useRouter } from 'expo-router';
+import { useAuth } from '@/lib/AuthProvider';
 import GoogleAuthButton from '@/components/auth/GoogleAuthButton';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import PageContainer from '@/components/common/PageContainer';
 import NameInput from '@/components/auth/NameInput';
 import { TLPBottomButtonNav as BottomButtonNav } from '@/components/common/TLPBottomButtonNav';
@@ -15,11 +13,11 @@ import { SignUpWithEmailForm } from '@/components/auth/SignUpWithEmailForm';
 
 export default function CreateAccount() {
   
-  const authContext = useContext(AuthContext);
+  const { user, login } = useAuth();
   const [ nameIsPresent, setNameIsPresent ] = useState<boolean>(false)
   const [ withEmail, setWithEmail ] = useState<boolean>(false);
 
-  const { control, watch, handleSubmit } = useForm({
+  const { control, watch } = useForm({
       defaultValues: {
           name: "",
           email:"",
@@ -41,27 +39,24 @@ export default function CreateAccount() {
       setNameIsPresent(false)
   }
 
+  //registers/authenticates user 
   const googleLogin = async () => {
-    console.log('googleLogin');
-    if (authContext) {
-      const result = await authContext.login();
-      console.log('result', result);
+    if (login) {
+      const result = await login();
       if (result.type === 'success') {
-        console.log('redirecting to welcome');
         window.location.href = '/onboarding/welcome'; // Redirect in the same tab
       } else {
-        console.log('login failed');
-        Alert.alert('Login Failed!!!!!');
+        console.log('login failed'); //TODO: Replace with an error message that is displayed in form when auth fails.
       }
     }
   };
 
     if(nameIsPresent) {  
       return (
-      <View style={styles.container}>
-        <TouchableOpacity 
+      <View style={styles.container}> 
+        <TouchableOpacity
           style={styles.backButton}
-          onPress={() => console.log("Go back!")}
+          onPress={() => setNameIsPresent((prev : boolean) => !prev)}
         >
           <Image 
             source={require('@/assets/images/arrow_back_ios_new.png')} 
@@ -82,19 +77,28 @@ export default function CreateAccount() {
           <Text style={styles.orText}>or</Text>
           <View style={styles.orLine} />
         </View>
-        {/* //TODO: use Auth0 API instead of Auth0 client */}
         <GoogleAuthButton onPress={googleLogin} />
       </View>
     );}
 
     if(withEmail) {
       return (
+        <>
+        <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => setNameIsPresent((prev : boolean) => !prev)}>
+          <Image 
+            source={require('@/assets/images/arrow_back_ios_new.png')} 
+            style={styles.backIcon} 
+          />
+        </TouchableOpacity>
         <SignUpWithEmailForm />
+        </>
       )
     }
 
-      return (
-      <PageContainer>
+    return (
+      <PageContainer style={{ paddingTop: 48 }}>
         <NameInput 
             control={control}
         />
@@ -106,7 +110,7 @@ export default function CreateAccount() {
                 />
         </BottomButtonNav>
       </PageContainer>
-      )
+    )
 }
 
 const styles = StyleSheet.create({
@@ -175,7 +179,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   thirdPartyButtonText: {
-    color: '#000',
+    color: Colors.black,
     fontSize: 16,
     fontWeight: 'bold',
   },
