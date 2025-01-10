@@ -28,10 +28,9 @@ Learn Taino PWA:
  
  Lesson Authoring Tool:
  - Payload CMS
+ - React.js
  - TypeScript
  - PostgreSQL(Avien.io)
- - Next.js
- - React.js
 
 ## Requirements
 - Node.js v20+
