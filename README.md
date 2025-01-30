@@ -74,8 +74,8 @@ For more details on how to run, deploy, and navigate this project, read the wiki
 
 ### Phase 1
 - Okino Kamali Leiba
-- Paulina Kottlewska Aaron Brinckerhoff
-- Aaron Brinckerhoff Harrison Hughes
+- Paulina Kottlewska 
+- Aaron Brinckerhoff
 - Harrison Hughes
 
 ### Phase 3
